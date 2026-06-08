@@ -1,0 +1,1578 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SMP Negeri 2 Muara Bungo - Sekolah Unggulan di Kabupaten Bungo</title>
+<meta name="description" content="Website resmi SMP Negeri 2 Muara Bungo - Sekolah Menengah Pertama Negeri di Kabupaten Bungo, Jambi. Mewujudkan generasi cerdas, berakhlak mulia, dan berprestasi." />
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.24.7/babel.min.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --navy-50: #eef2ff;
+    --navy-100: #d9e2ff;
+    --navy-200: #bccaff;
+    --navy-300: #8ea6ff;
+    --navy-400: #5a7bff;
+    --navy-500: #3355ff;
+    --navy-600: #1e3de0;
+    --navy-700: #1a2fb0;
+    --navy-800: #16268a;
+    --navy-900: #0f1c66;
+    --navy-950: #0a1347;
+    --gold-400: #facc15;
+    --gold-500: #eab308;
+    --gold-600: #ca8a04;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+  .font-display { font-family: 'Poppins', sans-serif; }
+  .text-navy-50 { color: var(--navy-50); }
+  .text-navy-100 { color: var(--navy-100); }
+  .text-navy-200 { color: var(--navy-200); }
+  .text-navy-300 { color: var(--navy-300); }
+  .text-navy-400 { color: var(--navy-400); }
+  .text-navy-500 { color: var(--navy-500); }
+  .text-navy-600 { color: var(--navy-600); }
+  .text-navy-700 { color: var(--navy-700); }
+  .text-navy-800 { color: var(--navy-800); }
+  .text-navy-900 { color: var(--navy-900); }
+  .text-navy-950 { color: var(--navy-950); }
+  .text-gold-400 { color: var(--gold-400); }
+  .text-gold-500 { color: var(--gold-500); }
+  .text-gold-600 { color: var(--gold-600); }
+  .bg-navy-50 { background-color: var(--navy-50); }
+  .bg-navy-100 { background-color: var(--navy-100); }
+  .bg-navy-700 { background-color: var(--navy-700); }
+  .bg-navy-800 { background-color: var(--navy-800); }
+  .bg-navy-900 { background-color: var(--navy-900); }
+  .bg-navy-950 { background-color: var(--navy-950); }
+  .bg-gold-400 { background-color: var(--gold-400); }
+  .bg-gold-500 { background-color: var(--gold-500); }
+  .bg-gold-600 { background-color: var(--gold-600); }
+  .ring-navy-200 { --tw-ring-color: var(--navy-200); }
+  .ring-navy-500 { --tw-ring-color: var(--navy-500); }
+  .border-navy-200 { border-color: var(--navy-200); }
+  .border-navy-900 { border-color: var(--navy-900); }
+  .border-yellow-400 { border-color: var(--gold-400); }
+  .border-yellow-500 { border-color: var(--gold-500); }
+  .border-yellow-600 { border-color: var(--gold-600); }
+  .from-navy-400 { --tw-gradient-from: var(--navy-400); }
+  .from-navy-500 { --tw-gradient-from: var(--navy-500); }
+  .from-navy-600 { --tw-gradient-from: var(--navy-600); }
+  .from-navy-700 { --tw-gradient-from: var(--navy-700); }
+  .from-navy-800 { --tw-gradient-from: var(--navy-800); }
+  .from-navy-900 { --tw-gradient-from: var(--navy-900); }
+  .from-yellow-300 { --tw-gradient-from: #fde047; }
+  .from-yellow-400 { --tw-gradient-from: var(--gold-400); }
+  .from-yellow-500 { --tw-gradient-from: var(--gold-500); }
+  .from-yellow-600 { --tw-gradient-from: var(--gold-600); }
+  .to-navy-400 { --tw-gradient-to: var(--navy-400); }
+  .to-navy-500 { --tw-gradient-to: var(--navy-500); }
+  .to-navy-600 { --tw-gradient-to: var(--navy-600); }
+  .to-navy-700 { --tw-gradient-to: var(--navy-700); }
+  .to-navy-800 { --tw-gradient-to: var(--navy-800); }
+  .to-navy-900 { --tw-gradient-to: var(--navy-900); }
+  .to-navy-950 { --tw-gradient-to: var(--navy-950); }
+  .to-yellow-400 { --tw-gradient-to: var(--gold-400); }
+  .to-yellow-500 { --tw-gradient-to: var(--gold-500); }
+  .to-yellow-600 { --tw-gradient-to: var(--gold-600); }
+  .from-rose-600 { --tw-gradient-from: #e11d48; }
+  .to-rose-800 { --tw-gradient-to: #9f1239; }
+  .from-emerald-600 { --tw-gradient-from: #059669; }
+  .to-emerald-800 { --tw-gradient-to: #065f46; }
+  .from-indigo-600 { --tw-gradient-from: #4f46e5; }
+  .to-indigo-900 { --tw-gradient-to: #312e81; }
+  .from-teal-600 { --tw-gradient-from: #0d9488; }
+  .to-teal-800 { --tw-gradient-to: #115e59; }
+  .from-orange-500 { --tw-gradient-from: #f97316; }
+  .to-orange-700 { --tw-gradient-to: #c2410c; }
+  .from-red-600 { --tw-gradient-from: #dc2626; }
+  .to-red-800 { --tw-gradient-to: #991b1b; }
+  .from-pink-500 { --tw-gradient-from: #ec4899; }
+  .to-pink-700 { --tw-gradient-to: #be185d; }
+  .from-violet-600 { --tw-gradient-from: #7c3aed; }
+  .to-violet-900 { --tw-gradient-to: #4c1d95; }
+  .focus\:ring-navy-100:focus { --tw-ring-color: #d9e2ff; box-shadow: 0 0 0 2px var(--navy-100); }
+  .focus\:border-navy-500:focus { border-color: var(--navy-500); }
+  .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  .animate-marquee { animation: marquee 30s linear infinite; }
+  input, textarea, select { font-family: inherit; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" data-type="module" data-presets="env,react">
+
+const { useState, useEffect, createContext, useContext } = React;
+
+/* ============ ICONS (Inline SVG) ============ */
+const I = {
+  Phone: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>,
+  Mail: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>,
+  MapPin: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>,
+  Clock: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>,
+  Menu: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>,
+  X: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>,
+  ChevronDown: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><polyline points="6,9 12,15 18,9"/></svg>,
+  ChevronRight: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><polyline points="9,18 15,12 9,6"/></svg>,
+  ChevronLeft: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><polyline points="15,18 9,12 15,6"/></svg>,
+  Home: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>,
+  School: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>,
+  BookOpen: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>,
+  Users: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>,
+  Award: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><circle cx="12" cy="8" r="7"/><polyline points="8.21,13.89 7,23 12,20 17,23 15.79,13.88"/></svg>,
+  Trophy: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><path d="M6 9H4.5a2.5 2.5 0 010-5H6"/><path d="M18 9h1.5a2.5 2.5 0 000-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0012 0V2z"/></svg>,
+  GraduationCap: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>,
+  Calendar: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>,
+  Building2: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><path d="M6 22V4a2 2 0 012-2h8a2 2 0 012 2v18z"/><path d="M6 12H4a2 2 0 00-2 2v8h4"/><path d="M18 9h2a2 2 0 012 2v11h-4"/></svg>,
+  Newspaper: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8a2 2 0 00-2 2v16a2 2 0 01-2 2zm0 0a2 2 0 01-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8M10 10h8"/></svg>,
+  Megaphone: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 11-5.8-1.6"/></svg>,
+  Image: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>,
+  ClipboardList: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><path d="M12 11h4M12 16h4M8 11h.01M8 16h.01"/></svg>,
+  FileText: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>,
+  Target: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>,
+  UserCog: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><circle cx="20" cy="8" r="2"/><path d="M18 14l1.5 1.5M22 14l-1.5 1.5M19 18l-1.5-1.5M19 18l1.5-1.5M22 18l-1.5-1.5"/></svg>,
+  Shield: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
+  Send: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22,2 15,22 11,13 2,9"/></svg>,
+  ArrowUp: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5,12 12,5 19,12"/></svg>,
+  Lock: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>,
+  LogOut: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>,
+  Save: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17,21 17,13 7,13 7,21"/><polyline points="7,3 7,8 15,8"/></svg>,
+  Trash: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><polyline points="3,6 5,6 21,6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>,
+  Edit: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>,
+  Plus: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>,
+  Eye: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>,
+  Heart: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>,
+  Search: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>,
+  Monitor: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>,
+  Flask: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><path d="M9 3h6v5l5 9a2 2 0 01-2 3H6a2 2 0 01-2-3l5-9V3z"/></svg>,
+  Library: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><path d="M3 22h18M5 22V4a2 2 0 012-2h4a2 2 0 012 2v18M13 4v18M17 4l3 18"/></svg>,
+  Download: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>,
+  Star: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/></svg>,
+  Palette: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><circle cx="13.5" cy="6.5" r="0.5"/><circle cx="17.5" cy="10.5" r="0.5"/><circle cx="8.5" cy="7.5" r="0.5"/><circle cx="6.5" cy="12.5" r="0.5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 011.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>,
+  Settings: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>,
+  Fb: (p) => <svg viewBox="0 0 24 24" fill="currentColor" className={p.c}><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.51 1.5-3.9 3.78-3.9 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 2.89h-2.33v6.99A10 10 0 0 0 22 12z"/></svg>,
+  Ig: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={p.c}><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>,
+  Yt: (p) => <svg viewBox="0 0 24 24" fill="currentColor" className={p.c}><path d="M23 7s-.2-1.4-.8-2c-.8-.8-1.7-.8-2.1-.9C17 4 12 4 12 4s-5 0-8.1.2c-.4 0-1.3 0-2.1.9C1.2 5.6 1 7 1 7S.8 8.7.8 10.4v1.7c0 1.7.2 3.4.2 3.4s.2 1.4.8 2c.8.8 1.9.8 2.4.9C6 18.6 12 18.6 12 18.6s5 0 8.1-.2c.4-.1 1.3-.1 2.1-.9.6-.6.8-2 .8-2s.2-1.7.2-3.4v-1.7C23.2 8.7 23 7 23 7zM9.8 14.3V8l5.3 3.2-5.3 3.1z"/></svg>,
+  Tw: (p) => <svg viewBox="0 0 24 24" fill="currentColor" className={p.c}><path d="M19.5 4h3L15 12.3 24 22h-7l-6-7.7L4 22H1l9-10L0 4h7l5 6.7L19.5 4z"/></svg>,
+  Tk: (p) => <svg viewBox="0 0 24 24" fill="currentColor" className={p.c}><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25C14.74 2.5 14 2.1 14 2.1S11 2.16 8.17 5C5.23 8 4.8 10.62 4.81 10.77s.14 1.4.5 2.02C6 13.78 3.47 17.17 2.67 18.47c-.4.65-.83 1.14-.83 1.14s.26.2.64.3c.6.15 1.63-.03 2.23-.3.85-.38 1.46-1 2-1.55a8.12 8.12 0 002.2-1.82c1.4-1.5 1.95-2.9 2.08-3.3.3-.85.24-1.55.17-1.73-.02-.1-.17-.08-.17-.08-.6.3-1.17 1.87-1.37 2.1-.56.6-1.1.7-1.37.6-.45-.15-.35-.7-.33-.95 0-.28.03-.52.07-.76.17-1.38.86-2.83 1.9-3.67 1.28-1.02 2.8-1.1 3.08-.06.04.15.2.44.27.6.28.6.87 2.03.6 3.2-.03.17 0 .38 0 .57.53-1.15.93-2.4.7-3.75-.14-.8-.52-1.55-1.07-2.12z"/></svg>,
+  Ytb: (p) => <svg viewBox="0 0 24 24" fill="currentColor" className={p.c}><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418a2.506 2.506 0 0 0-1.768 1.768C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15.464V8.536L16 12l-6 3.464z"/></svg>,
+};
+
+/* ============ DATA DEFAULTS ============ */
+const D = {
+  pengaturan: {
+    youtubeUrl: "https://www.youtube.com/@smpn2bungo",
+    facebookUrl: "https://www.facebook.com/smpn2muarabungo",
+    instagramUrl: "https://www.instagram.com/smpn2bungo",
+    twitterUrl: "https://twitter.com/smpn2bungo",
+    tiktokUrl: "https://www.tiktok.com/@smpn2bungo",
+    phone: "(0747) 21103",
+    email: "smpn2bungo@gmail.com",
+    address: "Jl. Taman Siswa, Kelurahan Manggis, Kec. Bathin III, Kab. Bungo, Jambi 37211",
+    headmaster: "Muchim, S.Pd.",
+    announcement: "🎉 PPDB TP 2026/2027 telah dibuka!",
+  },
+  sambutan: {
+    nama: "Muchim, S.Pd.", jabatan: "Kepala Sekolah",
+    ucapanPembuka: "Assalamualaikum warahmatullahi wabarakatuh. Selamat datang di website resmi SMP Negeri 2 Muara Bungo.",
+    paragraf: [
+      "Dengan rahmat Allah SWT, kami memanjatkan puji syukur ke hadirat-Nya atas karunia yang diberikan sehingga website resmi SMP Negeri 2 Muara Bungo dapat hadir di hadapan Anda semua.",
+      "Sebagai lembaga pendidikan yang telah berdiri sejak tahun 1980, kami memiliki tanggung jawab besar untuk terus berinovasi menghadirkan layanan pendidikan yang berkualitas bagi putra-putri terbaik Kabupaten Bungo. Website ini merupakan wujud komitmen kami terhadap transparansi dan kemajuan teknologi informasi.",
+      "Melalui website ini, pengunjung dapat mengakses berbagai informasi terkait profil sekolah, program akademik, kegiatan kesiswaan, fasilitas, prestasi, serta informasi penting lainnya. Kami juga membuka ruang seluas-luasnya bagi saran dan masukan demi kemajuan bersama.",
+      "Akhir kata, kami ucapkan terima kasih atas kunjungan Anda. Wassalamualaikum warahmatullahi wabarakatuh.",
+    ],
+  },
+  sejarah: {
+    intro: "SMP Negeri 2 Muara Bungo didirikan pada tanggal 7 November 1980. Sekolah ini terletak di Jl. Taman Siswa, Kelurahan Manggis, Kec. Bathin III, Kabupaten Bungo, Provinsi Jambi, dengan luas tanah sekitar 14.625 m².",
+    timeline: [
+      { tahun: "1980", judul: "Pendirian Sekolah", deskripsi: "Berdiri pada 7 November 1980 berdasarkan SK Pendirian Nomor SK/182 sebagai SMP Negeri filial di Kec. Bathin III, Kab. Bungo, Jambi." },
+      { tahun: "1995", judul: "Pembangunan Gedung", deskripsi: "Pembangunan gedung 2 lantai dan perluasan lahan sekolah." },
+      { tahun: "2017", judul: "Akreditasi B", deskripsi: "Meraih akreditasi B dari BAN-S/M berdasarkan SK No. 341/BAP-S/M/XI/Jbi/2017." },
+      { tahun: "2022", judul: "Kurikulum Merdeka", deskripsi: "Menjadi sekolah penggerak implementasi Kurikulum Merdeka di Kabupaten Bungo." },
+      { tahun: "2026", judul: "Saat Ini", deskripsi: "Terus berinovasi dengan 534+ siswa aktif dan 35+ tenaga pendidik profesional." },
+    ],
+  },
+  visimisi: {
+    visi: "Terwujudnya peserta didik yang beriman, cerdas, terampil, berakhlak mulia, dan berwawasan lingkungan berdasarkan Profil Pelajar Pancasila.",
+    misi: [
+      "Menanamkan keimanan dan ketakwaan kepada Tuhan Yang Maha Esa.",
+      "Meningkatkan mutu pembelajaran yang aktif, inovatif, kreatif, efektif, dan menyenangkan (PAIKEM).",
+      "Menerapkan Kurikulum Merdeka yang berpihak pada siswa dan pembelajaran berdiferensiasi.",
+      "Mengembangkan bakat, minat, dan potensi siswa.",
+      "Mewujudkan lingkungan sekolah yang aman, bersih, sehat, indah, dan berwawasan lingkungan.",
+      "Menjalin kerjasama yang harmonis antara sekolah, orang tua, masyarakat, dan pemangku kepentingan.",
+    ],
+    motto: "Cerdas · Berakhlak · Berprestasi",
+  },
+  struktur: {
+    kepsek: { nama: "Muchim, S.Pd.", jabatan: "Kepala Sekolah" },
+    wakasek: [
+      { nama: "Dra. Hj. Siti Aminah, M.Pd.", jabatan: "Wakasek Kurikulum" },
+      { nama: "Budi Santoso, S.Pd.", jabatan: "Wakasek Kesiswaan" },
+      { nama: "Ahmad Yani, S.Pd.", jabatan: "Wakasek Sarpras" },
+    ],
+    staff: [
+      { nama: "Dewi Lestari, S.E.", jabatan: "Ka. TU" },
+      { nama: "Rina Marlina, S.Pd.", jabatan: "Bendahara" },
+      { nama: "Joko Susilo, S.Pd.", jabatan: "Pembina OSIS" },
+      { nama: "Nurhayati, S.Pd.", jabatan: "Koordinator BK" },
+      { nama: "Ziqra Nabila, S.Pd.", jabatan: "Operator Dapodik" },
+      { nama: "6 Rombel", jabatan: "Wali Kelas 7" },
+      { nama: "6 Rombel", jabatan: "Wali Kelas 8" },
+      { nama: "6 Rombel", jabatan: "Wali Kelas 9" },
+    ],
+  },
+  guru: [
+    { id: "g1", nama: "Muchim, S.Pd.", jabatan: "Kepala Sekolah" },
+    { id: "g2", nama: "Dra. Hj. Siti Aminah, M.Pd.", jabatan: "Wakasek Kurikulum" },
+    { id: "g3", nama: "Budi Santoso, S.Pd.", jabatan: "Wakasek Kesiswaan" },
+    { id: "g4", nama: "Ahmad Yani, S.Pd.", jabatan: "Wakasek Sarpras" },
+    { id: "g5", nama: "Dewi Lestari, S.E.", jabatan: "Ka. TU" },
+    { id: "g6", nama: "Nurhayati, S.Pd.", jabatan: "Guru BK" },
+    { id: "g7", nama: "Joko Susilo, S.Pd.", jabatan: "Pembina OSIS" },
+    { id: "g8", nama: "Rina Marlina, S.Pd.", jabatan: "Bendahara" },
+    { id: "g9", nama: "Ziqra Nabila, S.Pd.", jabatan: "Operator Dapodik" },
+    { id: "g10", nama: "Hendra Kusuma, S.Pd.", jabatan: "Guru IPA" },
+    { id: "g11", nama: "Marlina, S.Pd.", jabatan: "Guru Bahasa Indonesia" },
+    { id: "g12", nama: "Sulistiyo, S.Pd.", jabatan: "Guru Bahasa Inggris" },
+  ],
+  kurikulum: {
+    intro: "SMP Negeri 2 Muara Bungo menerapkan Kurikulum Merdeka sesuai arahan Kemendikbudristek RI. Kurikulum ini memberikan keleluasaan bagi guru untuk mengembangkan pembelajaran yang sesuai kebutuhan siswa.",
+    items: [
+      { judul: "Pembelajaran Berdiferensiasi", deskripsi: "Materi dan metode disesuaikan dengan tingkat kemampuan masing-masing siswa." },
+      { judul: "Project Based Learning", deskripsi: "Projek Profil Pelajar Pancasila (P5) setiap semester." },
+      { judul: "Asesmen Formatif & Sumatif", deskripsi: "Penilaian berkelanjutan melalui observasi dan tugas." },
+      { judul: "Ekstrakurikuler Wajib", deskripsi: "Pramuka wajib diikuti seluruh siswa kelas 7 dan 8." },
+      { judul: "Pembiasaan Literasi", deskripsi: "Gerakan literasi 15 menit sebelum pembelajaran." },
+      { judul: "Integrasi Teknologi", deskripsi: "Pemanfaatan Google Classroom dan Laboratorium Komputer." },
+    ],
+  },
+  kalender: {
+    tahunAjaran: "2025/2026",
+    items: [
+      { judul: "Awal Semester Genap", tanggal: "5 Januari 2026" },
+      { judul: "Tengah Semester (PTS)", tanggal: "10–14 Maret 2026" },
+      { judul: "Libur Idul Fitri", tanggal: "20–28 Maret 2026" },
+      { judul: "Ujian Sekolah (US)", tanggal: "12–22 Mei 2026" },
+      { judul: "Penerimaan Rapor", tanggal: "20 Juni 2026" },
+      { judul: "Libur Kenaikan Kelas", tanggal: "21 Juni – 11 Juli 2026" },
+    ],
+  },
+  jadwal: {
+    days: ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"],
+    jam: "07.00 – 13.30",
+    mapel: [
+      "Matematika · IPA · Bahasa Inggris",
+      "IPS · Seni · PJOK",
+      "PAI · PKN · Bahasa Indonesia",
+      "IPA · Matematika · Prakarya",
+      "Bahasa Inggris · PJOK · BK",
+      "Pramuka / Ekskul · Literasi",
+    ],
+  },
+  ekskul: [
+    { id: "e1", nama: "Pramuka", emoji: "🏕️" },
+    { id: "e2", nama: "Futsal", emoji: "⚽" },
+    { id: "e3", nama: "Basket", emoji: "🏀" },
+    { id: "e4", nama: "Voli", emoji: "🏐" },
+    { id: "e5", nama: "Paskibra", emoji: "🎌" },
+    { id: "e6", nama: "PMR", emoji: "➕" },
+    { id: "e7", nama: "Rohis", emoji: "🕌" },
+    { id: "e8", nama: "PKS", emoji: "👮" },
+    { id: "e9", nama: "Seni Tari", emoji: "💃" },
+    { id: "e10", nama: "English Club", emoji: "🔤" },
+    { id: "e11", nama: "Catur", emoji: "♟️" },
+    { id: "e12", nama: "Karate", emoji: "🥋" },
+    { id: "e13", nama: "Pencak Silat", emoji: "🤼" },
+    { id: "e14", nama: "Jurnalistik", emoji: "📰" },
+    { id: "e15", nama: "KIR", emoji: "🔬" },
+    { id: "e16", nama: "Drama/Theater", emoji: "🎭" },
+  ],
+  osis: {
+    osis: { deskripsi: "Organisasi Siswa Intra Sekolah yang mewadahi seluruh kegiatan siswa dan menjadi mitra sekolah.", ketua: "Andi Pratama (9A)", wakil: "Siti Nurhaliza (9B)", sekretaris: "Rahmat Hidayat (8C)", bendahara: "Maya Sari (8A)" },
+    mpk: { deskripsi: "Majelis Perwakilan Kelas — lembaga legislatif siswa yang menjaring aspirasi dari setiap kelas.", ketua: "Fauzan Rahman (9C)", anggota: "2 per kelas (7-9)", pertemuan: "1x / bulan", program: "Aspirasi & Musyawarah" },
+  },
+  tatib: [
+    { id: "t1", judul: "Kehadiran", items: ["Hadir di sekolah 10 menit sebelum pelajaran dimulai.", "Maks. ketidakhadiran 3 hari per semester tanpa keterangan.", "Izin sakit disertai surat dokter (> 2 hari)."] },
+    { id: "t2", judul: "Seragam", items: ["Senin-Selasa: Seragam putih abu-abu lengkap.", "Rabu: Seragam pramuka.", "Kamis-Jumat: Seragam batik.", "Sabtu: Seragam olahraga."] },
+    { id: "t3", judul: "Sikap & Perilaku", items: ["Menghormati guru dan karyawan.", "Tidak membawa HP saat pelajaran tanpa izin.", "Tidak merokok, narkoba, atau perbuatan tercela."] },
+    { id: "t4", judul: "Kebersihan", items: ["Menjaga kebersihan kelas dan lingkungan sekolah.", "Membuang sampah pada tempatnya.", "Melaksanakan piket harian sesuai jadwal."] },
+  ],
+  fasilitas: [
+    { id: "f1", judul: "Perpustakaan", deskripsi: "Koleksi 5.000+ buku, ruang baca nyaman, katalog digital.", icon: "📚" },
+    { id: "f2", judul: "Lab. IPA", deskripsi: "Lab Fisika, Biologi dan Kimia dengan peralatan praktik lengkap.", icon: "🔬" },
+    { id: "f3", judul: "Lab. Komputer", deskripsi: "35 unit komputer terbaru dengan koneksi internet cepat.", icon: "💻" },
+    { id: "f4", judul: "Ruang BK", deskripsi: "Bimbingan akademik dan konseling pribadi/sosial.", icon: "🤝" },
+    { id: "f5", judul: "Masjid Sekolah", deskripsi: "Ruang ibadah luas untuk sholat berjamaah.", icon: "🕌" },
+    { id: "f6", judul: "Lapangan Olahraga", deskripsi: "Futsal, basket, voli, dan area atletik.", icon: "🏆" },
+    { id: "f7", judul: "Ruang Kelas", deskripsi: "18 ruang kelas ber-AC dengan LCD proyektor.", icon: "🎓" },
+    { id: "f8", judul: "Aula Serbaguna", deskripsi: "Aula kapasitas 300 orang untuk acara sekolah.", icon: "🏛️" },
+    { id: "f9", judul: "Ruang TU", deskripsi: "Pelayanan administrasi yang cepat dan ramah.", icon: "📋" },
+    { id: "f10", judul: "Ruang Media", deskripsi: "Pusat multimedia dan pembelajaran audio-visual.", icon: "📖" },
+    { id: "f11", judul: "Kantin Sehat", deskripsi: "Kantin bersih dengan menu bergizi dan higienis.", icon: "🍱" },
+    { id: "f12", judul: "UKS", deskripsi: "UKS dengan perawat profesional.", icon: "🏥" },
+  ],
+  ppdb: {
+    gelombang: "01 Feb – 31 Mar 2026", kuota: "180 Siswa", rombel: "6 Kelas",
+    alur: [
+      { no: 1, judul: "Pendaftaran Online", deskripsi: "Isi formulir melalui website atau datang langsung ke sekolah." },
+      { no: 2, judul: "Verifikasi Berkas", deskripsi: "Panitia memverifikasi dokumen pendaftaran dan ijazah/rapor." },
+      { no: 3, judul: "Tes Seleksi", deskripsi: "Tes akademik (Matematika, IPA, Bahasa Indonesia) dan wawancara." },
+      { no: 4, judul: "Pengumuman", deskripsi: "Hasil seleksi diumumkan melalui website dan papan pengumuman." },
+      { no: 5, judul: "Daftar Ulang", deskripsi: "Calon siswa yang lolos melakukan daftar ulang dan pembayaran." },
+    ],
+    syarat: [
+      "Berusia maksimal 15 tahun pada Juli 2026",
+      "Lulus SD/MI sederajat",
+      "Fotokopi ijazah SD/MI (5 lembar)",
+      "Fotokopi akta kelahiran (5 lembar)",
+      "Fotokopi KK (5 lembar)",
+      "Pas foto 3×4 latar merah (5 lembar)",
+      "Surat keterangan sehat dari puskesmas",
+    ],
+    jalur: [
+      "Zonasi — 40%",
+      "Prestasi Akademik — 30%",
+      "Prestasi Non-Akademik — 15%",
+      "Afirmasi / Keluarga Tidak Mampu — 10%",
+      "Perpindahan Orang Tua — 5%",
+    ],
+  },
+  download: [
+    { id: "d1", judul: "Formulir Pendaftaran PPDB 2026/2027", ukuran: "PDF · 512 KB" },
+    { id: "d2", judul: "Surat Pernyataan Keaslian Dokumen", ukuran: "PDF · 220 KB" },
+    { id: "d3", judul: "Surat Keterangan Sehat (Puskesmas)", ukuran: "PDF · 180 KB" },
+    { id: "d4", judul: "Surat Izin Orang Tua", ukuran: "PDF · 195 KB" },
+    { id: "d5", judul: "Buku Panduan Belajar Kurikulum Merdeka", ukuran: "PDF · 2.3 MB" },
+    { id: "d6", judul: "Kalender Akademik 2025/2026", ukuran: "PDF · 450 KB" },
+    { id: "d7", judul: "Jadwal Pelajaran Semester Genap", ukuran: "PDF · 320 KB" },
+    { id: "d8", judul: "Formulir Izin Ekstrakurikuler", ukuran: "PDF · 210 KB" },
+  ],
+  keunggulan: [
+    { id: "k1", judul: "Terakreditasi B", deskripsi: "Terakreditasi oleh BAN-S/M dengan predikat Baik (2017).", icon: "🏆" },
+    { id: "k2", judul: "Guru Profesional", deskripsi: "Lebih dari 35 guru berpengalaman dan tersertifikasi.", icon: "👨‍🏫" },
+    { id: "k3", judul: "Fasilitas Lengkap", deskripsi: "Laboratorium IPA, komputer, perpustakaan, masjid, dan lapangan.", icon: "🏫" },
+    { id: "k4", judul: "Kurikulum Merdeka", deskripsi: "Pembelajaran berdiferensiasi sesuai bakat dan minat siswa.", icon: "📚" },
+    { id: "k5", judul: "Banyak Prestasi", deskripsi: "Raihan juara di tingkat kabupaten, provinsi, dan nasional.", icon: "🎖️" },
+    { id: "k6", judul: "Lingkungan Islami", deskripsi: "Pembiasaan sholat berjamaah, membaca Al-Qur'an, dan akhlak mulia.", icon: "🕌" },
+  ],
+  berita: [
+    { id: "b1", judul: "PPDB 2026/2027 Resmi Dibuka!", kategori: "Pengumuman", isi: "Pendaftaran gelombang 1 dibuka 1 Februari – 31 Maret 2026. Kuota 180 siswa. Silakan daftarkan putra-putri Anda di SMP Negeri 2 Muara Bungo.", tanggal: "2026-02-10", gambar: "" },
+    { id: "b2", judul: "Juara 1 Olimpiade Matematika", kategori: "Prestasi", isi: "Ananda Rina Putri kelas 9A meraih juara 1 Olimpiade Matematika tingkat Kabupaten Bungo tahun 2025.", tanggal: "2026-02-05", gambar: "" },
+    { id: "b3", judul: "Workshop Kurikulum Merdeka", kategori: "Akademik", isi: "Seluruh dewan guru mengikuti workshop penguatan Kurikulum Merdeka bersama Dinas Pendidikan Kabupaten Bungo.", tanggal: "2026-01-25", gambar: "" },
+  ],
+  pengumuman: [
+    { id: "p1", judul: "Libur Hari Raya Idul Fitri 1447 H", isi: "Diberitahukan kepada seluruh siswa bahwa kegiatan belajar diliburkan mulai tanggal 20–28 Maret 2026.", tanggal: "2026-03-15", penting: true },
+    { id: "p2", judul: "Pembayaran SPP Bulan Maret", isi: "Pembayaran SPP bulan Maret 2026 paling lambat tanggal 10 Maret 2026 melalui rekening BPD Jambi.", tanggal: "2026-03-01", penting: false },
+    { id: "p3", judul: "Jadwal Ujian Sekolah (US) TP 2025/2026", isi: "Ujian Sekolah untuk kelas 9 akan dilaksanakan tanggal 12–22 Mei 2026. Siswa wajib hadir 30 menit sebelum ujian.", tanggal: "2026-02-20", penting: true },
+  ],
+  prestasi: [
+    { id: "pr1", tahun: "2025", judul: "Juara 1 Olimpiade Matematika", lembaga: "Kabupaten Bungo", medali: "🥇" },
+    { id: "pr2", tahun: "2024", judul: "Juara 2 Futsal Putra", lembaga: "Kejuaraan Antar SMP Jambi", medali: "🥈" },
+    { id: "pr3", tahun: "2024", judul: "Juara 1 Pidato Bahasa Inggris", lembaga: "Kabupaten Bungo", medali: "🥇" },
+    { id: "pr4", tahun: "2023", judul: "Juara 3 Paskibraka Terbaik", lembaga: "Provinsi Jambi", medali: "🥉" },
+    { id: "pr5", tahun: "2023", judul: "Harapan 1 Lomba Cerdas Cermat IPA", lembaga: "Kabupaten Bungo", medali: "🏅" },
+    { id: "pr6", tahun: "2022", judul: "Juara Umum Lomba Seni Tari", lembaga: "HUT Kabupaten Bungo", medali: "🏆" },
+  ],
+  galeri: [
+    { id: "g1", judul: "Kegiatan Belajar Mengajar", gambar: "", tipe: "Akademik" },
+    { id: "g2", judul: "Upacara Bendera", gambar: "", tipe: "Kegiatan" },
+    { id: "g3", judul: "Praktikum Siswa", gambar: "", tipe: "Akademik" },
+    { id: "g4", judul: "Turnamen Futsal Antar Kelas", gambar: "", tipe: "Olahraga" },
+    { id: "g5", judul: "Kegiatan Pramuka", gambar: "", tipe: "Ekstrakurikuler" },
+    { id: "g6", judul: "Kunjungan Industri", gambar: "", tipe: "Kegiatan" },
+    { id: "g7", judul: "Pentas Seni Budaya", gambar: "", tipe: "Seni" },
+    { id: "g8", judul: "Perpisahan Kelas 9", gambar: "", tipe: "Kegiatan" },
+  ],
+  agenda: [
+    { id: "a1", tanggal: "2026-03-15", judul: "Persiapan Ujian Sekolah Kelas 9", deskripsi: "Pembekalan teknis ujian oleh panitia." },
+    { id: "a2", tanggal: "2026-03-20", judul: "Libur Idul Fitri 1447 H", deskripsi: "Libur bersama 20–28 Maret 2026." },
+    { id: "a3", tanggal: "2026-04-04", judul: "Rapat Wali Murid Kelas 9", deskripsi: "Di aula sekolah, pukul 09.00 WIB." },
+    { id: "a4", tanggal: "2026-05-12", judul: "Ujian Sekolah (US) Mulai", deskripsi: "Hingga tanggal 22 Mei 2026." },
+    { id: "a5", tanggal: "2026-06-20", judul: "Pembagian Rapor", deskripsi: "Rapor semester genap dibagikan." },
+    { id: "a6", tanggal: "2026-07-01", judul: "PPDB Gelombang 2", deskripsi: "Pendaftaran gelombang 2 (sisa kuota)." },
+  ],
+};
+
+/* ============ HELPERS ============ */
+const KEYS = {
+  pengaturan: "smpn2bungo_pengaturan", sambutan: "smpn2bungo_sambutan", sejarah: "smpn2bungo_sejarah",
+  visimisi: "smpn2bungo_visimisi", struktur: "smpn2bungo_struktur", guru: "smpn2bungo_guru",
+  kurikulum: "smpn2bungo_kurikulum", kalender: "smpn2bungo_kalender", jadwal: "smpn2bungo_jadwal",
+  ekskul: "smpn2bungo_ekskul", osis: "smpn2bungo_osis", tatib: "smpn2bungo_tatib", fasilitas: "smpn2bungo_fasilitas",
+  ppdb: "smpn2bungo_ppdb", download: "smpn2bungo_download", keunggulan: "smpn2bungo_keunggulan",
+  berita: "smpn2bungo_berita", pengumuman: "smpn2bungo_pengumuman", prestasi: "smpn2bungo_prestasi",
+  galeri: "smpn2bungo_galeri", agenda: "smpn2bungo_agenda",
+};
+const get = (key, fb) => { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fb; } catch { return fb; } };
+const set = (key, v) => { try { localStorage.setItem(key, JSON.stringify(v)); } catch {} };
+const genId = () => Date.now().toString(36) + Math.random().toString(36).slice(2);
+
+/* ============ LOGO ============ */
+const Logo = ({ size = 54, color = "navy" }) => {
+  const ring = color === "white" ? "#ffffff" : "#0f1c66";
+  const gold = "#eab308";
+  return (
+    <div style={{ width: size, height: size }} className="relative flex items-center justify-center shrink-0">
+      <svg viewBox="0 0 100 100" className="h-full w-full drop-shadow-md">
+        <circle cx="50" cy="50" r="48" fill={ring} />
+        <circle cx="50" cy="50" r="44" fill="#ffffff" stroke={gold} strokeWidth="2" />
+        <circle cx="50" cy="50" r="40" fill="none" stroke={gold} strokeWidth="1" strokeDasharray="2 2" />
+        <path d="M50 18 L72 26 L72 50 C72 66 50 76 50 76 C50 76 28 66 28 50 L28 26 Z" fill={ring} stroke={gold} strokeWidth="1.5" />
+        <path d="M40 42 L50 44 L60 42 L60 56 L50 58 L40 56 Z" fill="#ffffff" />
+        <line x1="50" y1="44" x2="50" y2="58" stroke={ring} strokeWidth="1" />
+        <path d="M50 15 Q53 20 50 24 Q47 20 50 15" fill={gold} />
+        <path d="M26 70 Q50 78 74 70 L72 76 Q50 82 28 76 Z" fill={gold} />
+        <text x="50" y="78" fontSize="5" fontWeight="700" fill={ring} textAnchor="middle" fontFamily="serif">SMPN 2</text>
+        <text x="50" y="12" fontSize="5" fontWeight="700" fill={ring} textAnchor="middle" fontFamily="serif">MBS</text>
+      </svg>
+    </div>
+  );
+};
+
+/* ============ MENU ============ */
+const MENU = [
+  { id: "beranda", label: "Beranda", Icon: I.Home },
+  { id: "profil", label: "Profil", Icon: I.School, children: [
+    { id: "sambutan", label: "Sambutan Kepsek", Icon: I.UserCog },
+    { id: "sejarah", label: "Sejarah", Icon: I.FileText },
+    { id: "visi-misi", label: "Visi & Misi", Icon: I.Target },
+    { id: "struktur", label: "Struktur Organisasi", Icon: I.Building2 },
+    { id: "guru", label: "Guru & Tendik", Icon: I.Users },
+  ]},
+  { id: "akademik", label: "Akademik", Icon: I.BookOpen, children: [
+    { id: "kurikulum", label: "Kurikulum Merdeka", Icon: I.ClipboardList },
+    { id: "kalender", label: "Kalender Akademik", Icon: I.Calendar },
+    { id: "jadwal", label: "Jadwal Pelajaran", Icon: I.Clock },
+  ]},
+  { id: "kesiswaan", label: "Kesiswaan", Icon: I.GraduationCap, children: [
+    { id: "ekskul", label: "Ekstrakurikuler", Icon: I.Award },
+    { id: "osis", label: "OSIS & MPK", Icon: I.Shield },
+    { id: "prestasi", label: "Prestasi Siswa", Icon: I.Trophy },
+    { id: "tatib", label: "Tata Tertib", Icon: I.FileText },
+  ]},
+  { id: "fasilitas", label: "Fasilitas", Icon: I.Building2 },
+  { id: "informasi", label: "Informasi", Icon: I.Newspaper, children: [
+    { id: "berita", label: "Berita", Icon: I.Newspaper },
+    { id: "pengumuman", label: "Pengumuman", Icon: I.Megaphone },
+    { id: "agenda", label: "Agenda Kegiatan", Icon: I.Calendar },
+    { id: "download", label: "Area Download", Icon: I.Download },
+  ]},
+  { id: "ppdb", label: "PPDB 2026", Icon: I.ClipboardList },
+  { id: "galeri", label: "Galeri", Icon: I.Image },
+  { id: "kontak", label: "Kontak", Icon: I.MapPin },
+  { id: "admin", label: "Admin Panel", Icon: I.Lock },
+];
+
+/* ============ TOP BAR ============ */
+const TopBar = ({ p }) => {
+  const a = p.pengaturan;
+  return (
+    <div className="hidden bg-navy-950 text-white/90 md:block">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-xs">
+        <div className="flex items-center gap-5">
+          <span className="flex items-center gap-1.5"><I.Phone c="h-3 w-3" /> {a.phone}</span>
+          <span className="flex items-center gap-1.5"><I.Mail c="h-3 w-3" /> {a.email}</span>
+          <span className="flex items-center gap-1.5"><I.Clock c="h-3 w-3" /> Senin–Sabtu, 07.00–14.00 WIB</span>
+        </div>
+        <div className="flex items-center gap-3">
+          {a.facebookUrl && <a href={a.facebookUrl} target="_blank" rel="noreferrer" className="transition hover:text-gold-400"><I.Fb c="h-3 w-3" /></a>}
+          {a.instagramUrl && <a href={a.instagramUrl} target="_blank" rel="noreferrer" className="transition hover:text-gold-400"><I.Ig c="h-3 w-3" /></a>}
+          {a.youtubeUrl && <a href={a.youtubeUrl} target="_blank" rel="noreferrer" className="transition hover:text-gold-400"><I.Yt c="h-3 w-3" /></a>}
+          {a.twitterUrl && <a href={a.twitterUrl} target="_blank" rel="noreferrer" className="transition hover:text-gold-400"><I.Tw c="h-3 w-3" /></a>}
+          {a.tiktokUrl && <a href={a.tiktokUrl} target="_blank" rel="noreferrer" className="transition hover:text-gold-400"><I.Tk c="h-3 w-3" /></a>}
+          <span className="text-white/40">|</span>
+          <span className="text-gold-400 font-semibold">{a.announcement}</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/* ============ NAVBAR ============ */
+const Navbar = ({ page, setPage, adminIn, setAdminIn }) => {
+  const [open, setOpen] = useState(false);
+  const [openSub, setOpenSub] = useState(null);
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => { const on = () => setScrolled(window.scrollY > 50); window.addEventListener("scroll", on); return () => window.removeEventListener("scroll", on); }, []);
+  const go = (id) => { setPage(id); setOpen(false); setOpenSub(null); };
+  const isAct = (m) => page === m.id || (m.children?.some(c => c.id === page) ?? false);
+  return (
+    <header className={`sticky top-0 z-50 w-full transition-all ${scrolled ? "bg-white/95 shadow-md backdrop-blur" : "bg-white"}`}>
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3">
+        <button onClick={() => go("beranda")} className="flex items-center gap-3 text-left">
+          <Logo size={54} />
+          <div>
+            <div className="font-display text-[15px] font-extrabold leading-tight text-navy-900">SMP Negeri 2 Muara Bungo</div>
+            <div className="text-[11px] font-semibold tracking-wider text-navy-600">KABUPATEN BUNGO — JAMBI</div>
+          </div>
+        </button>
+        <nav className="hidden items-center gap-1 lg:flex">
+          {MENU.map(m => {
+            const active = isAct(m);
+            return (
+              <div key={m.id} className="group relative">
+                <button onClick={() => !m.children && go(m.id)} className={`flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-semibold transition ${active ? "bg-navy-900 text-white shadow" : "text-navy-900 hover:bg-navy-50"}`}>
+                  {m.label}{m.children && <I.ChevronDown c="h-3.5 w-3.5 transition group-hover:rotate-180" />}
+                </button>
+                {m.children && (
+                  <div className="invisible absolute left-1/2 top-full z-50 mt-1 w-60 -translate-x-1/2 translate-y-2 opacity-0 transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                    <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-2xl">
+                      {m.children.map(c => (
+                        <button key={c.id} onClick={() => go(c.id)} className={`flex w-full items-center gap-3 px-4 py-3 text-left text-sm transition hover:bg-navy-50 ${page === c.id ? "bg-navy-50 text-navy-900 font-semibold" : "text-slate-700"}`}>
+                          <c.Icon c="h-4 w-4 text-yellow-600" /> {c.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </nav>
+        <div className="hidden items-center gap-2 lg:flex">
+          {adminIn ? (
+            <span className="text-xs font-semibold text-navy-900">👤 <span className="text-gold-600">Admin</span>
+              <button onClick={() => setAdminIn(false)} className="ml-2 inline-flex items-center gap-1 rounded bg-red-100 px-2 py-1 text-red-700"><I.LogOut c="h-3 w-3" /> Keluar</button>
+            </span>
+          ) : (
+            <button onClick={() => go("admin")} className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-yellow-500 to-yellow-600 px-5 py-2.5 text-sm font-bold text-navy-950 shadow-lg shadow-yellow-500/30 transition hover:-translate-y-0.5">
+              <I.Lock c="h-3.5 w-3.5" /> Admin
+            </button>
+          )}
+          <button onClick={() => go("ppdb")} className="rounded-full bg-gradient-to-r from-navy-800 to-navy-900 px-5 py-2.5 text-sm font-bold text-gold-400 shadow transition hover:-translate-y-0.5">
+            PPDB 2026
+          </button>
+        </div>
+        <button className="lg:hidden" onClick={() => setOpen(!open)}><I.Menu c="h-6 w-6" /></button>
+      </div>
+      {open && (
+        <div className="max-h-[75vh] overflow-y-auto border-t bg-white lg:hidden">
+          <div className="px-5 py-3">
+            {MENU.map(m => {
+              const active = page === m.id || m.children?.some(c => c.id === page);
+              return (
+                <div key={m.id} className="border-b border-slate-100">
+                  <button onClick={() => m.children ? setOpenSub(openSub === m.id ? null : m.id) : go(m.id)} className={`flex w-full items-center justify-between py-3.5 text-sm font-semibold ${active ? "text-yellow-700" : "text-navy-900"}`}>
+                    <span className="flex items-center gap-2"><m.Icon c="h-4 w-4 text-yellow-600" /> {m.label}</span>
+                    {m.children && <I.ChevronDown c={`h-4 w-4 transition ${openSub === m.id ? "rotate-180" : ""}`} />}
+                  </button>
+                  {m.children && openSub === m.id && (
+                    <div className="pb-3">
+                      {m.children.map(c => (
+                        <button key={c.id} onClick={() => go(c.id)} className={`flex w-full items-center gap-2 py-2 pl-6 text-left text-sm ${page === c.id ? "font-bold text-navy-900" : "text-slate-600"}`}>
+                          <c.Icon c="h-3.5 w-3.5 text-yellow-600" /> {c.label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </header>
+  );
+};
+
+/* ============ PAGE HEADER ============ */
+const PageHeader = ({ title, breadcrumb, subtitle }) => (
+  <section className="relative overflow-hidden bg-gradient-to-br from-navy-900 via-navy-800 to-navy-950 py-20 text-white">
+    <div className="absolute inset-0 opacity-20">
+      <div className="absolute left-1/4 top-0 h-80 w-80 rounded-full bg-gold-500 blur-3xl" />
+      <div className="absolute right-1/4 bottom-0 h-80 w-80 rounded-full bg-navy-400 blur-3xl" />
+    </div>
+    <div className="relative mx-auto max-w-7xl px-6 text-center">
+      <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold text-gold-400 backdrop-blur"><I.School c="h-3.5 w-3.5" /> {breadcrumb}</div>
+      <h1 className="font-display text-4xl font-black md:text-5xl">{title}</h1>
+      <div className="mx-auto mt-5 h-1 w-20 rounded-full bg-gradient-to-r from-gold-400 to-gold-600" />
+      {subtitle && <p className="mt-5 text-base text-white/70">{subtitle}</p>}
+    </div>
+  </section>
+);
+
+/* ============ FOOTER ============ */
+const Footer = ({ p, go }) => {
+  const a = p.pengaturan;
+  return (
+    <footer className="bg-navy-950 text-white">
+      <div className="mx-auto max-w-7xl px-6 py-14">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <div className="flex items-center gap-3">
+              <Logo size={52} color="white" />
+              <div><div className="font-display text-base font-extrabold leading-tight">SMP Negeri 2</div><div className="text-xs font-semibold tracking-wider text-gold-400">MUARA BUNGO</div></div>
+            </div>
+            <p className="mt-5 text-sm leading-relaxed text-white/60">Sekolah Menengah Pertama Negeri di Kabupaten Bungo, Jambi. Membentuk generasi cerdas, berakhlak mulia, dan berprestasi sejak 1980.</p>
+            <div className="mt-5 flex gap-2">
+              {a.facebookUrl && <a href={a.facebookUrl} target="_blank" rel="noreferrer" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition hover:bg-yellow-500 hover:text-navy-950"><I.Fb c="h-4 w-4" /></a>}
+              {a.instagramUrl && <a href={a.instagramUrl} target="_blank" rel="noreferrer" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition hover:bg-yellow-500 hover:text-navy-950"><I.Ig c="h-4 w-4" /></a>}
+              {a.youtubeUrl && <a href={a.youtubeUrl} target="_blank" rel="noreferrer" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition hover:bg-yellow-500 hover:text-navy-950"><I.Yt c="h-4 w-4" /></a>}
+              {a.twitterUrl && <a href={a.twitterUrl} target="_blank" rel="noreferrer" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition hover:bg-yellow-500 hover:text-navy-950"><I.Tw c="h-4 w-4" /></a>}
+              {a.tiktokUrl && <a href={a.tiktokUrl} target="_blank" rel="noreferrer" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition hover:bg-yellow-500 hover:text-navy-950"><I.Tk c="h-4 w-4" /></a>}
+            </div>
+          </div>
+          <div>
+            <h5 className="font-display text-base font-bold text-gold-400">Profil</h5>
+            <ul className="mt-4 space-y-2 text-sm text-white/70">
+              {[["sambutan","Sambutan Kepsek"],["sejarah","Sejarah"],["visi-misi","Visi & Misi"],["struktur","Struktur"],["guru","Guru & Tendik"]].map(([id,l]) => (
+                <li key={id}><button onClick={() => go(id)} className="transition hover:text-gold-400">{l}</button></li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h5 className="font-display text-base font-bold text-gold-400">Informasi</h5>
+            <ul className="mt-4 space-y-2 text-sm text-white/70">
+              <li><button onClick={() => go("berita")} className="transition hover:text-gold-400">Berita</button></li>
+              <li><button onClick={() => go("pengumuman")} className="transition hover:text-gold-400">Pengumuman</button></li>
+              <li><button onClick={() => go("agenda")} className="transition hover:text-gold-400">Agenda</button></li>
+              <li><button onClick={() => go("download")} className="transition hover:text-gold-400">Download</button></li>
+              <li><button onClick={() => go("ppdb")} className="transition hover:text-gold-400">PPDB 2026/2027</button></li>
+            </ul>
+          </div>
+          <div>
+            <h5 className="font-display text-base font-bold text-gold-400">Kontak</h5>
+            <ul className="mt-4 space-y-3 text-sm text-white/70">
+              <li className="flex gap-2"><I.MapPin c="h-4 w-4 shrink-0 text-gold-400" />{a.address}</li>
+              <li className="flex gap-2"><I.Phone c="h-4 w-4 shrink-0 text-gold-400" />{a.phone}</li>
+              <li className="flex gap-2"><I.Mail c="h-4 w-4 shrink-0 text-gold-400" />{a.email}</li>
+            </ul>
+          </div>
+        </div>
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-xs text-white/50 sm:flex-row">
+          <p>© {new Date().getFullYear()} SMP Negeri 2 Muara Bungo. NPSN: 10500687. Seluruh hak cipta dilindungi.</p>
+          <p><span className="text-gold-400 font-bold">Tut Wuri Handayani</span> — Pendidikan untuk masa depan</p>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+/* ============ PAGES ============ */
+const BerandaPage = ({ p, go }) => {
+  const a = p.pengaturan, b = p.berita, peng = p.pengumuman, k = p.keunggulan;
+  return (
+    <>
+      <section className="relative overflow-hidden bg-gradient-to-br from-navy-900 via-navy-800 to-navy-950 text-white">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute -left-20 -top-20 h-96 w-96 rounded-full bg-gold-500 blur-3xl" />
+          <div className="absolute -right-20 bottom-0 h-96 w-96 rounded-full bg-navy-500 blur-3xl" />
+        </div>
+        <div className="relative mx-auto grid max-w-7xl gap-10 px-6 py-20 md:py-28 lg:grid-cols-2 lg:py-32">
+          <div>
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-gold-400/40 bg-gold-400/10 px-4 py-1.5 text-xs font-semibold text-gold-400"><I.Award c="h-3.5 w-3.5" /> Terakreditasi B — BAN-S/M 2017</div>
+            <h1 className="font-display text-4xl font-black leading-tight md:text-5xl lg:text-6xl">SMP Negeri 2 <span className="bg-gradient-to-r from-yellow-300 to-yellow-500 bg-clip-text text-transparent">Muara Bungo</span></h1>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-white/80 md:text-lg">Selamat datang di website resmi <b>SMP Negeri 2 Muara Bungo</b>. Sejak 1980 kami berkomitmen mencetak generasi <i>cerdas, berakhlak mulia, dan berprestasi</i>.</p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <button onClick={() => go("ppdb")} className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-yellow-400 to-yellow-600 px-7 py-3.5 font-bold text-navy-950 shadow-xl">Daftar PPDB 2026 <I.ChevronRight c="h-4 w-4 transition group-hover:translate-x-1" /></button>
+              <button onClick={() => go("profil")} className="inline-flex items-center gap-2 rounded-full border-2 border-white/30 bg-white/5 px-7 py-3.5 font-semibold text-white backdrop-blur transition hover:bg-white/10">Tentang Kami</button>
+            </div>
+            <div className="mt-10 grid max-w-lg grid-cols-2 gap-6 sm:grid-cols-4">
+              {[{v:"45+",l:"Tahun"},{v:"534+",l:"Siswa"},{v:"35+",l:"Guru"},{v:"18",l:"Rombel"}].map((s,i) => (
+                <div key={i}><div className="font-display text-3xl font-black text-gold-400">{s.v}</div><div className="text-xs uppercase tracking-wider text-white/60">{s.l}</div></div>
+              ))}
+            </div>
+          </div>
+          <div className="relative hidden lg:block">
+            <div className="absolute right-0 top-1/2 h-[520px] w-[420px] -translate-y-1/2 overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-10 backdrop-blur shadow-2xl">
+              <div className="flex h-full flex-col items-center text-center">
+                <Logo size={130} color="white" />
+                <div className="mt-6 text-xs uppercase tracking-[0.3em] text-gold-400">Cerdas · Berakhlak · Berprestasi</div>
+                <div className="mt-2 font-display text-3xl font-bold">Tut Wuri Handayani</div>
+                <div className="mt-6 w-full space-y-3 text-left">
+                  {["Kurikulum Merdeka", "Lab. IPA & Komputer", "Prestasi Membanggakan", "Guru Profesional"].map((t, i) => (
+                    <div key={i} className="flex items-center gap-3 rounded-xl bg-white/5 px-4 py-3"><span className="text-gold-400">★</span><span className="text-sm font-medium">{t}</span></div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="bg-white py-20">
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="grid gap-10 lg:grid-cols-3">
+            <div className="text-center lg:col-span-1">
+              <div className="mx-auto mb-4 flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-br from-navy-100 to-navy-50 ring-4 ring-yellow-400/30"><I.UserCog c="h-16 w-16 text-navy-800" /></div>
+              <div className="font-display text-xl font-bold text-navy-950">{a.headmaster || "Muchim, S.Pd."}</div>
+              <div className="text-sm text-slate-500">Kepala Sekolah</div>
+            </div>
+            <div className="lg:col-span-2">
+              <div className="mb-2 text-xs font-bold uppercase tracking-widest text-yellow-600">Sambutan Kepala Sekolah</div>
+              <h2 className="font-display text-3xl font-black text-navy-950">Assalamualaikum Warahmatullahi Wabarakatuh</h2>
+              <p className="mt-4 text-slate-600">Dengan rahmat Allah SWT, kami berkomitmen memberikan pendidikan terbaik agar putra-putri Bungo menjadi generasi <strong className="text-navy-900">cerdas, berakhlak, dan berprestasi</strong>.</p>
+              <button onClick={() => go("sambutan")} className="mt-6 inline-flex items-center gap-1 text-sm font-bold text-navy-700 hover:text-yellow-600">Baca selengkapnya <I.ChevronRight c="h-4 w-4" /></button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="bg-slate-50 py-14">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-8 text-center"><div className="inline-block rounded-full bg-yellow-100 px-4 py-1 text-xs font-bold uppercase tracking-widest text-yellow-700">Pengumuman Terkini</div><div className="mx-auto mt-4 h-1 w-24 rounded-full bg-gradient-to-r from-gold-400 to-gold-600" /></div>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {peng.slice(0,3).map((p, i) => (
+              <div key={i} className={`flex items-start gap-3 rounded-2xl bg-white p-5 shadow-sm ${p.penting ? "border-l-4 border-red-500" : "border-l-4 border-yellow-500"}`}>
+                <I.Megaphone c={`h-5 w-5 shrink-0 ${p.penting ? "text-red-600" : "text-yellow-600"}`} />
+                <div>
+                  <div className="flex items-center gap-2"><h4 className="font-display text-sm font-bold text-navy-950">{p.judul}</h4>{p.penting && <span className="rounded-full bg-red-500 px-2 py-0.5 text-[10px] font-bold text-white">Penting</span>}</div>
+                  <p className="mt-1 text-xs text-slate-600">{p.isi.slice(0, 80)}…</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="bg-white py-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-12 flex items-end justify-between">
+            <div><div className="text-xs font-bold uppercase tracking-widest text-yellow-600">Update Terbaru</div><h2 className="mt-2 font-display text-3xl font-black text-navy-950 md:text-4xl">Berita & Kegiatan</h2></div>
+            <button onClick={() => go("berita")} className="hidden items-center gap-1 text-sm font-bold text-navy-700 hover:text-yellow-600 md:inline-flex">Lihat Semua <I.ChevronRight c="h-4 w-4" /></button>
+          </div>
+          <div className="grid gap-8 md:grid-cols-3">
+            {b.slice(0,3).map((p) => (
+              <article key={p.id} className="group overflow-hidden rounded-2xl bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-2xl">
+                <div className="aspect-[16/10] bg-gradient-to-br from-navy-700 to-navy-900 relative" style={p.gambar ? { backgroundImage: `url(${p.gambar})`, backgroundSize: "cover" } : {}}>
+                  <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-navy-900">{p.kategori}</div>
+                  <div className="absolute right-4 top-4 flex items-center gap-1 rounded-full bg-navy-900/70 px-3 py-1 text-xs text-white"><I.Clock c="h-3 w-3" /> {p.tanggal}</div>
+                </div>
+                <div className="p-6"><h4 className="font-display text-lg font-bold text-navy-950 group-hover:text-navy-700">{p.judul}</h4><p className="mt-2 text-sm text-slate-600">{p.isi.slice(0, 100)}…</p></div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="bg-slate-50 py-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="text-center"><div className="inline-block rounded-full bg-navy-100 px-4 py-1 text-xs font-bold uppercase tracking-widest text-navy-700">Mengapa Memilih Kami</div><h2 className="mt-3 font-display text-3xl font-black text-navy-950 md:text-4xl">Keunggulan SMPN 2 Muara Bungo</h2><div className="mx-auto mt-5 h-1 w-20 rounded-full bg-gradient-to-r from-gold-400 to-gold-600" /></div>
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {k.map(x => (
+              <div key={x.id} className="group rounded-2xl bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-2xl">
+                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-navy-700 to-navy-900 text-white shadow-lg text-3xl">{x.icon || "⭐"}</div>
+                <h4 className="font-display text-lg font-bold text-navy-950">{x.judul}</h4>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">{x.deskripsi}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="relative overflow-hidden bg-gradient-to-r from-yellow-500 to-yellow-600 py-14">
+        <div className="relative mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 text-center md:flex-row md:text-left">
+          <div>
+            <h2 className="font-display text-2xl font-black text-navy-950 md:text-3xl">Siap Bergabung Bersama Kami?</h2>
+            <p className="mt-2 text-navy-900/80">Pendaftaran Peserta Didik Baru TP 2026/2027 telah dibuka. Kuota terbatas!</p>
+          </div>
+          <button onClick={() => go("ppdb")} className="inline-flex items-center gap-2 rounded-full bg-navy-950 px-8 py-4 font-bold text-gold-400 shadow-xl transition hover:bg-navy-900">Daftar Sekarang <I.ChevronRight c="h-5 w-5" /></button>
+        </div>
+      </section>
+    </>
+  );
+};
+
+const ProfilLanding = ({ go }) => (
+  <>
+    <PageHeader title="Profil Sekolah" breadcrumb="Profil" subtitle="Kenali SMP Negeri 2 Muara Bungo lebih dekat." />
+    <section className="bg-white py-16">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {[{id:"sambutan",t:"Sambutan Kepsek",d:"Sambutan resmi dari Kepala Sekolah.",Icon:I.UserCog,c:"from-navy-700 to-navy-900"},{id:"sejarah",t:"Sejarah",d:"Perjalanan panjang sekolah sejak 1980.",Icon:I.FileText,c:"from-yellow-500 to-yellow-700"},{id:"visi-misi",t:"Visi & Misi",d:"Visi, misi, dan motto sekolah.",Icon:I.Target,c:"from-emerald-600 to-emerald-800"},{id:"struktur",t:"Struktur Organisasi",d:"Susunan organisasi sekolah.",Icon:I.Building2,c:"from-indigo-600 to-indigo-800"},{id:"guru",t:"Guru & Tendik",d:"Data guru dan tenaga kependidikan.",Icon:I.Users,c:"from-rose-600 to-rose-800"}].map(x => (
+            <button key={x.id} onClick={() => go(x.id)} className="group overflow-hidden rounded-2xl border border-slate-100 bg-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:border-yellow-400 hover:shadow-xl">
+              <div className={`mb-4 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${x.c} text-white shadow-lg`}><x.Icon c="h-7 w-7" /></div>
+              <h4 className="font-display text-lg font-bold text-navy-950 group-hover:text-yellow-700">{x.t}</h4>
+              <p className="mt-2 text-sm text-slate-600">{x.d}</p>
+              <div className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-navy-700 group-hover:text-yellow-600">Buka <I.ChevronRight c="h-4 w-4" /></div>
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+  </>
+);
+
+const SambutanPage = ({ data }) => (
+  <>
+    <PageHeader title="Sambutan Kepala Sekolah" breadcrumb="Profil · Sambutan" />
+    <section className="bg-white py-16">
+      <div className="mx-auto max-w-4xl px-6">
+        <div className="flex flex-col items-center text-center">
+          <div className="mb-5 flex h-40 w-40 items-center justify-center rounded-full bg-gradient-to-br from-navy-100 to-navy-50 ring-4 ring-yellow-400/40"><I.UserCog c="h-20 w-20 text-navy-800" /></div>
+          <h3 className="font-display text-2xl font-bold text-navy-950">{data.nama}</h3>
+          <p className="text-sm text-slate-500">{data.jabatan} — SMPN 2 Muara Bungo</p>
+        </div>
+        <div className="mt-10 space-y-5 text-slate-700">
+          <p className="text-lg italic text-navy-800">"{data.ucapanPembuka}"</p>
+          {data.paragraf.map((p, i) => <p key={i}>{p}</p>)}
+        </div>
+      </div>
+    </section>
+  </>
+);
+
+const SejarahPage = ({ data }) => (
+  <>
+    <PageHeader title="Sejarah Singkat" breadcrumb="Profil · Sejarah" subtitle="Perjalanan panjang SMP Negeri 2 Muara Bungo sejak 1980 hingga kini." />
+    <section className="bg-white py-16">
+      <div className="mx-auto max-w-3xl px-6">
+        <div className="mb-12 text-center text-slate-700"><p>{data.intro}</p></div>
+        <div className="relative"><div className="absolute left-5 top-0 h-full w-0.5 bg-navy-200 md:left-1/2" />
+          {data.timeline.map((item, k) => (
+            <div key={k} className={`relative mb-10 flex items-start ${k % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
+              <div className="flex items-center justify-center md:w-1/2 md:px-8"><div className="ml-12 rounded-2xl bg-slate-50 p-5 shadow-sm md:ml-0"><div className="inline-block rounded-full bg-yellow-500 px-3 py-1 text-xs font-bold text-navy-950">{item.tahun}</div><h4 className="mt-2 font-display text-lg font-bold text-navy-950">{item.judul}</h4><p className="mt-1 text-sm text-slate-600">{item.deskripsi}</p></div></div>
+              <div className="absolute left-5 top-3 flex h-4 w-4 -translate-x-1/2 items-center justify-center rounded-full bg-yellow-500 ring-4 ring-white md:left-1/2" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </>
+);
+
+const VisiMisiPage = ({ data }) => (
+  <>
+    <PageHeader title="Visi & Misi" breadcrumb="Profil · Visi & Misi" />
+    <section className="bg-white py-16">
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="rounded-3xl bg-gradient-to-br from-navy-900 to-navy-950 p-10 text-white shadow-2xl md:p-14">
+          <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-yellow-500 text-navy-950"><I.Target c="h-7 w-7" /></div>
+          <div className="mb-2 text-xs font-bold uppercase tracking-widest text-gold-400">Visi Sekolah</div>
+          <h3 className="font-display text-2xl font-bold md:text-3xl">"{data.visi}"</h3>
+        </div>
+        <div className="mt-10">
+          <div className="mb-6 flex items-center gap-3"><I.Eye c="h-7 w-7 text-yellow-600" /><h3 className="font-display text-2xl font-bold text-navy-950">Misi Sekolah</h3></div>
+          <div className="grid gap-4 md:grid-cols-2">{data.misi.map((m, i) => (
+            <div key={i} className="flex gap-4 rounded-2xl bg-slate-50 p-5"><div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-navy-700 to-navy-900 font-bold text-gold-400">{i+1}</div><p className="text-sm leading-relaxed text-slate-700">{m}</p></div>
+          ))}</div>
+        </div>
+        <div className="mt-10 rounded-3xl bg-gradient-to-br from-yellow-400 to-yellow-600 p-10 text-navy-950 shadow-xl"><div className="mb-2 text-xs font-bold uppercase tracking-widest">Motto</div><h3 className="font-display text-2xl font-black italic md:text-3xl">"{data.motto}"</h3></div>
+      </div>
+    </section>
+  </>
+);
+
+const StrukturPage = ({ data }) => (
+  <>
+    <PageHeader title="Struktur Organisasi" breadcrumb="Profil · Struktur Organisasi" />
+    <section className="bg-white py-16">
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="flex flex-col items-center">
+          <div className="rounded-2xl bg-gradient-to-br from-navy-900 to-navy-950 p-6 text-center text-white shadow-xl"><I.UserCog c="mx-auto mb-2 h-10 w-10 text-gold-400" /><div className="text-xs uppercase tracking-widest text-gold-400">{data.kepsek.jabatan}</div><div className="font-display text-lg font-bold">{data.kepsek.nama}</div></div>
+          <div className="my-4 h-8 w-0.5 bg-slate-300" />
+          <div className="grid gap-4 sm:grid-cols-3">{data.wakasek.map((x, i) => <div key={i} className="rounded-xl bg-slate-50 p-4 text-center shadow-sm"><I.Users c="mx-auto mb-2 h-7 w-7 text-navy-700" /><div className="text-[11px] uppercase tracking-wider text-slate-500">{x.jabatan}</div><div className="font-display text-sm font-bold text-navy-900">{x.nama}</div></div>)}</div>
+          <div className="my-4 h-8 w-0.5 bg-slate-300" />
+          <div className="grid w-full gap-4 sm:grid-cols-2 md:grid-cols-4">{data.staff.map((x, i) => <div key={i} className="rounded-xl bg-white p-4 text-center shadow-sm ring-1 ring-slate-100"><div className="text-[11px] uppercase tracking-wider text-slate-500">{x.jabatan}</div><div className="font-display text-sm font-bold text-navy-900">{x.nama}</div></div>)}</div>
+        </div>
+      </div>
+    </section>
+  </>
+);
+
+const GuruPage = ({ data }) => (
+  <>
+    <PageHeader title="Guru & Tenaga Kependidikan" breadcrumb="Profil · Guru & Tendik" />
+    <section className="bg-slate-50 py-16">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {data.map(g => (
+            <div key={g.id} className="overflow-hidden rounded-2xl bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+              <div className="relative h-40 bg-gradient-to-br from-navy-700 to-navy-900"><div className="absolute inset-0 flex items-center justify-center"><div className="flex h-24 w-24 items-center justify-center rounded-full bg-white/10 ring-4 ring-yellow-400/40 backdrop-blur"><I.UserCog c="h-12 w-12 text-yellow-400" /></div></div></div>
+              <div className="p-5 text-center"><h5 className="font-display font-bold text-navy-950 text-sm">{g.nama}</h5><div className="mt-1 text-xs font-semibold text-yellow-600">{g.jabatan}</div></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </>
+);
+
+const AkademikLanding = ({ go }) => (
+  <>
+    <PageHeader title="Akademik" breadcrumb="Akademik" subtitle="Program pembelajaran, kalender akademik, dan jadwal pelajaran." />
+    <section className="bg-white py-16">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid gap-6 md:grid-cols-3">
+          {[{id:"kurikulum",t:"Kurikulum Merdeka",d:"Pembelajaran berdiferensiasi berbasis proyek.",Icon:I.ClipboardList,c:"from-navy-700 to-navy-900"},{id:"kalender",t:"Kalender Akademik",d:"Jadwal semester, ujian, dan hari libur.",Icon:I.Calendar,c:"from-yellow-500 to-yellow-700"},{id:"jadwal",t:"Jadwal Pelajaran",d:"Jadwal pelajaran kelas 7, 8, dan 9.",Icon:I.Clock,c:"from-emerald-600 to-emerald-800"}].map(x => (
+            <button key={x.id} onClick={() => go(x.id)} className="group overflow-hidden rounded-2xl border border-slate-100 bg-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+              <div className={`mb-4 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${x.c} text-white shadow-lg`}><x.Icon c="h-7 w-7" /></div>
+              <h4 className="font-display text-lg font-bold text-navy-950">{x.t}</h4>
+              <p className="mt-2 text-sm text-slate-600">{x.d}</p>
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+  </>
+);
+
+const KurikulumPage = ({ data }) => (
+  <>
+    <PageHeader title="Kurikulum Merdeka" breadcrumb="Akademik · Kurikulum" />
+    <section className="bg-white py-16">
+      <div className="mx-auto max-w-4xl px-6"><p className="text-lg leading-relaxed text-slate-700">{data.intro}</p>
+        <div className="mt-10 grid gap-6 md:grid-cols-2">{data.items.map((x, i) => (
+          <div key={i} className="rounded-2xl border-l-4 border-yellow-500 bg-slate-50 p-6"><h4 className="font-display text-lg font-bold text-navy-950">{x.judul}</h4><p className="mt-2 text-sm text-slate-600">{x.deskripsi}</p></div>
+        ))}</div>
+      </div>
+    </section>
+  </>
+);
+
+const KalenderPage = ({ data }) => (
+  <>
+    <PageHeader title="Kalender Akademik" breadcrumb="Akademik · Kalender" />
+    <section className="bg-white py-16">
+      <div className="mx-auto max-w-4xl px-6">
+        <div className="rounded-2xl bg-slate-50 p-8"><h3 className="mb-6 font-display text-xl font-bold text-navy-950">Tahun Ajaran {data.tahunAjaran}</h3>
+          <div className="space-y-3">{data.items.map((e, i) => <div key={i} className="flex items-center justify-between rounded-xl bg-white p-4 shadow-sm"><span className="font-medium text-navy-900">{e.judul}</span><span className="rounded-full bg-yellow-100 px-3 py-1 text-xs font-bold text-yellow-700">{e.tanggal}</span></div>)}
+          </div>
+        </div>
+      </div>
+    </section>
+  </>
+);
+
+const JadwalPage = ({ data }) => (
+  <>
+    <PageHeader title="Jadwal Pelajaran" breadcrumb="Akademik · Jadwal" />
+    <section className="bg-white py-16">
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="mb-6 flex gap-3">{["Kelas 7", "Kelas 8", "Kelas 9"].map((k, i) => <button key={i} className={`rounded-full px-5 py-2 text-sm font-semibold ${i === 0 ? "bg-navy-900 text-white" : "bg-slate-100 text-slate-600"}`}>{k}</button>)}</div>
+        <div className="overflow-hidden rounded-2xl shadow-sm ring-1 ring-slate-200"><table className="w-full text-sm">
+          <thead className="bg-navy-900 text-white"><tr><th className="px-4 py-3 text-left">Hari</th><th className="px-4 py-3 text-left">Jam</th><th className="px-4 py-3 text-left">Mata Pelajaran</th></tr></thead>
+          <tbody className="divide-y divide-slate-100 bg-white">{data.days.map((d, i) => <tr key={i}><td className="px-4 py-3 font-bold text-navy-900">{d}</td><td className="px-4 py-3 text-slate-600">{data.jam}</td><td className="px-4 py-3 text-slate-700">{data.mapel[i]}</td></tr>)}</tbody>
+        </table></div>
+      </div>
+    </section>
+  </>
+);
+
+const KesiswaanLanding = ({ go }) => (
+  <>
+    <PageHeader title="Kesiswaan" breadcrumb="Kesiswaan" subtitle="Pembinaan karakter, bakat, dan minat siswa di luar kegiatan akademik." />
+    <section className="bg-white py-16">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {[{id:"ekskul",t:"Ekstrakurikuler",d:"16+ pilihan ekskul",Icon:I.Award,c:"from-navy-700 to-navy-900"},{id:"osis",t:"OSIS & MPK",d:"Organisasi siswa",Icon:I.Shield,c:"from-yellow-500 to-yellow-700"},{id:"prestasi",t:"Prestasi Siswa",d:"Raihan juara",Icon:I.Trophy,c:"from-emerald-600 to-emerald-800"},{id:"tatib",t:"Tata Tertib",d:"Peraturan sekolah",Icon:I.FileText,c:"from-rose-600 to-rose-800"}].map(x => (
+            <button key={x.id} onClick={() => go(x.id)} className="group overflow-hidden rounded-2xl border border-slate-100 bg-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+              <div className={`mb-4 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${x.c} text-white shadow-lg`}><x.Icon c="h-7 w-7" /></div>
+              <h4 className="font-display text-lg font-bold text-navy-950">{x.t}</h4>
+              <p className="mt-2 text-sm text-slate-600">{x.d}</p>
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+  </>
+);
+
+const EkskulPage = ({ data }) => (
+  <>
+    <PageHeader title="Ekstrakurikuler" breadcrumb="Kesiswaan · Ekskul" subtitle="Wadah pengembangan minat, bakat, dan karakter siswa." />
+    <section className="bg-slate-50 py-16">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+          {data.map(e => <div key={e.id} className="flex flex-col items-center gap-3 rounded-2xl bg-white p-5 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-lg"><div className="text-4xl">{e.emoji}</div><div className="text-sm font-semibold text-navy-900">{e.nama}</div></div>)}
+        </div>
+      </div>
+    </section>
+  </>
+);
+
+const OsisPage = ({ data }) => (
+  <>
+    <PageHeader title="OSIS & MPK" breadcrumb="Kesiswaan · OSIS" />
+    <section className="bg-white py-16">
+      <div className="mx-auto max-w-4xl px-6">
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="rounded-2xl bg-gradient-to-br from-navy-800 to-navy-950 p-8 text-white shadow-xl"><I.Shield c="mb-3 h-10 w-10 text-gold-400" /><h3 className="font-display text-2xl font-bold">OSIS</h3><p className="mt-3 text-sm text-white/80">{data.osis.deskripsi}</p><div className="mt-5 space-y-2 text-sm"><div>Ketua: <strong>{data.osis.ketua}</strong></div><div>Wakil: <strong>{data.osis.wakil}</strong></div><div>Sekretaris: <strong>{data.osis.sekretaris}</strong></div><div>Bendahara: <strong>{data.osis.bendahara}</strong></div></div></div>
+          <div className="rounded-2xl bg-gradient-to-br from-yellow-500 to-yellow-600 p-8 text-navy-950 shadow-xl"><I.Shield c="mb-3 h-10 w-10" /><h3 className="font-display text-2xl font-bold">MPK</h3><p className="mt-3 text-sm opacity-90">{data.mpk.deskripsi}</p><div className="mt-5 space-y-2 text-sm"><div>Ketua: <strong>{data.mpk.ketua}</strong></div><div>Anggota: <strong>{data.mpk.anggota}</strong></div><div>Pertemuan: <strong>{data.mpk.pertemuan}</strong></div><div>Program: <strong>{data.mpk.program}</strong></div></div></div>
+        </div>
+      </div>
+    </section>
+  </>
+);
+
+const PrestasiPage = ({ data }) => (
+  <>
+    <PageHeader title="Prestasi Siswa" breadcrumb="Kesiswaan · Prestasi" />
+    <section className="bg-slate-50 py-16">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {data.map(p => (
+            <div key={p.id} className="group relative overflow-hidden rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+              <div className="mb-3 flex items-center justify-between"><div className="text-4xl">{p.medali}</div><div className="rounded-full bg-yellow-100 px-3 py-1 text-xs font-bold text-yellow-700">{p.tahun}</div></div>
+              <h4 className="font-display text-lg font-bold text-navy-950">{p.judul}</h4>
+              <p className="mt-2 text-sm text-slate-600">{p.lembaga}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </>
+);
+
+const TatibPage = ({ data }) => (
+  <>
+    <PageHeader title="Tata Tertib Sekolah" breadcrumb="Kesiswaan · Tata Tertib" />
+    <section className="bg-white py-16">
+      <div className="mx-auto max-w-4xl px-6 space-y-6">
+        {data.map((s, i) => (
+          <div key={s.id} className="rounded-2xl bg-slate-50 p-6"><h4 className="font-display text-lg font-bold text-navy-950">{i+1}. {s.judul}</h4>
+            <ul className="mt-3 space-y-2 text-sm text-slate-600">{s.items.map((x, j) => <li key={j} className="flex gap-2"><span className="text-yellow-600">✓</span> {x}</li>)}</ul>
+          </div>
+        ))}
+      </div>
+    </section>
+  </>
+);
+
+const FasilitasPage = ({ data }) => (
+  <>
+    <PageHeader title="Fasilitas Sekolah" breadcrumb="Fasilitas" subtitle="Sarana prasarana lengkap untuk menunjang kegiatan belajar mengajar." />
+    <section className="bg-slate-50 py-16">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {data.map(x => (
+            <div key={x.id} className="group overflow-hidden rounded-2xl bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+              <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-navy-700 to-navy-900 text-gold-400 shadow-lg text-3xl">{x.icon}</div>
+              <h4 className="font-display text-lg font-bold text-navy-950">{x.judul}</h4>
+              <p className="mt-2 text-sm text-slate-600">{x.deskripsi}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </>
+);
+
+const InformasiLanding = ({ go }) => (
+  <>
+    <PageHeader title="Informasi" breadcrumb="Informasi" subtitle="Berita, pengumuman, agenda kegiatan, dan area download." />
+    <section className="bg-white py-16">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {[{id:"berita",t:"Berita",d:"Kabar terkini kegiatan sekolah.",Icon:I.Newspaper,c:"from-navy-700 to-navy-900"},{id:"pengumuman",t:"Pengumuman",d:"Informasi penting untuk warga sekolah.",Icon:I.Megaphone,c:"from-yellow-500 to-yellow-700"},{id:"agenda",t:"Agenda",d:"Jadwal kegiatan mendatang.",Icon:I.Calendar,c:"from-emerald-600 to-emerald-800"},{id:"download",t:"Download",d:"Formulir dan dokumen penting.",Icon:I.Download,c:"from-rose-600 to-rose-800"}].map(x => (
+            <button key={x.id} onClick={() => go(x.id)} className="group overflow-hidden rounded-2xl border border-slate-100 bg-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+              <div className={`mb-4 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${x.c} text-white shadow-lg`}><x.Icon c="h-7 w-7" /></div>
+              <h4 className="font-display text-lg font-bold text-navy-950">{x.t}</h4>
+              <p className="mt-2 text-sm text-slate-600">{x.d}</p>
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+  </>
+);
+
+const BeritaPage = ({ data }) => (
+  <>
+    <PageHeader title="Berita Sekolah" breadcrumb="Informasi · Berita" />
+    <section className="bg-slate-50 py-16">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {data.map(p => (
+            <article key={p.id} className="group overflow-hidden rounded-2xl bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-2xl">
+              <div className="aspect-[16/10] bg-gradient-to-br from-navy-700 to-navy-900 relative" style={p.gambar ? { backgroundImage: `url(${p.gambar})`, backgroundSize: "cover" } : {}}>
+                <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-navy-900">{p.kategori}</div>
+                <div className="absolute right-4 top-4 flex items-center gap-1 rounded-full bg-navy-900/70 px-3 py-1 text-xs text-white"><I.Calendar c="h-3 w-3" /> {p.tanggal}</div>
+              </div>
+              <div className="p-6"><h4 className="font-display text-lg font-bold text-navy-950">{p.judul}</h4><p className="mt-2 text-sm text-slate-600">{p.isi.slice(0, 150)}</p></div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </>
+);
+
+const PengumumanPage = ({ data }) => (
+  <>
+    <PageHeader title="Pengumuman" breadcrumb="Informasi · Pengumuman" />
+    <section className="bg-white py-16">
+      <div className="mx-auto max-w-4xl px-6 space-y-4">
+        {data.map(p => (
+          <div key={p.id} className={`flex items-start gap-4 rounded-2xl p-5 shadow-sm ${p.penting ? "border-l-4 border-red-500 bg-red-50" : "border-l-4 border-yellow-500 bg-slate-50"}`}>
+            <I.Megaphone c={`h-6 w-6 shrink-0 ${p.penting ? "text-red-600" : "text-yellow-600"}`} />
+            <div className="flex-1"><div className="flex items-center gap-2"><h4 className="font-display text-base font-bold text-navy-950">{p.judul}</h4>{p.penting && <span className="rounded-full bg-red-600 px-2 py-0.5 text-[10px] font-bold uppercase text-white">Penting</span>}</div>
+              <p className="mt-1 text-sm text-slate-600">{p.isi}</p><div className="mt-2 text-xs text-slate-400">{p.tanggal}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  </>
+);
+
+const AgendaPage = ({ data }) => (
+  <>
+    <PageHeader title="Agenda Kegiatan" breadcrumb="Informasi · Agenda" />
+    <section className="bg-white py-16">
+      <div className="mx-auto max-w-4xl px-6">
+        <div className="overflow-hidden rounded-2xl shadow-sm ring-1 ring-slate-200">
+          {data.map(a => {
+            const [y, m, d] = a.tanggal.split("-");
+            const monthNames = ["", "Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+            return (
+              <div key={a.id} className="flex items-center gap-5 border-b border-slate-100 p-5 last:border-0 hover:bg-slate-50">
+                <div className="flex h-16 w-16 flex-col items-center justify-center rounded-xl bg-gradient-to-br from-navy-800 to-navy-950 text-white">
+                  <div className="text-2xl font-black">{d}</div>
+                  <div className="text-[10px] uppercase">{monthNames[+m]}</div>
+                </div>
+                <div><h4 className="font-display font-bold text-navy-950">{a.judul}</h4><p className="text-sm text-slate-600">{a.deskripsi}</p></div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  </>
+);
+
+const DownloadPage = ({ data }) => (
+  <>
+    <PageHeader title="Area Download" breadcrumb="Informasi · Download" />
+    <section className="bg-white py-16">
+      <div className="mx-auto max-w-4xl px-6 space-y-3">
+        {data.map(f => (
+          <div key={f.id} className="flex items-center justify-between rounded-xl bg-slate-50 p-4 transition hover:bg-slate-100">
+            <div className="flex items-center gap-3"><div className="flex h-11 w-11 items-center justify-center rounded-lg bg-navy-100 text-navy-700"><I.FileText c="h-5 w-5" /></div><div><div className="font-semibold text-navy-950">{f.judul}</div><div className="text-xs text-slate-500">{f.ukuran}</div></div></div>
+            <button className="rounded-lg bg-gradient-to-r from-yellow-500 to-yellow-600 px-4 py-2 text-xs font-bold text-navy-950 shadow transition hover:from-yellow-400">Unduh</button>
+          </div>
+        ))}
+      </div>
+    </section>
+  </>
+);
+
+const PpdbPage = ({ data }) => (
+  <>
+    <PageHeader title="PPDB 2026/2027" breadcrumb="PPDB" subtitle="Penerimaan Peserta Didik Baru Tahun Ajaran 2026/2027" />
+    <section className="bg-white py-16">
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="rounded-3xl bg-gradient-to-br from-navy-900 to-navy-950 p-8 text-white shadow-2xl md:p-10">
+          <div className="grid gap-6 md:grid-cols-3">
+            <div><div className="text-xs uppercase tracking-widest text-gold-400">Gelombang 1</div><div className="font-display text-2xl font-black">{data.gelombang}</div></div>
+            <div><div className="text-xs uppercase tracking-widest text-gold-400">Kuota</div><div className="font-display text-2xl font-black">{data.kuota}</div></div>
+            <div><div className="text-xs uppercase tracking-widest text-gold-400">Rombel</div><div className="font-display text-2xl font-black">{data.rombel}</div></div>
+          </div>
+        </div>
+        <h3 className="mt-12 text-center font-display text-2xl font-bold text-navy-950">Alur Pendaftaran</h3>
+        <div className="mx-auto mt-3 h-1 w-20 rounded-full bg-gradient-to-r from-gold-400 to-gold-600" />
+        <div className="mt-10 grid gap-5 md:grid-cols-5">
+          {data.alur.map(s => <div key={s.no} className="rounded-2xl bg-slate-50 p-5 text-center shadow-sm"><div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-yellow-500 to-yellow-600 font-display text-xl font-black text-navy-950">{s.no}</div><h4 className="font-display font-bold text-navy-950">{s.judul}</h4><p className="mt-2 text-xs text-slate-600">{s.deskripsi}</p></div>)}
+        </div>
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <div className="rounded-2xl bg-slate-50 p-6"><h4 className="font-display text-lg font-bold text-navy-950">Persyaratan Umum</h4>
+            <ul className="mt-3 space-y-2 text-sm text-slate-700">{data.syarat.map((l, i) => <li key={i} className="flex gap-2"><span className="text-yellow-600">✓</span> {l}</li>)}</ul>
+          </div>
+          <div className="rounded-2xl bg-slate-50 p-6"><h4 className="font-display text-lg font-bold text-navy-950">Jalur Seleksi</h4>
+            <ul className="mt-3 space-y-2 text-sm text-slate-700">{data.jalur.map((l, i) => <li key={i} className="flex gap-2"><span className="text-yellow-600">✓</span> {l}</li>)}</ul>
+          </div>
+        </div>
+        <div className="mt-10 text-center"><button className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-yellow-500 to-yellow-600 px-8 py-4 font-bold text-navy-950 shadow-xl transition hover:-translate-y-0.5"><I.ClipboardList c="h-5 w-5" /> Daftar Online Sekarang</button></div>
+      </div>
+    </section>
+  </>
+);
+
+const GaleriPage = ({ data }) => {
+  const colors = ["from-navy-600 to-navy-900", "from-red-600 to-red-800", "from-emerald-600 to-emerald-900", "from-orange-500 to-orange-700"];
+  return (
+    <>
+      <PageHeader title="Galeri Kegiatan" breadcrumb="Galeri" subtitle="Dokumentasi momen berharga kegiatan sehari-hari di sekolah." />
+      <section className="bg-slate-50 py-16">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {data.map((g, i) => (
+              <div key={g.id} className={`group relative aspect-square cursor-pointer overflow-hidden rounded-2xl bg-gradient-to-br ${colors[i % 4]} shadow-md transition hover:shadow-2xl`}>
+                {g.gambar ? <img src={g.gambar} alt={g.judul} className="h-full w-full object-cover transition-transform group-hover:scale-110" /> : <div className="absolute inset-0 flex items-center justify-center"><I.Image c="h-20 w-20 text-white/25" /></div>}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 transition group-hover:opacity-90" />
+                <div className="absolute inset-x-0 bottom-0 translate-y-2 p-4 opacity-0 transition group-hover:translate-y-0 group-hover:opacity-100"><h4 className="font-display text-base font-bold text-white">{g.judul}</h4></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
+const KontakPage = ({ p }) => {
+  const a = p.pengaturan;
+  return (
+    <>
+      <PageHeader title="Hubungi Kami" breadcrumb="Kontak" />
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid gap-8 lg:grid-cols-3">
+            <div className="lg:col-span-1 space-y-4">
+              {[{Icon:I.MapPin,t:"Alamat",d:a.address},{Icon:I.Phone,t:"Telepon",d:a.phone},{Icon:I.Mail,t:"Email",d:a.email},{Icon:I.Clock,t:"Jam Layanan",d:"Senin–Sabtu: 07.00 – 14.00 WIB"}].map((c, i) => (
+                <div key={i} className="flex items-start gap-4 rounded-2xl bg-slate-50 p-5">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-navy-700 to-navy-900 text-gold-400"><c.Icon c="h-5 w-5" /></div>
+                  <div><h5 className="font-display font-bold text-navy-950">{c.t}</h5><p className="mt-1 text-sm text-slate-600">{c.d}</p></div>
+                </div>
+              ))}
+            </div>
+            <div className="lg:col-span-2">
+              <div className="rounded-2xl bg-white p-8 shadow-xl ring-1 ring-slate-100 md:p-10">
+                <div className="grid gap-8 md:grid-cols-2">
+                  <div className="rounded-xl bg-gradient-to-br from-navy-900 to-navy-950 p-6 text-white">
+                    <h3 className="font-display text-xl font-bold text-white mb-4">Media Sosial</h3>
+                    <p className="text-sm text-white/70">Terhubung dengan sekolah melalui kanal resmi kami.</p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {a.youtubeUrl && <a href={a.youtubeUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur transition hover:bg-white/20"><I.Yt c="h-3 w-3" /> YouTube</a>}
+                      {a.facebookUrl && <a href={a.facebookUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur transition hover:bg-white/20"><I.Fb c="h-3 w-3" /> Facebook</a>}
+                      {a.instagramUrl && <a href={a.instagramUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur transition hover:bg-white/20"><I.Ig c="h-3 w-3" /> Instagram</a>}
+                      {a.twitterUrl && <a href={a.twitterUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur transition hover:bg-white/20"><I.Tw c="h-3 w-3" /> Twitter</a>}
+                      {a.tiktokUrl && <a href={a.tiktokUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur transition hover:bg-white/20"><I.Tk c="h-3 w-3" /> TikTok</a>}
+                    </div>
+                    <div className="mt-8 rounded-xl bg-white/5 p-4"><h4 className="font-bold text-gold-400 text-sm">Alamat</h4><p className="mt-1 text-xs text-white/70">{a.address}</p></div>
+                  </div>
+                  <div>
+                    <h3 className="font-display text-2xl font-bold text-navy-950">Kirim Pesan</h3>
+                    <p className="mt-2 text-sm text-slate-600">Kami akan merespon dalam 1–2 hari kerja.</p>
+                    <form className="mt-6 space-y-4" onSubmit={(e) => { e.preventDefault(); alert("Terima kasih! Pesan Anda telah terkirim."); }}>
+                      <input required placeholder="Nama Lengkap" className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none focus:border-navy-500 focus:ring-2 focus:ring-navy-100" />
+                      <div className="grid gap-4 sm:grid-cols-2">
+                        <input type="email" required placeholder="Email" className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none focus:border-navy-500 focus:ring-2 focus:ring-navy-100" />
+                        <input placeholder="No. HP" className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none focus:border-navy-500 focus:ring-2 focus:ring-navy-100" />
+                      </div>
+                      <select className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none focus:border-navy-500 focus:ring-2 focus:ring-navy-100">
+                        <option>Informasi PPDB 2026/2027</option><option>Kurikulum & Akademik</option><option>Kerjasama / Sponsorship</option><option>Pertanyaan Umum</option>
+                      </select>
+                      <textarea rows={5} required placeholder="Tuliskan pesan Anda..." className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none focus:border-navy-500 focus:ring-2 focus:ring-navy-100" />
+                      <button className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-navy-800 to-navy-950 px-6 py-3.5 font-bold text-white shadow-lg transition hover:shadow-xl">
+                        <I.Send c="h-4 w-4" /> Kirim Pesan
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
+/* ============ ADMIN PANEL ============ */
+const AdminLogin = ({ onLogin }) => {
+  const [pw, setPw] = useState(""); const [err, setErr] = useState("");
+  const submit = (e) => { e.preventDefault(); if (pw === "admin123") onLogin(); else setErr("Password salah! (default: admin123)"); };
+  return (
+    <>
+      <PageHeader title="Admin Panel" breadcrumb="Admin" subtitle="Masuk dengan password untuk mengelola konten website." />
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-md px-6">
+          <form onSubmit={submit} className="rounded-3xl bg-slate-50 p-8 shadow-xl ring-1 ring-slate-100">
+            <h3 className="font-display text-xl font-bold text-navy-950">Masuk Sebagai Admin</h3>
+            <p className="mt-2 text-sm text-slate-600">Masukkan password untuk mengakses panel admin.</p>
+            {err && <div className="mt-3 rounded-xl bg-red-50 p-3 text-sm font-semibold text-red-700">{err}</div>}
+            <div className="mt-5">
+              <label className="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">Password</label>
+              <input type="password" value={pw} onChange={e => setPw(e.target.value)} placeholder="Masukkan password admin" className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-navy-500 focus:ring-2 focus:ring-navy-100" />
+            </div>
+            <button type="submit" className="mt-5 w-full rounded-xl bg-gradient-to-r from-navy-800 to-navy-950 py-3.5 font-bold text-white shadow-lg transition hover:shadow-xl">Masuk ke Panel Admin</button>
+            <p className="mt-3 text-center text-xs text-slate-400">Default password: <b>admin123</b></p>
+          </form>
+        </div>
+      </section>
+    </>
+  );
+};
+
+const AdminEditor = ({ title, data, setData, fields, onBack, keyName = "id" }) => {
+  const [edit, setEdit] = useState(null);
+  const [draft, setDraft] = useState({});
+  const startEdit = (it) => { setEdit(it); setDraft({ ...it }); };
+  const startAdd = () => { setEdit(null); setDraft({ [keyName]: genId() }); };
+  const cancel = () => { setEdit(null); setDraft({}); };
+  const save = () => { if (!edit) setData([draft, ...data]); else setData(data.map(x => x[keyName] === draft[keyName] ? draft : x)); setEdit(null); setDraft({}); };
+  const remove = (id) => { if (confirm("Hapus data ini?")) setData(data.filter(x => x[keyName] !== id)); };
+  return (
+    <div>
+      <div className="mb-6 flex items-center justify-between"><div><div className="text-xs font-bold uppercase tracking-widest text-yellow-600">Admin Panel</div><h2 className="font-display text-2xl font-bold text-navy-950">{title}</h2></div>
+        <button onClick={onBack} className="inline-flex items-center gap-1 rounded-full border-2 border-navy-900 px-4 py-2 text-sm font-bold text-navy-900 hover:bg-navy-900 hover:text-white"><I.ChevronLeft c="h-4 w-4" /> Kembali</button>
+      </div>
+      <div className="mb-4 flex justify-end"><button onClick={startAdd} className="inline-flex items-center gap-1 rounded-full bg-green-600 px-4 py-2 text-sm font-bold text-white hover:bg-green-500"><I.Plus c="h-4 w-4" /> Tambah Data</button></div>
+      {(edit || Object.keys(draft).length > 1) && (
+        <div className="mb-6 rounded-2xl border-2 border-dashed border-navy-200 bg-navy-50/50 p-6">
+          <h3 className="font-display text-lg font-bold text-navy-950">{edit ? "Edit Data" : "Tambah Data Baru"}</h3>
+          <div className="mt-4 grid gap-4 md:grid-cols-2">{fields.map(f => (
+            <div key={f.key} className={f.type === "textarea" ? "md:col-span-2" : ""}>
+              <label className="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">{f.label}</label>
+              {f.type === "textarea" ? <textarea rows={3} value={draft[f.key] || ""} onChange={e => setDraft({ ...draft, [f.key]: e.target.value })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-navy-500 focus:ring-2 focus:ring-navy-100" /> : <input value={draft[f.key] || ""} onChange={e => setDraft({ ...draft, [f.key]: e.target.value })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-navy-500 focus:ring-2 focus:ring-navy-100" />}
+            </div>
+          ))}</div>
+          <div className="mt-4 flex gap-3">
+            <button onClick={save} className="inline-flex items-center gap-1 rounded-full bg-navy-900 px-5 py-2.5 text-sm font-bold text-white hover:bg-navy-800"><I.Save c="h-4 w-4" /> {edit ? "Simpan" : "Tambah"}</button>
+            <button onClick={cancel} className="rounded-full border border-slate-300 px-5 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-100">Batal</button>
+          </div>
+        </div>
+      )}
+      <div className="space-y-3">{data.map(it => (
+        <div key={it[keyName]} className="flex items-start justify-between rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-100">
+          <div className="flex-1"><h4 className="font-display text-base font-bold text-navy-950">{it.judul || it.tanggal || it.nama}</h4>
+            <p className="mt-1 text-sm text-slate-600 line-clamp-2">{it.isi || it.deskripsi || it.lembaga || it.tipe || it.jabatan}</p>
+            {it.tanggal && <div className="mt-1 text-xs text-slate-400">{it.tanggal}</div>}
+          </div>
+          <div className="ml-4 flex gap-2"><button onClick={() => startEdit(it)} className="rounded-full bg-blue-100 p-2 text-blue-700 hover:bg-blue-200"><I.Edit c="h-4 w-4" /></button>
+            <button onClick={() => remove(it[keyName])} className="rounded-full bg-red-100 p-2 text-red-700 hover:bg-red-200"><I.Trash c="h-4 w-4" /></button></div>
+        </div>
+      ))}</div>
+      {data.length === 0 && <div className="rounded-2xl bg-slate-50 p-10 text-center text-slate-500">Belum ada data. Klik "Tambah Data" untuk menambahkan.</div>}
+    </div>
+  );
+};
+
+const AdminEditorObjek = ({ title, data, setData, fields, onBack, keyName = "id", addButtonText = "Tambah" }) => {
+  const [edit, setEdit] = useState(null);
+  const [draft, setDraft] = useState({});
+  const save = () => { setData(draft); setEdit(null); setDraft({}); alert("Berhasil disimpan!"); };
+  const cancel = () => { setEdit(null); setDraft({}); };
+  return (
+    <div>
+      <div className="mb-6 flex items-center justify-between"><div><div className="text-xs font-bold uppercase tracking-widest text-yellow-600">Admin Panel</div><h2 className="font-display text-2xl font-bold text-navy-950">{title}</h2></div>
+        <button onClick={onBack} className="inline-flex items-center gap-1 rounded-full border-2 border-navy-900 px-4 py-2 text-sm font-bold text-navy-900 hover:bg-navy-900 hover:text-white"><I.ChevronLeft c="h-4 w-4" /> Kembali</button>
+      </div>
+      {(edit || Object.keys(draft).length > 0) && (
+        <div className="mb-6 rounded-2xl border-2 border-dashed border-navy-200 bg-navy-50/50 p-6">
+          <h3 className="font-display text-lg font-bold text-navy-950">{edit ? "Edit Data" : "Tambah Data Baru"}</h3>
+          <div className="mt-4 grid gap-4 md:grid-cols-2">{fields.map(f => (
+            <div key={f.key} className={f.type === "textarea" || f.type === "array" ? "md:col-span-2" : ""}>
+              <label className="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">{f.label}</label>
+              {f.type === "textarea" ? <textarea rows={3} value={draft[f.key] || ""} onChange={e => setDraft({ ...draft, [f.key]: e.target.value })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-navy-500 focus:ring-2 focus:ring-navy-100" /> :
+                f.type === "array" ? <textarea rows={4} value={(draft[f.key] || []).join("\n")} onChange={e => setDraft({ ...draft, [f.key]: e.target.value.split("\n") })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-navy-500 focus:ring-2 focus:ring-navy-100" /> :
+                <input value={draft[f.key] || ""} onChange={e => setDraft({ ...draft, [f.key]: e.target.value })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-navy-500 focus:ring-2 focus:ring-navy-100" />}
+            </div>
+          ))}</div>
+          <div className="mt-4 flex gap-3">
+            <button onClick={save} className="inline-flex items-center gap-1 rounded-full bg-navy-900 px-5 py-2.5 text-sm font-bold text-white hover:bg-navy-800"><I.Save c="h-4 w-4" /> Simpan</button>
+            <button onClick={cancel} className="rounded-full border border-slate-300 px-5 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-100">Batal</button>
+          </div>
+        </div>
+      )}
+      {!edit && Object.keys(draft).length === 0 && (
+        <div className="mb-4 flex justify-end"><button onClick={() => setDraft({})} className="inline-flex items-center gap-1 rounded-full bg-green-600 px-4 py-2 text-sm font-bold text-white hover:bg-green-500"><I.Edit c="h-4 w-4" /> Edit Data</button></div>
+      )}
+      <button onClick={onBack} className="text-sm font-bold text-navy-700 hover:text-yellow-600">← Kembali</button>
+    </div>
+  );
+};
+
+const AdminPanel = ({ p, setP, adminIn, setAdminIn }) => {
+  const [tab, setTab] = useState("pengaturan");
+  const update = (k, v) => { const n = { ...p[k], ...v }; setP({ ...p, [k]: n }); set(KEYS[k], n); alert("Berhasil disimpan!"); };
+  const updArr = (k, v) => { setP({ ...p, [k]: v }); set(KEYS[k], v); alert("Berhasil disimpan!"); };
+  const onBack = () => { setAdminIn(false); };
+  const tabs = [
+    {id:"pengaturan",label:"⚙️ Pengaturan",desc:"Sosmed & info sekolah"},
+    {id:"berita",label:"📰 Berita",desc:"Kelola berita"},
+    {id:"pengumuman",label:"📢 Pengumuman",desc:"Kelola pengumuman"},
+    {id:"prestasi",label:"🏆 Prestasi",desc:"Kelola prestasi"},
+    {id:"galeri",label:"🖼️ Galeri",desc:"Kelola foto"},
+    {id:"agenda",label:"📅 Agenda",desc:"Kelola agenda"},
+    {id:"sambutan",label:"👤 Sambutan",desc:"Edit sambutan"},
+    {id:"sejarah",label:"📜 Sejarah",desc:"Edit sejarah"},
+    {id:"visimisi",label:"🎯 Visi Misi",desc:"Edit visi misi"},
+    {id:"struktur",label:"🏢 Struktur",desc:"Edit struktur"},
+    {id:"guru",label:"👨‍🏫 Guru",desc:"Edit data guru"},
+    {id:"kurikulum",label:"📚 Kurikulum",desc:"Edit kurikulum"},
+    {id:"kalender",label:"📆 Kalender",desc:"Edit kalender"},
+    {id:"jadwal",label:"⏰ Jadwal",desc:"Edit jadwal"},
+    {id:"ekskul",label:"🎨 Ekskul",desc:"Edit ekskul"},
+    {id:"osis",label:"🛡️ OSIS & MPK",desc:"Edit OSIS MPK"},
+    {id:"tatib",label:"📋 Tata Tertib",desc:"Edit tata tertib"},
+    {id:"fasilitas",label:"🏫 Fasilitas",desc:"Edit fasilitas"},
+    {id:"ppdb",label:"🎓 PPDB",desc:"Edit PPDB"},
+    {id:"download",label:"📥 Download",desc:"Edit download"},
+    {id:"keunggulan",label:"⭐ Keunggulan",desc:"Edit keunggulan"},
+  ];
+  return (
+    <div className="min-h-[70vh] bg-slate-50 px-6 py-8">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div><div className="text-xs font-bold uppercase tracking-widest text-yellow-600">Admin Panel</div><h1 className="font-display text-3xl font-black text-navy-950">Kelola Konten Website</h1><p className="mt-1 text-sm text-slate-600">Kelola semua data website SMP Negeri 2 Muara Bungo dari sini.</p></div>
+          <button onClick={onBack} className="inline-flex items-center gap-2 rounded-full bg-red-500 px-5 py-2.5 font-bold text-white shadow transition hover:bg-red-400"><I.LogOut c="h-4 w-4" /> Keluar Admin</button>
+        </div>
+        <div className="mb-6 flex flex-wrap gap-2">{tabs.map(t => (
+          <button key={t.id} onClick={() => setTab(t.id)} className={`rounded-2xl p-4 text-left shadow-sm transition ${tab === t.id ? "bg-navy-900 text-white shadow-xl" : "bg-white text-navy-900 hover:shadow-md"}`}><div className="font-display font-bold text-sm">{t.label}</div><div className={`mt-1 text-xs ${tab === t.id ? "text-white/70" : "text-slate-500"}`}>{t.desc}</div></button>
+        ))}</div>
+        <div className="rounded-3xl bg-white p-6 shadow-lg md:p-10">
+          {tab === "pengaturan" && <div><h3 className="font-display text-lg font-bold text-navy-950 mb-4">Pengaturan Media Sosial & Info Sekolah</h3>
+            <div className="grid gap-4 md:grid-cols-2">
+              {[{k:"youtubeUrl",l:"YouTube URL"},{k:"facebookUrl",l:"Facebook URL"},{k:"instagramUrl",l:"Instagram URL"},{k:"twitterUrl",l:"Twitter / X URL"},{k:"tiktokUrl",l:"TikTok URL"},{k:"phone",l:"Telepon"},{k:"email",l:"Email"},{k:"headmaster",l:"Nama Kepala Sekolah"},{k:"announcement",l:"Pengumuman (marquee)"}].map(f => (
+                <div key={f.k}><label className="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">{f.l}</label>
+                  <input value={p.pengaturan[f.k] || ""} onChange={e => update("pengaturan", { [f.k]: e.target.value })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-navy-500 focus:ring-2 focus:ring-navy-100" /></div>
+              ))}
+              <div className="md:col-span-2"><label className="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">Alamat</label>
+                <input value={p.pengaturan.address || ""} onChange={e => update("pengaturan", { address: e.target.value })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-navy-500 focus:ring-2 focus:ring-navy-100" /></div>
+            </div></div>}
+          {tab === "berita" && <AdminEditor title="Kelola Berita" data={p.berita} setData={(v) => updArr("berita", v)} fields={[{key:"judul",label:"Judul"},{key:"kategori",label:"Kategori"},{key:"tanggal",label:"Tanggal"},{key:"gambar",label:"URL Gambar"},{key:"isi",label:"Isi",type:"textarea"}]} onBack={onBack} />}
+          {tab === "pengumuman" && <AdminEditor title="Kelola Pengumuman" data={p.pengumuman} setData={(v) => updArr("pengumuman", v)} fields={[{key:"judul",label:"Judul"},{key:"tanggal",label:"Tanggal"},{key:"penting",label:"Penting? (true/false)"},{key:"isi",label:"Isi",type:"textarea"}]} onBack={onBack} />}
+          {tab === "prestasi" && <AdminEditor title="Kelola Prestasi" data={p.prestasi} setData={(v) => updArr("prestasi", v)} fields={[{key:"tahun",label:"Tahun"},{key:"judul",label:"Judul"},{key:"lembaga",label:"Lembaga"},{key:"medali",label:"Medali (emoji)"}]} onBack={onBack} />}
+          {tab === "galeri" && <AdminEditor title="Kelola Galeri" data={p.galeri} setData={(v) => updArr("galeri", v)} fields={[{key:"judul",label:"Judul"},{key:"tipe",label:"Tipe/Kategori"},{key:"gambar",label:"URL Gambar"}]} onBack={onBack} />}
+          {tab === "agenda" && <AdminEditor title="Kelola Agenda" data={p.agenda} setData={(v) => updArr("agenda", v)} fields={[{key:"tanggal",label:"Tanggal (YYYY-MM-DD)"},{key:"judul",label:"Judul"},{key:"deskripsi",label:"Deskripsi",type:"textarea"}]} onBack={onBack} />}
+          {tab === "guru" && <AdminEditor title="Kelola Guru" data={p.guru} setData={(v) => updArr("guru", v)} fields={[{key:"nama",label:"Nama"},{key:"jabatan",label:"Jabatan"}]} onBack={onBack} />}
+          {tab === "ekskul" && <AdminEditor title="Kelola Ekskul" data={p.ekskul} setData={(v) => updArr("ekskul", v)} fields={[{key:"nama",label:"Nama Ekskul"},{key:"emoji",label:"Emoji"}]} onBack={onBack} />}
+          {tab === "fasilitas" && <AdminEditor title="Kelola Fasilitas" data={p.fasilitas} setData={(v) => updArr("fasilitas", v)} fields={[{key:"judul",label:"Judul"},{key:"icon",label:"Icon (emoji)"},{key:"deskripsi",label:"Deskripsi",type:"textarea"}]} onBack={onBack} />}
+          {tab === "download" && <AdminEditor title="Kelola Download" data={p.download} setData={(v) => updArr("download", v)} fields={[{key:"judul",label:"Judul"},{key:"ukuran",label:"Ukuran"}]} onBack={onBack} />}
+          {tab === "keunggulan" && <AdminEditor title="Kelola Keunggulan" data={p.keunggulan} setData={(v) => updArr("keunggulan", v)} fields={[{key:"judul",label:"Judul"},{key:"icon",label:"Icon (emoji)"},{key:"deskripsi",label:"Deskripsi",type:"textarea"}]} onBack={onBack} />}
+          {tab === "sambutan" && <div><h3 className="font-display text-lg font-bold text-navy-950 mb-4">Edit Sambutan Kepala Sekolah</h3>
+            <div className="space-y-3">{[{k:"nama",l:"Nama"},{k:"jabatan",l:"Jabatan"}].map(f => (
+              <div key={f.k}><label className="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">{f.l}</label>
+                <input value={p.sambutan[f.k] || ""} onChange={e => update("sambutan", { [f.k]: e.target.value })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm" /></div>
+            ))}
+              <div><label className="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">Ucapan Pembuka</label>
+                <textarea rows={2} value={p.sambutan.ucapanPembuka || ""} onChange={e => update("sambutan", { ucapanPembuka: e.target.value })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm" /></div>
+              <div><label className="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">Paragraf (satu paragraf per baris kosong)</label>
+                <textarea rows={8} value={(p.sambutan.paragraf || []).join("\n\n")} onChange={e => update("sambutan", { paragraf: e.target.value.split("\n\n") })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm" /></div>
+            </div></div>}
+          {tab === "sejarah" && <div><h3 className="font-display text-lg font-bold text-navy-950 mb-4">Edit Sejarah</h3>
+            <label className="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">Intro</label>
+            <textarea rows={2} value={p.sejarah.intro || ""} onChange={e => update("sejarah", { intro: e.target.value })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm" />
+            <h4 className="mt-4 mb-2 font-bold text-navy-950">Timeline (satu per baris: TAHUN | JUDUL | DESKRIPSI)</h4>
+            <textarea rows={6} value={(p.sejarah.timeline || []).map(t => `${t.tahun} | ${t.judul} | ${t.deskripsi}`).join("\n")} onChange={e => update("sejarah", { timeline: e.target.value.split("\n").map(l => { const [tahun, judul, ...d] = l.split("|"); return { tahun: (tahun || "").trim(), judul: (judul || "").trim(), deskripsi: d.join("|").trim() }; }).filter(x => x.tahun) })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm" /></div>}
+          {tab === "visimisi" && <div><h3 className="font-display text-lg font-bold text-navy-950 mb-4">Edit Visi & Misi</h3>
+            <label className="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">Visi</label>
+            <textarea rows={3} value={p.visimisi.visi || ""} onChange={e => update("visimisi", { visi: e.target.value })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm" />
+            <label className="mt-3 mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">Motto</label>
+            <input value={p.visimisi.motto || ""} onChange={e => update("visimisi", { motto: e.target.value })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm" />
+            <label className="mt-3 mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">Misi (satu per baris)</label>
+            <textarea rows={6} value={(p.visimisi.misi || []).join("\n")} onChange={e => update("visimisi", { misi: e.target.value.split("\n") })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm" /></div>}
+          {tab === "struktur" && <div><h3 className="font-display text-lg font-bold text-navy-950 mb-4">Edit Struktur</h3>
+            <div className="grid gap-3 md:grid-cols-2">
+              <div><label className="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">Nama Kepsek</label><input value={p.struktur.kepsek?.nama || ""} onChange={e => update("struktur", { kepsek: { ...p.struktur.kepsek, nama: e.target.value } })} className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm" /></div>
+              <div><label className="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">Jabatan Kepsek</label><input value={p.struktur.kepsek?.jabatan || ""} onChange={e => update("struktur", { kepsek: { ...p.struktur.kepsek, jabatan: e.target.value } })} className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm" /></div>
+            </div>
+            <label className="mt-3 mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">Wakasek (satu per baris: NAMA | JABATAN)</label>
+            <textarea rows={3} value={(p.struktur.wakasek || []).map(w => `${w.nama} | ${w.jabatan}`).join("\n")} onChange={e => update("struktur", { wakasek: e.target.value.split("\n").map(l => { const [n, ...j] = l.split("|"); return { nama: (n || "").trim(), jabatan: j.join("|").trim() }; }).filter(x => x.nama) })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm" />
+            <label className="mt-3 mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">Staff (satu per baris: NAMA | JABATAN)</label>
+            <textarea rows={6} value={(p.struktur.staff || []).map(w => `${w.nama} | ${w.jabatan}`).join("\n")} onChange={e => update("struktur", { staff: e.target.value.split("\n").map(l => { const [n, ...j] = l.split("|"); return { nama: (n || "").trim(), jabatan: j.join("|").trim() }; }).filter(x => x.nama) })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm" /></div>}
+          {tab === "kurikulum" && <div><h3 className="font-display text-lg font-bold text-navy-950 mb-4">Edit Kurikulum</h3>
+            <label className="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">Intro</label>
+            <textarea rows={3} value={p.kurikulum.intro || ""} onChange={e => update("kurikulum", { intro: e.target.value })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm" />
+            <label className="mt-3 mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">Items (satu per baris: JUDUL | DESKRIPSI)</label>
+            <textarea rows={8} value={(p.kurikulum.items || []).map(x => `${x.judul} | ${x.deskripsi}`).join("\n")} onChange={e => update("kurikulum", { items: e.target.value.split("\n").map(l => { const [j, ...d] = l.split("|"); return { judul: (j || "").trim(), deskripsi: d.join("|").trim() }; }).filter(x => x.judul) })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm" /></div>}
+          {tab === "kalender" && <div><h3 className="font-display text-lg font-bold text-navy-950 mb-4">Edit Kalender</h3>
+            <label className="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">Tahun Ajaran</label>
+            <input value={p.kalender.tahunAjaran || ""} onChange={e => update("kalender", { tahunAjaran: e.target.value })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm" />
+            <label className="mt-3 mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">Items (satu per baris: JUDUL | TANGGAL)</label>
+            <textarea rows={8} value={(p.kalender.items || []).map(x => `${x.judul} | ${x.tanggal}`).join("\n")} onChange={e => update("kalender", { items: e.target.value.split("\n").map(l => { const [j, ...d] = l.split("|"); return { judul: (j || "").trim(), tanggal: d.join("|").trim() }; }).filter(x => x.judul) })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm" /></div>}
+          {tab === "jadwal" && <div><h3 className="font-display text-lg font-bold text-navy-950 mb-4">Edit Jadwal</h3>
+            <label className="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">Jam</label>
+            <input value={p.jadwal.jam || ""} onChange={e => update("jadwal", { jam: e.target.value })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm" />
+            <label className="mt-3 mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">Hari (satu per baris)</label>
+            <textarea rows={6} value={(p.jadwal.days || []).join("\n")} onChange={e => update("jadwal", { days: e.target.value.split("\n") })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm" />
+            <label className="mt-3 mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">Mata Pelajaran (satu per baris, urut sesuai hari)</label>
+            <textarea rows={6} value={(p.jadwal.mapel || []).join("\n")} onChange={e => update("jadwal", { mapel: e.target.value.split("\n") })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm" /></div>}
+          {tab === "osis" && <div><h3 className="font-display text-lg font-bold text-navy-950 mb-4">Edit OSIS & MPK</h3>
+            <h4 className="mt-2 mb-2 font-bold text-navy-950">OSIS</h4>
+            <div className="space-y-2">{[{k:"deskripsi",l:"Deskripsi"},{k:"ketua",l:"Ketua"},{k:"wakil",l:"Wakil"},{k:"sekretaris",l:"Sekretaris"},{k:"bendahara",l:"Bendahara"}].map(f => (
+              <div key={f.k}><label className="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">{f.l}</label>
+                <input value={p.osis.osis?.[f.k] || ""} onChange={e => update("osis", { osis: { ...p.osis.osis, [f.k]: e.target.value } })} className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm" /></div>
+            ))}
+            <h4 className="mt-4 mb-2 font-bold text-navy-950">MPK</h4>
+            <div className="space-y-2">{[{k:"deskripsi",l:"Deskripsi"},{k:"ketua",l:"Ketua"},{k:"anggota",l:"Anggota"},{k:"pertemuan",l:"Pertemuan"},{k:"program",l:"Program"}].map(f => (
+              <div key={f.k}><label className="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">{f.l}</label>
+                <input value={p.osis.mpk?.[f.k] || ""} onChange={e => update("osis", { mpk: { ...p.osis.mpk, [f.k]: e.target.value } })} className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm" /></div>
+            ))}
+          </div>}
+          {tab === "tatib" && <AdminEditor title="Kelola Tata Tertib" data={p.tatib} setData={(v) => updArr("tatib", v)} fields={[{key:"judul",label:"Judul Kategori"},{key:"items",label:"Items (satu per baris)",type:"array"}]} onBack={onBack} />}
+          {tab === "ppdb" && <div><h3 className="font-display text-lg font-bold text-navy-950 mb-4">Edit PPDB</h3>
+            <div className="grid gap-3 md:grid-cols-3">
+              {[{k:"gelombang",l:"Gelombang"},{k:"kuota",l:"Kuota"},{k:"rombel",l:"Rombel"}].map(f => (
+                <div key={f.k}><label className="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">{f.l}</label>
+                  <input value={p.ppdb[f.k] || ""} onChange={e => update("ppdb", { [f.k]: e.target.value })} className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm" /></div>
+              ))}
+            </div>
+            <label className="mt-3 mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">Alur (satu per baris: NO | JUDUL | DESKRIPSI)</label>
+            <textarea rows={6} value={(p.ppdb.alur || []).map(x => `${x.no} | ${x.judul} | ${x.deskripsi}`).join("\n")} onChange={e => update("ppdb", { alur: e.target.value.split("\n").map(l => { const [n, j, ...d] = l.split("|"); return { no: +n, judul: (j || "").trim(), deskripsi: d.join("|").trim() }; }).filter(x => x.judul) })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm" />
+            <label className="mt-3 mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">Syarat (satu per baris)</label>
+            <textarea rows={6} value={(p.ppdb.syarat || []).join("\n")} onChange={e => update("ppdb", { syarat: e.target.value.split("\n") })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm" />
+            <label className="mt-3 mb-1 block text-xs font-bold uppercase tracking-widest text-slate-600">Jalur (satu per baris)</label>
+            <textarea rows={5} value={(p.ppdb.jalur || []).join("\n")} onChange={e => update("ppdb", { jalur: e.target.value.split("\n") })} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm" /></div>}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/* ============ APP ============ */
+function App() {
+  const [page, setPage] = useState("beranda");
+  const [adminIn, setAdminIn] = useState(false);
+  const [p, setP] = useState({
+    pengaturan: get(KEYS.pengaturan, D.pengaturan),
+    sambutan: get(KEYS.sambutan, D.sambutan),
+    sejarah: get(KEYS.sejarah, D.sejarah),
+    visimisi: get(KEYS.visimisi, D.visimisi),
+    struktur: get(KEYS.struktur, D.struktur),
+    guru: get(KEYS.guru, D.guru),
+    kurikulum: get(KEYS.kurikulum, D.kurikulum),
+    kalender: get(KEYS.kalender, D.kalender),
+    jadwal: get(KEYS.jadwal, D.jadwal),
+    ekskul: get(KEYS.ekskul, D.ekskul),
+    osis: get(KEYS.osis, D.osis),
+    tatib: get(KEYS.tatib, D.tatib),
+    fasilitas: get(KEYS.fasilitas, D.fasilitas),
+    ppdb: get(KEYS.ppdb, D.ppdb),
+    download: get(KEYS.download, D.download),
+    keunggulan: get(KEYS.keunggulan, D.keunggulan),
+    berita: get(KEYS.berita, D.berita),
+    pengumuman: get(KEYS.pengumuman, D.pengumuman),
+    prestasi: get(KEYS.prestasi, D.prestasi),
+    galeri: get(KEYS.galeri, D.galeri),
+    agenda: get(KEYS.agenda, D.agenda),
+  });
+  const go = (id) => { setPage(id); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  const routes = {
+    beranda: <BerandaPage p={p} go={go} />,
+    profil: <ProfilLanding go={go} />,
+    sambutan: <SambutanPage data={p.sambutan} />,
+    sejarah: <SejarahPage data={p.sejarah} />,
+    "visi-misi": <VisiMisiPage data={p.visimisi} />,
+    struktur: <StrukturPage data={p.struktur} />,
+    guru: <GuruPage data={p.guru} />,
+    akademik: <AkademikLanding go={go} />,
+    kurikulum: <KurikulumPage data={p.kurikulum} />,
+    kalender: <KalenderPage data={p.kalender} />,
+    jadwal: <JadwalPage data={p.jadwal} />,
+    kesiswaan: <KesiswaanLanding go={go} />,
+    ekskul: <EkskulPage data={p.ekskul} />,
+    osis: <OsisPage data={p.osis} />,
+    prestasi: <PrestasiPage data={p.prestasi} />,
+    tatib: <TatibPage data={p.tatib} />,
+    fasilitas: <FasilitasPage data={p.fasilitas} />,
+    informasi: <InformasiLanding go={go} />,
+    berita: <BeritaPage data={p.berita} />,
+    pengumuman: <PengumumanPage data={p.pengumuman} />,
+    agenda: <AgendaPage data={p.agenda} />,
+    download: <DownloadPage data={p.download} />,
+    ppdb: <PpdbPage data={p.ppdb} />,
+    galeri: <GaleriPage data={p.galeri} />,
+    kontak: <KontakPage p={p} />,
+    admin: adminIn ? <AdminPanel p={p} setP={setP} adminIn={adminIn} setAdminIn={setAdminIn} /> : <AdminLogin onLogin={() => setAdminIn(true)} />,
+  };
+  return (
+    <div className="min-h-screen bg-white text-slate-800">
+      <TopBar p={p} />
+      <Navbar page={page} setPage={go} adminIn={adminIn} setAdminIn={setAdminIn} />
+      <main>{routes[page] || <BerandaPage p={p} go={go} />}</main>
+      <Footer p={p} go={go} />
+      <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-yellow-500 text-navy-950 shadow-2xl transition hover:-translate-y-1"><I.ArrowUp c="h-5 w-5" /></button>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
