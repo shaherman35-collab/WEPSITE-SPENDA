@@ -35,12 +35,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--text);
 
 
 /* INLINE EDIT */
-.editable-field{position:relative;display:inline-block;}
-.editable-field:hover .edit-pencil{opacity:1;transform:scale(1);}
-.edit-pencil{position:absolute;top:-8px;right:-28px;width:22px;height:22px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:scale(0.7);transition:all .2s;z-index:50;border:none;}
-.edit-pencil svg{width:12px;height:12px;color:var(--navy);}
-.edit-inline-input{font:inherit;color:inherit;background:rgba(200,151,42,0.08);border:2px solid var(--gold);border-radius:6px;padding:2px 6px;outline:none;width:auto;min-width:60px;}
-.edit-inline-textarea{font:inherit;color:inherit;background:rgba(200,151,42,0.08);border:2px solid var(--gold);border-radius:6px;padding:4px 8px;outline:none;resize:both;min-width:120px;min-height:40px;}
+.editable-field{display:inline;}
+.clickable-edit{cursor:text !important;border-bottom:1px dashed rgba(200,151,42,0.5);border-radius:3px;padding:0 2px;transition:background .15s;}
+.clickable-edit:hover{background:rgba(200,151,42,0.09);}
+.edit-inline-input{font:inherit;color:inherit;background:rgba(200,151,42,0.09);border:none;border-bottom:2px solid var(--gold);border-radius:0;padding:1px 4px;outline:none;min-width:40px;}
+.edit-inline-textarea{font:inherit;color:inherit;background:rgba(200,151,42,0.08);border:2px solid var(--gold);border-radius:6px;padding:4px 8px;outline:none;resize:both;min-width:120px;min-height:40px;display:block;}
 .edit-toast{position:fixed;bottom:80px;right:28px;background:var(--navy);color:var(--white);padding:10px 20px;border-radius:10px;font-size:13px;font-weight:600;z-index:9999;opacity:0;transform:translateY(10px);transition:all .3s;pointer-events:none;}
 .edit-toast.show{opacity:1;transform:translateY(0);}
 
@@ -1054,11 +1053,29 @@ const D = {
     tanggal: "2026-07-01",
     judul: "PPDB Gelombang 2",
     deskripsi: "Pendaftaran gelombang 2 (sisa kuota)."
-  }]
+  }],
+  foto: {
+    hero: "",
+    // foto hero/banner halaman utama
+    loginBg: "",
+    // foto background halaman login admin
+    sambutan: "",
+    // foto kepala sekolah di halaman sambutan
+    sekolahDepan: "",
+    // foto gedung di bagian profil
+    guru: {},
+    // {gId: base64} - foto tiap guru by id
+    berita: {},
+    // {bId: base64} - foto tiap berita by id
+    galeri: {},
+    // {glId: base64} - foto tiap item galeri by id
+    fasilitas: {} // {fId: base64} - foto tiap fasilitas by id
+  }
 };
 
 /* ──────────── STORAGE ──────────── */
 const KEYS = Object.fromEntries(Object.keys(D).map(k => [k, "smpn2b_" + k]));
+const FOTO_KEY = "smpn2b_foto";
 const load = (k, fb) => {
   try {
     const v = localStorage.getItem(k);
@@ -2127,12 +2144,21 @@ const PageHeader = ({
 /* ──────────── BERANDA ──────────── */
 const BerandaPage = ({
   data,
-  go
+  go,
+  fotoData
 }) => {
   const a = data.pengaturan;
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("section", {
     id: "hero"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, fotoData && fotoData.hero ? /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "absolute",
+      inset: 0,
+      backgroundImage: `url(${data.foto.hero})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center"
+    }
+  }) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     className: "hero-bg"
   }), /*#__PURE__*/React.createElement("div", {
     className: "hero-pattern"
@@ -2140,6 +2166,12 @@ const BerandaPage = ({
     className: "hero-glow-1"
   }), /*#__PURE__*/React.createElement("div", {
     className: "hero-glow-2"
+  })), fotoData && fotoData.hero && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "absolute",
+      inset: 0,
+      background: "rgba(11,26,62,0.65)"
+    }
   }), /*#__PURE__*/React.createElement("div", {
     className: "hero-content"
   }, /*#__PURE__*/React.createElement("div", {
@@ -2291,8 +2323,19 @@ const BerandaPage = ({
   }, /*#__PURE__*/React.createElement("div", {
     className: "about-img-wrap"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "about-img-block"
-  }, /*#__PURE__*/React.createElement(Ic.School, {
+    className: "about-img-block",
+    style: {
+      overflow: "hidden"
+    }
+  }, fotoData && fotoData.sekolahDepan ? /*#__PURE__*/React.createElement("img", {
+    src: data.foto.sekolahDepan,
+    alt: "Gedung Sekolah",
+    style: {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover"
+    }
+  }) : /*#__PURE__*/React.createElement(Ic.School, {
     s: "120"
   })), /*#__PURE__*/React.createElement("div", {
     className: "about-badge-float"
@@ -2628,8 +2671,19 @@ const SambutanPage = ({
 }, /*#__PURE__*/React.createElement("div", {
   className: "samb-header"
 }, /*#__PURE__*/React.createElement("div", {
-  className: "samb-photo"
-}, /*#__PURE__*/React.createElement(Ic.UserCircle, {
+  className: "samb-photo",
+  style: {
+    overflow: "hidden"
+  }
+}, fotoData && fotoData.sambutan ? /*#__PURE__*/React.createElement("img", {
+  src: data.foto.sambutan,
+  alt: data.nama,
+  style: {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover"
+  }
+}) : /*#__PURE__*/React.createElement(Ic.UserCircle, {
   s: "48"
 })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
   className: "samb-name"
@@ -2853,8 +2907,19 @@ const GuruPage = ({
   key: g.id,
   className: "guru-card"
 }, /*#__PURE__*/React.createElement("div", {
-  className: "guru-img"
-}, /*#__PURE__*/React.createElement("div", {
+  className: "guru-img",
+  style: {
+    overflow: "hidden"
+  }
+}, fotoData && fotoData.guru && fotoData.guru[g.id] ? /*#__PURE__*/React.createElement("img", {
+  src: fotoData.guru[g.id],
+  alt: g.nama,
+  style: {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover"
+  }
+}) : /*#__PURE__*/React.createElement("div", {
   className: "guru-initial"
 }, g.nama.charAt(0))), /*#__PURE__*/React.createElement("div", {
   className: "guru-body"
@@ -3250,7 +3315,17 @@ const BeritaPage = ({
   className: "news-card"
 }, /*#__PURE__*/React.createElement("div", {
   className: "news-thumb"
-}, /*#__PURE__*/React.createElement(Ic.Newspaper, {
+}, fotoData && fotoData.berita && fotoData.berita[b.id] ? /*#__PURE__*/React.createElement("img", {
+  src: data.foto.berita[b.id],
+  alt: b.judul,
+  style: {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+    position: "absolute",
+    inset: 0
+  }
+}) : /*#__PURE__*/React.createElement(Ic.Newspaper, {
   s: "52"
 }), /*#__PURE__*/React.createElement("span", {
   className: "news-cat"
@@ -3541,8 +3616,21 @@ const GaleriPage = ({
   className: "galeri-grid"
 }, data.map(g => /*#__PURE__*/React.createElement("div", {
   key: g.id,
-  className: "galeri-item"
-}, /*#__PURE__*/React.createElement(Ic.Image, {
+  className: "galeri-item",
+  style: {
+    overflow: "hidden"
+  }
+}, fotoData && fotoData.galeri && fotoData.galeri[g.id] ? /*#__PURE__*/React.createElement("img", {
+  src: fotoData.galeri[g.id],
+  alt: g.judul,
+  style: {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+    position: "absolute",
+    inset: 0
+  }
+}) : /*#__PURE__*/React.createElement(Ic.Image, {
   s: "40"
 }), /*#__PURE__*/React.createElement("div", {
   className: "galeri-overlay"
@@ -3719,17 +3807,34 @@ const AdminLogin = ({
       setTimeout(() => setErr(false), 2000);
     }
   };
+  const loginFoto = (() => {
+    try {
+      const v = localStorage.getItem(FOTO_KEY);
+      return v ? JSON.parse(v).loginBg || "" : "";
+    } catch {
+      return "";
+    }
+  })();
   return /*#__PURE__*/React.createElement("section", {
     className: "section",
     style: {
-      background: "var(--cream)",
+      background: loginFoto ? `url(${loginFoto}) center/cover` : "var(--cream)",
       minHeight: "70vh",
       display: "flex",
-      alignItems: "center"
+      alignItems: "center",
+      position: "relative"
     }
-  }, /*#__PURE__*/React.createElement("div", {
+  }, loginFoto && /*#__PURE__*/React.createElement("div", {
     style: {
-      width: "100%"
+      position: "absolute",
+      inset: 0,
+      background: "rgba(11,26,62,0.6)"
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: "100%",
+      position: "relative",
+      zIndex: 1
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "admin-login"
@@ -3813,7 +3918,59 @@ const AdminPanel = ({
     setSaved(true);
     setTimeout(() => setSaved(false), 2500);
   };
+  const [foto, setFoto] = useState(() => {
+    try {
+      const v = localStorage.getItem(FOTO_KEY);
+      return v ? JSON.parse(v) : {
+        hero: "",
+        loginBg: "",
+        sambutan: "",
+        sekolahDepan: "",
+        guru: {},
+        berita: {},
+        galeri: {},
+        fasilitas: {}
+      };
+    } catch {
+      return {
+        hero: "",
+        loginBg: "",
+        sambutan: "",
+        sekolahDepan: "",
+        guru: {},
+        berita: {},
+        galeri: {},
+        fasilitas: {}
+      };
+    }
+  });
+  const saveFoto = newFoto => {
+    try {
+      localStorage.setItem(FOTO_KEY, JSON.stringify(newFoto));
+    } catch {}
+    setFoto(newFoto);
+  };
+  const updFoto = (key, val) => {
+    const nf = {
+      ...foto,
+      [key]: val
+    };
+    saveFoto(nf);
+  };
+  const updFotoSub = (key, id, val) => {
+    const nf = {
+      ...foto,
+      [key]: {
+        ...(foto[key] || {}),
+        [id]: val
+      }
+    };
+    saveFoto(nf);
+  };
   const TABS = [{
+    id: "foto",
+    label: "📷 Foto"
+  }, {
     id: "pengaturan",
     label: "Pengaturan"
   }, {
@@ -3986,7 +4143,272 @@ const AdminPanel = ({
     onClick: () => setTab(t.id)
   }, t.label))), /*#__PURE__*/React.createElement("div", {
     className: "admin-section"
-  }, tab === "pengaturan" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h3", null, "Pengaturan Umum"), /*#__PURE__*/React.createElement("div", {
+  }, tab === "foto" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h3", null, "Manajemen Foto"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: "13px",
+      color: "var(--text-light)",
+      marginBottom: "24px"
+    }
+  }, "Upload foto untuk ditampilkan di berbagai halaman website. Klik kotak foto untuk memilih gambar. Maks 3MB per foto."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: "24px",
+      marginBottom: "28px"
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "form-label",
+    style: {
+      marginBottom: "10px"
+    }
+  }, "Foto Hero / Banner Utama"), /*#__PURE__*/React.createElement(PhotoUpload, {
+    src: foto.hero,
+    onChange: v => updFoto("hero", v),
+    label: "Upload Foto Banner",
+    width: "100%",
+    height: "200px"
+  }), foto.hero && /*#__PURE__*/React.createElement("button", {
+    style: {
+      marginTop: "8px",
+      fontSize: "12px",
+      color: "#dc2626",
+      background: "none",
+      border: "none",
+      cursor: "pointer"
+    },
+    onClick: () => updFoto("hero", "")
+  }, "\u2715 Hapus Foto")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "form-label",
+    style: {
+      marginBottom: "10px"
+    }
+  }, "Foto Gedung Sekolah (Halaman Profil)"), /*#__PURE__*/React.createElement(PhotoUpload, {
+    src: foto.sekolahDepan,
+    onChange: v => updFoto("sekolahDepan", v),
+    label: "Upload Foto Gedung",
+    width: "100%",
+    height: "200px"
+  }), foto.sekolahDepan && /*#__PURE__*/React.createElement("button", {
+    style: {
+      marginTop: "8px",
+      fontSize: "12px",
+      color: "#dc2626",
+      background: "none",
+      border: "none",
+      cursor: "pointer"
+    },
+    onClick: () => updFoto("sekolahDepan", "")
+  }, "\u2715 Hapus Foto")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "form-label",
+    style: {
+      marginBottom: "10px"
+    }
+  }, "Foto Kepala Sekolah (Halaman Sambutan)"), /*#__PURE__*/React.createElement(PhotoUpload, {
+    src: foto.sambutan,
+    onChange: v => updFoto("sambutan", v),
+    label: "Upload Foto Kepsek",
+    width: "120px",
+    height: "120px",
+    round: true
+  }), foto.sambutan && /*#__PURE__*/React.createElement("button", {
+    style: {
+      marginTop: "8px",
+      fontSize: "12px",
+      color: "#dc2626",
+      background: "none",
+      border: "none",
+      cursor: "pointer"
+    },
+    onClick: () => updFoto("sambutan", "")
+  }, "\u2715 Hapus Foto")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "form-label",
+    style: {
+      marginBottom: "10px"
+    }
+  }, "Foto Background Halaman Login Admin"), /*#__PURE__*/React.createElement(PhotoUpload, {
+    src: foto.loginBg,
+    onChange: v => updFoto("loginBg", v),
+    label: "Upload Foto Login",
+    width: "100%",
+    height: "120px"
+  }), foto.loginBg && /*#__PURE__*/React.createElement("button", {
+    style: {
+      marginTop: "8px",
+      fontSize: "12px",
+      color: "#dc2626",
+      background: "none",
+      border: "none",
+      cursor: "pointer"
+    },
+    onClick: () => updFoto("loginBg", "")
+  }, "\u2715 Hapus Foto"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: "28px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "form-label",
+    style: {
+      marginBottom: "14px"
+    }
+  }, "Foto Guru & Tenaga Kependidikan"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(4,1fr)",
+      gap: "16px"
+    }
+  }, (p.guru || []).map(g => /*#__PURE__*/React.createElement("div", {
+    key: g.id,
+    style: {
+      textAlign: "center"
+    }
+  }, /*#__PURE__*/React.createElement(PhotoUpload, {
+    src: (foto.guru || {})[g.id],
+    onChange: v => updFotoSub("guru", g.id, v),
+    label: "Upload Foto",
+    width: "80px",
+    height: "80px",
+    round: true,
+    style: {
+      margin: "0 auto"
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: "11px",
+      marginTop: "6px",
+      color: "var(--text-mid)",
+      fontWeight: 600,
+      lineHeight: 1.3
+    }
+  }, g.nama), (foto.guru || {})[g.id] && /*#__PURE__*/React.createElement("button", {
+    style: {
+      fontSize: "10px",
+      color: "#dc2626",
+      background: "none",
+      border: "none",
+      cursor: "pointer"
+    },
+    onClick: () => updFotoSub("guru", g.id, "")
+  }, "\u2715"))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: "28px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "form-label",
+    style: {
+      marginBottom: "14px"
+    }
+  }, "Foto Berita"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3,1fr)",
+      gap: "16px"
+    }
+  }, (p.berita || []).map(b => /*#__PURE__*/React.createElement("div", {
+    key: b.id
+  }, /*#__PURE__*/React.createElement(PhotoUpload, {
+    src: (foto.berita || {})[b.id],
+    onChange: v => updFotoSub("berita", b.id, v),
+    label: "Upload Foto",
+    width: "100%",
+    height: "100px"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: "11px",
+      marginTop: "6px",
+      color: "var(--text-mid)",
+      fontWeight: 600,
+      lineHeight: 1.3
+    }
+  }, b.judul), (foto.berita || {})[b.id] && /*#__PURE__*/React.createElement("button", {
+    style: {
+      fontSize: "10px",
+      color: "#dc2626",
+      background: "none",
+      border: "none",
+      cursor: "pointer"
+    },
+    onClick: () => updFotoSub("berita", b.id, "")
+  }, "\u2715 Hapus"))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: "28px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "form-label",
+    style: {
+      marginBottom: "14px"
+    }
+  }, "Foto Galeri"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(4,1fr)",
+      gap: "16px"
+    }
+  }, (p.galeri || []).map(g => /*#__PURE__*/React.createElement("div", {
+    key: g.id
+  }, /*#__PURE__*/React.createElement(PhotoUpload, {
+    src: (foto.galeri || {})[g.id],
+    onChange: v => updFotoSub("galeri", g.id, v),
+    label: "Upload Foto",
+    width: "100%",
+    height: "90px"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: "11px",
+      marginTop: "6px",
+      color: "var(--text-mid)",
+      fontWeight: 600,
+      lineHeight: 1.3
+    }
+  }, g.judul), (foto.galeri || {})[g.id] && /*#__PURE__*/React.createElement("button", {
+    style: {
+      fontSize: "10px",
+      color: "#dc2626",
+      background: "none",
+      border: "none",
+      cursor: "pointer"
+    },
+    onClick: () => updFotoSub("galeri", g.id, "")
+  }, "\u2715 Hapus"))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: "28px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "form-label",
+    style: {
+      marginBottom: "14px"
+    }
+  }, "Foto Fasilitas"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(4,1fr)",
+      gap: "16px"
+    }
+  }, (p.fasilitas || []).map(f => /*#__PURE__*/React.createElement("div", {
+    key: f.id
+  }, /*#__PURE__*/React.createElement(PhotoUpload, {
+    src: (foto.fasilitas || {})[f.id],
+    onChange: v => updFotoSub("fasilitas", f.id, v),
+    label: "Upload Foto",
+    width: "100%",
+    height: "80px"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: "11px",
+      marginTop: "6px",
+      color: "var(--text-mid)",
+      fontWeight: 600,
+      lineHeight: 1.3
+    }
+  }, f.judul), (foto.fasilitas || {})[f.id] && /*#__PURE__*/React.createElement("button", {
+    style: {
+      fontSize: "10px",
+      color: "#dc2626",
+      background: "none",
+      border: "none",
+      cursor: "pointer"
+    },
+    onClick: () => updFotoSub("fasilitas", f.id, "")
+  }, "\u2715 Hapus")))))), tab === "pengaturan" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h3", null, "Pengaturan Umum"), /*#__PURE__*/React.createElement("div", {
     className: "admin-grid"
   }, [["headmaster", "Kepala Sekolah"], ["phone", "Nomor Telepon"], ["email", "Email"], ["address", "Alamat"], ["announcement", "Pengumuman Berjalan"], ["facebookUrl", "Facebook URL"], ["instagramUrl", "Instagram URL"], ["youtubeUrl", "YouTube URL"], ["twitterUrl", "Twitter URL"], ["tiktokUrl", "TikTok URL"]].map(([k, l]) => /*#__PURE__*/React.createElement(Field, {
     key: k,
@@ -4728,6 +5150,122 @@ const Footer = ({
   }, /*#__PURE__*/React.createElement("span", null, "\xA9 2026 SMP Negeri 2 Muara Bungo. All rights reserved."), /*#__PURE__*/React.createElement("span", null, "Kabupaten Bungo, Jambi"))));
 };
 
+/* ──────────── PHOTO UPLOAD COMPONENT ──────────── */
+const PhotoUpload = ({
+  src,
+  onChange,
+  label = "Upload Foto",
+  width = "100%",
+  height = "180px",
+  round = false,
+  style = {}
+}) => {
+  const fileRef = React.useRef(null);
+  const handleFile = e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    if (file.size > 3 * 1024 * 1024) {
+      alert("Ukuran foto maksimal 3MB!");
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = ev => onChange(ev.target.result);
+    reader.readAsDataURL(file);
+  };
+  const borderR = round ? "50%" : "12px";
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "relative",
+      width,
+      height,
+      borderRadius: borderR,
+      overflow: "hidden",
+      background: "var(--cream)",
+      border: "2px dashed var(--border)",
+      cursor: "pointer",
+      flexShrink: 0,
+      ...style
+    },
+    onClick: () => fileRef.current.click()
+  }, src ? /*#__PURE__*/React.createElement("img", {
+    src: src,
+    alt: label,
+    style: {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      display: "block",
+      borderRadius: borderR
+    }
+  }) : /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      height: "100%",
+      gap: "8px",
+      color: "var(--text-light)"
+    }
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "28",
+    height: "28",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.5",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/React.createElement("rect", {
+    x: "3",
+    y: "3",
+    width: "18",
+    height: "18",
+    rx: "2"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "8.5",
+    cy: "8.5",
+    r: "1.5"
+  }), /*#__PURE__*/React.createElement("polyline", {
+    points: "21,15 16,10 5,21"
+  })), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: "12px",
+      fontWeight: 600,
+      textAlign: "center",
+      padding: "0 8px"
+    }
+  }, label)), src && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "absolute",
+      inset: 0,
+      background: "rgba(0,0,0,0.45)",
+      opacity: 0,
+      transition: "opacity .2s",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      borderRadius: borderR
+    },
+    onMouseEnter: e => e.currentTarget.style.opacity = 1,
+    onMouseLeave: e => e.currentTarget.style.opacity = 0
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "#fff",
+      fontSize: "12px",
+      fontWeight: 700
+    }
+  }, "Ganti Foto")), /*#__PURE__*/React.createElement("input", {
+    ref: fileRef,
+    type: "file",
+    accept: "image/*",
+    style: {
+      display: "none"
+    },
+    onChange: handleFile
+  }));
+};
+
 /* ──────────── INLINE EDIT HELPER ──────────── */
 const EditToast = () => {
   useEffect(() => {
@@ -4753,7 +5291,10 @@ const EditField = ({
     setVal(value);
   }, [value]);
   useEffect(() => {
-    if (editing && inputRef.current) inputRef.current.focus();
+    if (editing && inputRef.current) {
+      inputRef.current.focus();
+      inputRef.current.select && inputRef.current.select();
+    }
   }, [editing]);
   const save = () => {
     setEditing(false);
@@ -4781,7 +5322,8 @@ const EditField = ({
       onChange: e => setVal(e.target.value),
       onBlur: save,
       onKeyDown: handleKey,
-      style: style
+      style: style,
+      autoFocus: true
     });
     return /*#__PURE__*/React.createElement("input", {
       ref: inputRef,
@@ -4794,21 +5336,31 @@ const EditField = ({
         ...style,
         fontSize: "inherit",
         fontFamily: "inherit"
-      }
+      },
+      autoFocus: true
     });
   }
   return /*#__PURE__*/React.createElement("span", {
-    className: "editable-field",
-    title: "Klik untuk edit"
-  }, /*#__PURE__*/React.createElement("span", {
-    style: style
-  }, val), /*#__PURE__*/React.createElement("button", {
-    className: "edit-pencil",
-    onClick: () => setEditing(true)
-  }, /*#__PURE__*/React.createElement("svg", {
+    className: "editable-field clickable-edit " + className,
+    title: "Klik langsung untuk edit",
+    onClick: () => setEditing(true),
+    style: {
+      cursor: "text",
+      borderBottom: "1px dashed rgba(200,151,42,0.4)",
+      ...style
+    }
+  }, val, /*#__PURE__*/React.createElement("svg", {
+    style: {
+      marginLeft: "5px",
+      verticalAlign: "middle",
+      opacity: 0.5,
+      flexShrink: 0
+    },
+    width: "11",
+    height: "11",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "currentColor",
+    stroke: "var(--gold)",
     strokeWidth: "2.5",
     strokeLinecap: "round",
     strokeLinejoin: "round"
@@ -4816,7 +5368,7 @@ const EditField = ({
     d: "M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"
   }), /*#__PURE__*/React.createElement("path", {
     d: "M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"
-  }))));
+  })));
 };
 
 /* ──────────── APP ──────────── */
@@ -4824,8 +5376,42 @@ function App() {
   const [page, setPage] = useState("beranda");
   const [adminIn, setAdminIn] = useState(false);
   const [data, setData] = useState(() => Object.fromEntries(Object.entries(D).map(([k, v]) => [k, load(KEYS[k], v)])));
+  const [appFoto, setAppFoto] = useState(() => {
+    try {
+      const v = localStorage.getItem(FOTO_KEY);
+      return v ? JSON.parse(v) : {
+        hero: "",
+        loginBg: "",
+        sambutan: "",
+        sekolahDepan: "",
+        guru: {},
+        berita: {},
+        galeri: {},
+        fasilitas: {}
+      };
+    } catch {
+      return {
+        hero: "",
+        loginBg: "",
+        sambutan: "",
+        sekolahDepan: "",
+        guru: {},
+        berita: {},
+        galeri: {},
+        fasilitas: {}
+      };
+    }
+  });
+  // Reload foto from localStorage when navigating
+  const refreshFoto = () => {
+    try {
+      const v = localStorage.getItem(FOTO_KEY);
+      if (v) setAppFoto(JSON.parse(v));
+    } catch {}
+  };
   const go = id => {
     setPage(id);
+    refreshFoto();
     window.scrollTo({
       top: 0,
       behavior: "smooth"
@@ -4844,11 +5430,13 @@ function App() {
   const pages = {
     beranda: /*#__PURE__*/React.createElement(BerandaPage, {
       data: data,
-      go: go
+      go: go,
+      fotoData: appFoto
     }),
     sambutan: /*#__PURE__*/React.createElement(SambutanPage, {
       data: data.sambutan,
-      go: go
+      go: go,
+      fotoData: appFoto
     }),
     sejarah: /*#__PURE__*/React.createElement(SejarahPage, {
       data: data.sejarah,
@@ -4864,7 +5452,8 @@ function App() {
     }),
     guru: /*#__PURE__*/React.createElement(GuruPage, {
       data: data.guru,
-      go: go
+      go: go,
+      fotoData: appFoto
     }),
     kurikulum: /*#__PURE__*/React.createElement(KurikulumPage, {
       data: data.kurikulum,
@@ -4920,7 +5509,8 @@ function App() {
     }),
     galeri: /*#__PURE__*/React.createElement(GaleriPage, {
       data: data.galeri,
-      go: go
+      go: go,
+      fotoData: appFoto
     }),
     kontak: /*#__PURE__*/React.createElement(KontakPage, {
       data: data,
