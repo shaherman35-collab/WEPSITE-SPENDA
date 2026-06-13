@@ -137,6 +137,24 @@ ul{list-style:none;}
 .marquee-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--gold);margin-right:8px;vertical-align:middle;}
 @keyframes marquee-anim{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
+/* ════════════════ NEWS SLIDER ════════════════ */
+.news-slider{background:var(--navy);position:relative;}
+.news-slider-inner{max-width:1240px;margin:0 auto;padding:0;position:relative;}
+.ns-slide{position:relative;display:grid;grid-template-columns:1fr;min-height:280px;cursor:pointer;overflow:hidden;}
+@media(min-width:768px){.ns-slide{grid-template-columns:1.1fr 1fr;min-height:340px;}}
+.ns-img{position:relative;background-color:var(--navy);background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.25);min-height:220px;transition:background-image .4s ease;}
+.ns-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,26,62,0) 0%,rgba(11,26,62,.55) 100%);}
+@media(min-width:768px){.ns-overlay{background:linear-gradient(90deg,rgba(11,26,62,.05) 0%,rgba(11,26,62,.65) 100%);}}
+.ns-content{padding:28px 24px 40px;display:flex;flex-direction:column;justify-content:center;color:#fff;}
+.ns-cat{display:inline-block;background:var(--green);color:#fff;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:4px 12px;border-radius:20px;width:fit-content;margin-bottom:12px;}
+.ns-title{font-family:var(--font-serif);font-size:clamp(20px,3vw,28px);font-weight:700;line-height:1.3;margin-bottom:10px;}
+.ns-exc{font-size:13.5px;color:rgba(255,255,255,.78);line-height:1.7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:14px;}
+.ns-date{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,.6);}
+.ns-dots{position:absolute;bottom:14px;left:24px;display:flex;gap:7px;z-index:2;}
+@media(min-width:768px){.ns-dots{left:auto;right:24px;bottom:20px;}}
+.ns-dot{width:24px;height:4px;border-radius:4px;background:rgba(255,255,255,.3);border:none;cursor:pointer;padding:0;transition:background .3s;}
+.ns-dot-active{background:var(--green);}
+
 /* ════════════════ LAYOUT ════════════════ */
 .content-wrap{max-width:1240px;margin:0 auto;padding:40px 24px;display:grid;grid-template-columns:1fr;gap:32px;}
 @media(min-width:900px){.content-wrap{grid-template-columns:1fr 320px;}}
@@ -211,6 +229,42 @@ ul{list-style:none;}
 .news-card-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:6px;line-height:1.4;}
 .news-card-exc{font-size:13px;color:var(--text-mid);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 .news-card-more{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--green);font-weight:600;margin-top:8px;}
+
+/* ════════════════ BERITA DETAIL ════════════════ */
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--green);background:none;border:none;cursor:pointer;margin-bottom:14px;padding:0;}
+.back-link:hover{text-decoration:underline;}
+.berita-detail-img{width:100%;border-radius:10px;object-fit:cover;max-height:380px;}
+.berita-detail-title{font-size:24px;font-weight:800;color:var(--navy);margin:10px 0 14px;line-height:1.35;}
+.berita-detail-body{font-size:14.5px;color:var(--text-mid);line-height:1.9;white-space:pre-line;}
+.berita-detail-other-title{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:14px;}
+.share-row{display:flex;align-items:center;gap:10px;margin-top:24px;padding-top:18px;border-top:1px solid var(--border);}
+.berita-link-btn{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;padding:8px 16px;border-radius:8px;background:var(--green-pale);color:var(--green-dark);text-decoration:none;margin-top:14px;transition:background .2s;}
+.berita-link-btn:hover{background:var(--green-mid);color:#fff;}
+.share-label{font-size:13px;font-weight:600;color:var(--text-mid);}
+.share-btn{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;padding:7px 14px;border-radius:8px;color:#fff;text-decoration:none;transition:opacity .2s;}
+.share-btn:hover{opacity:.85;}
+.share-wa{background:#25D366;}
+.share-fb{background:#1877F2;}
+
+/* ════════════════ DOWNLOAD PAGE ════════════════ */
+.download-list{display:flex;flex-direction:column;gap:10px;}
+.download-item{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid var(--border);border-radius:10px;transition:box-shadow .2s;}
+.download-item:hover{box-shadow:var(--shadow);}
+.download-icon{flex-shrink:0;width:42px;height:42px;border-radius:8px;background:var(--green-pale);color:var(--green);display:flex;align-items:center;justify-content:center;}
+.download-info{flex:1;}
+.download-title{font-size:14px;font-weight:700;color:var(--navy);}
+.download-cat{font-size:12px;color:var(--text-light);margin-top:2px;}
+.download-btn{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;padding:8px 16px;border-radius:8px;background:var(--green);color:#fff;text-decoration:none;white-space:nowrap;transition:background .2s;}
+.download-btn:hover{background:var(--green-dark);}
+.download-btn-disabled{background:var(--bg);color:var(--text-light);cursor:default;}
+.empty-note{font-size:13px;color:var(--text-light);text-align:center;padding:30px 0;}
+
+/* ════════════════ AGENDA FULL ════════════════ */
+.agenda-full-list{display:flex;flex-direction:column;gap:4px;}
+.agenda-full-item{display:flex;gap:14px;padding:14px 6px;border-bottom:1px solid var(--bg);}
+.agenda-full-item:last-child{border:none;}
+.agenda-full-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:3px;}
+.agenda-full-desc{font-size:13px;color:var(--text-mid);line-height:1.6;}
 
 /* ════════════════ SAMBUTAN FULL ════════════════ */
 .samb-full{display:flex;flex-direction:column;align-items:center;gap:16px;margin-bottom:28px;padding:24px;background:var(--green-pale);border-radius:var(--radius);}
@@ -824,6 +878,27 @@ const DEFAULT_DATA = {
     judul: "Pembagian Rapor",
     deskripsi: "Rapor semester genap dibagikan."
   }],
+  unduhan: [{
+    id: "u1",
+    judul: "Formulir Pendaftaran PPDB 2026/2027",
+    kategori: "PPDB",
+    link: ""
+  }, {
+    id: "u2",
+    judul: "Kalender Akademik 2025/2026",
+    kategori: "Akademik",
+    link: ""
+  }, {
+    id: "u3",
+    judul: "Formulir Surat Izin Siswa",
+    kategori: "Administrasi",
+    link: ""
+  }, {
+    id: "u4",
+    judul: "Format Laporan PKL/Praktik",
+    kategori: "Akademik",
+    link: ""
+  }],
   ppdb: {
     tahun: "2026/2027",
     periode: "01 Februari – 31 Maret 2026",
@@ -1204,7 +1279,49 @@ const Icon = {
     y1: "3",
     x2: "12",
     y2: "15"
-  }))
+  })),
+  MessageCircle: () => /*#__PURE__*/React.createElement("svg", {
+    width: "16",
+    height: "16",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+  })),
+  Share2: () => /*#__PURE__*/React.createElement("svg", {
+    width: "16",
+    height: "16",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/React.createElement("circle", { cx: "18", cy: "5", r: "3" }), /*#__PURE__*/React.createElement("circle", { cx: "6", cy: "12", r: "3" }), /*#__PURE__*/React.createElement("circle", { cx: "18", cy: "19", r: "3" }), /*#__PURE__*/React.createElement("line", { x1: "8.59", y1: "13.51", x2: "15.42", y2: "17.49" }), /*#__PURE__*/React.createElement("line", { x1: "15.41", y1: "6.51", x2: "8.59", y2: "10.49" })),
+  FileText: () => /*#__PURE__*/React.createElement("svg", {
+    width: "20",
+    height: "20",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/React.createElement("path", { d: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" }), /*#__PURE__*/React.createElement("polyline", { points: "14,2 14,8 20,8" }), /*#__PURE__*/React.createElement("line", { x1: "16", y1: "13", x2: "8", y2: "13" }), /*#__PURE__*/React.createElement("line", { x1: "16", y1: "17", x2: "8", y2: "17" })),
+  Download: () => /*#__PURE__*/React.createElement("svg", {
+    width: "16",
+    height: "16",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/React.createElement("path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" }), /*#__PURE__*/React.createElement("polyline", { points: "7,10 12,15 17,10" }), /*#__PURE__*/React.createElement("line", { x1: "12", y1: "15", x2: "12", y2: "3" }))
 };
 
 /* ──── FORMAT DATE ──── */
@@ -1422,6 +1539,9 @@ const NAVMENU = [{
   }, {
     id: "ekskul",
     label: "Ekstrakurikuler"
+  }, {
+    id: "agenda",
+    label: "Agenda Sekolah"
   }]
 }, {
   id: "berita",
@@ -1436,6 +1556,9 @@ const NAVMENU = [{
 }, {
   id: "galeri",
   label: "Galeri"
+}, {
+  id: "download",
+  label: "Unduhan"
 }, {
   id: "kontak",
   label: "Kontak"
@@ -1535,7 +1658,7 @@ const Navbar = ({
     key: m.id,
     className: "nav-item" + (open === m.id ? " nav-open" : "")
   }, /*#__PURE__*/React.createElement("button", {
-    className: "nav-btn" + (m.ppdb ? " nav-ppdb" : "") + (page === m.id || m.sub && m.sub.some(s => s.id === page) ? " nav-active" : ""),
+    className: "nav-btn" + (m.ppdb ? " nav-ppdb" : "") + (page === m.id || m.sub && m.sub.some(s => s.id === page) || (m.id === "berita" && page === "beritaDetail") ? " nav-active" : ""),
     onClick: () => m.sub ? setOpen(open === m.id ? null : m.id) : nav(m.id)
   }, m.label, m.sub && /*#__PURE__*/React.createElement(Icon.ChevDown, null)), m.sub && /*#__PURE__*/React.createElement("div", {
     className: "nav-drop"
@@ -1639,7 +1762,7 @@ const Sidebar = ({
   }, "Berita Terbaru"), recents.map(b => /*#__PURE__*/React.createElement("div", {
     key: b.id,
     className: "sb-news-item",
-    onClick: () => go("berita")
+    onClick: () => go("beritaDetail", b.id)
   }, /*#__PURE__*/React.createElement("div", {
     className: "sb-news-thumb"
   }, foto.berita && foto.berita[b.id] ? /*#__PURE__*/React.createElement("img", {
@@ -1679,6 +1802,53 @@ const Sidebar = ({
 };
 
 /* ──── BERANDA PAGE ──── */
+/* ──── NEWS SLIDER (auto 5s) ──── */
+const NewsSlider = ({ d, go, foto }) => {
+  const items = (d.berita || []).slice(0, 6);
+  const [idx, setIdx] = useState(0);
+  useEffect(() => {
+    if (items.length <= 1) return;
+    const t = setInterval(() => {
+      setIdx(i => (i + 1) % items.length);
+    }, 5000);
+    return () => clearInterval(t);
+  }, [items.length]);
+  if (items.length === 0) return null;
+  const b = items[idx];
+  return /*#__PURE__*/React.createElement("section", {
+    className: "news-slider"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "news-slider-inner"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ns-slide",
+    onClick: () => go("beritaDetail", b.id)
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ns-img",
+    style: (foto.berita && foto.berita[b.id]) ? {
+      backgroundImage: `url(${foto.berita[b.id]})`
+    } : {}
+  }, !(foto.berita && foto.berita[b.id]) && /*#__PURE__*/React.createElement(Icon.Image, null), /*#__PURE__*/React.createElement("div", {
+    className: "ns-overlay"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "ns-content"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "ns-cat"
+  }, b.kategori), /*#__PURE__*/React.createElement("h2", {
+    className: "ns-title"
+  }, b.judul), /*#__PURE__*/React.createElement("p", {
+    className: "ns-exc"
+  }, b.isi), /*#__PURE__*/React.createElement("div", {
+    className: "ns-date"
+  }, /*#__PURE__*/React.createElement(Icon.Calendar, null), fmtDate(b.tanggal)))), items.length > 1 && /*#__PURE__*/React.createElement("div", {
+    className: "ns-dots"
+  }, items.map((it, i) => /*#__PURE__*/React.createElement("button", {
+    key: it.id,
+    className: "ns-dot" + (i === idx ? " ns-dot-active" : ""),
+    onClick: () => setIdx(i)
+  })))));
+};
+
+
 const BerandaPage = ({
   d,
   go,
@@ -1709,6 +1879,10 @@ const BerandaPage = ({
     onClick: () => go("ppdb")
   }, "PPDB 2026/2027")))), /*#__PURE__*/React.createElement(Marquee, {
     d: d
+  }), /*#__PURE__*/React.createElement(NewsSlider, {
+    d: d,
+    go: go,
+    foto: foto
   }), /*#__PURE__*/React.createElement("div", {
     className: "content-wrap"
   }, /*#__PURE__*/React.createElement("main", {
@@ -1768,7 +1942,7 @@ const BerandaPage = ({
   }, d.berita.map(b => /*#__PURE__*/React.createElement("div", {
     key: b.id,
     className: "news-card",
-    onClick: () => go("berita")
+    onClick: () => go("beritaDetail", b.id)
   }, /*#__PURE__*/React.createElement("div", {
     className: "news-card-thumb"
   }, foto.berita && foto.berita[b.id] ? /*#__PURE__*/React.createElement("img", {
@@ -2217,7 +2391,9 @@ const BeritaPage = ({
   className: "news-list"
 }, d.berita.map(b => /*#__PURE__*/React.createElement("div", {
   key: b.id,
-  className: "news-card"
+  className: "news-card",
+  onClick: () => go("beritaDetail", b.id),
+  style: { cursor: "pointer" }
 }, /*#__PURE__*/React.createElement("div", {
   className: "news-card-thumb"
 }, foto.berita && foto.berita[b.id] ? /*#__PURE__*/React.createElement("img", {
@@ -2240,6 +2416,187 @@ const BeritaPage = ({
 }, b.judul), /*#__PURE__*/React.createElement("p", {
   className: "news-card-exc"
 }, b.isi))))))), /*#__PURE__*/React.createElement(Sidebar, {
+  d: d,
+  go: go,
+  foto: foto
+})));
+
+/* ──── BERITA DETAIL PAGE ──── */
+const BeritaDetailPage = ({
+  d,
+  go,
+  foto,
+  selBerita
+}) => {
+  const b = d.berita.find(x => x.id === selBerita) || d.berita[0];
+  if (!b) return /*#__PURE__*/React.createElement("div", {
+    className: "content-wrap"
+  }, /*#__PURE__*/React.createElement("p", null, "Berita tidak ditemukan."));
+  const others = d.berita.filter(x => x.id !== b.id).slice(0, 4);
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(PageHdr, {
+    title: b.judul,
+    sub: "Kegiatan & Berita",
+    foto: foto.hero
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "content-wrap"
+  }, /*#__PURE__*/React.createElement("main", {
+    className: "main-col"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "back-link",
+    onClick: () => go("berita")
+  }, /*#__PURE__*/React.createElement(Icon.ArrowLeft, null), " Kembali ke Berita"), /*#__PURE__*/React.createElement("section", {
+    className: "content-section"
+  }, foto.berita && foto.berita[b.id] && /*#__PURE__*/React.createElement("img", {
+    src: foto.berita[b.id],
+    className: "berita-detail-img",
+    alt: b.judul
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "news-card-date",
+    style: { margin: "14px 0 6px" }
+  }, /*#__PURE__*/React.createElement(Icon.Calendar, null), fmtDate(b.tanggal), /*#__PURE__*/React.createElement("span", {
+    className: "news-card-cat",
+    style: { position: "static", marginLeft: "10px" }
+  }, b.kategori)), /*#__PURE__*/React.createElement("h1", {
+    className: "berita-detail-title"
+  }, b.judul), /*#__PURE__*/React.createElement("p", {
+    className: "berita-detail-body"
+  }, b.isi), b.link && /*#__PURE__*/React.createElement("a", {
+    href: b.link,
+    target: "_blank",
+    className: "berita-link-btn"
+  }, /*#__PURE__*/React.createElement(Icon.Share2, null), " Lihat Sumber / Tautan Terkait"), /*#__PURE__*/React.createElement("div", {
+    className: "share-row"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "share-label"
+  }, "Bagikan:"), /*#__PURE__*/React.createElement("a", {
+    href: `https://wa.me/?text=${encodeURIComponent(b.judul)}`,
+    target: "_blank",
+    className: "share-btn share-wa"
+  }, /*#__PURE__*/React.createElement(Icon.MessageCircle, null), " WhatsApp"), /*#__PURE__*/React.createElement("a", {
+    href: "https://www.facebook.com/",
+    target: "_blank",
+    className: "share-btn share-fb"
+  }, /*#__PURE__*/React.createElement(Icon.Share2, null), " Facebook"))), others.length > 0 ? /*#__PURE__*/React.createElement("section", {
+    className: "content-section"
+  }, /*#__PURE__*/React.createElement("h3", {
+    className: "berita-detail-other-title"
+  }, "Berita Lainnya"), /*#__PURE__*/React.createElement("div", {
+    className: "news-list"
+  }, others.map(o => {
+    const thumb = (foto.berita && foto.berita[o.id])
+      ? /*#__PURE__*/React.createElement("img", {
+          src: foto.berita[o.id],
+          style: { width: "100%", height: "100%", objectFit: "cover" }
+        })
+      : /*#__PURE__*/React.createElement("div", {
+          className: "news-card-thumb-ph"
+        }, /*#__PURE__*/React.createElement(Icon.Image, null));
+    const thumbWrap = /*#__PURE__*/React.createElement("div", {
+      className: "news-card-thumb"
+    }, thumb, /*#__PURE__*/React.createElement("span", {
+      className: "news-card-cat"
+    }, o.kategori));
+    const dateRow = /*#__PURE__*/React.createElement("div", {
+      className: "news-card-date"
+    }, /*#__PURE__*/React.createElement(Icon.Calendar, null), fmtDate(o.tanggal));
+    const titleEl = /*#__PURE__*/React.createElement("h3", {
+      className: "news-card-title"
+    }, o.judul);
+    const body = /*#__PURE__*/React.createElement("div", {
+      className: "news-card-body"
+    }, dateRow, titleEl);
+    return /*#__PURE__*/React.createElement("div", {
+      key: o.id,
+      className: "news-card",
+      onClick: () => go("beritaDetail", o.id),
+      style: { cursor: "pointer" }
+    }, thumbWrap, body);
+  }))) : null), /*#__PURE__*/React.createElement(Sidebar, {
+    d: d,
+    go: go,
+    foto: foto
+  })));
+};
+
+/* ──── DOWNLOAD PAGE ──── */
+const DownloadPage = ({
+  d,
+  go,
+  foto
+}) => /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(PageHdr, {
+  title: "Unduhan",
+  sub: "Formulir, kalender akademik, dan dokumen penting lainnya",
+  foto: foto.hero
+}), /*#__PURE__*/React.createElement("div", {
+  className: "content-wrap"
+}, /*#__PURE__*/React.createElement("main", {
+  className: "main-col"
+}, /*#__PURE__*/React.createElement("section", {
+  className: "content-section"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "download-list"
+}, (d.unduhan || []).map(u => /*#__PURE__*/React.createElement("div", {
+  key: u.id,
+  className: "download-item"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "download-icon"
+}, /*#__PURE__*/React.createElement(Icon.FileText, null)), /*#__PURE__*/React.createElement("div", {
+  className: "download-info"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "download-title"
+}, u.judul), /*#__PURE__*/React.createElement("div", {
+  className: "download-cat"
+}, u.kategori)), u.link ? /*#__PURE__*/React.createElement("a", {
+  href: u.link,
+  target: "_blank",
+  className: "download-btn"
+}, /*#__PURE__*/React.createElement(Icon.Download, null), " Unduh") : /*#__PURE__*/React.createElement("span", {
+  className: "download-btn download-btn-disabled"
+}, /*#__PURE__*/React.createElement(Icon.Download, null), " Belum tersedia")))), (!d.unduhan || d.unduhan.length === 0) && /*#__PURE__*/React.createElement("p", {
+  className: "empty-note"
+}, "Belum ada file unduhan."))), /*#__PURE__*/React.createElement(Sidebar, {
+  d: d,
+  go: go,
+  foto: foto
+})));
+
+/* ──── AGENDA PAGE ──── */
+const AgendaPage = ({
+  d,
+  go,
+  foto
+}) => /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(PageHdr, {
+  title: "Agenda Sekolah",
+  sub: "Kegiatan dan jadwal penting SMP Negeri 2 Muara Bungo",
+  foto: foto.hero
+}), /*#__PURE__*/React.createElement("div", {
+  className: "content-wrap"
+}, /*#__PURE__*/React.createElement("main", {
+  className: "main-col"
+}, /*#__PURE__*/React.createElement("section", {
+  className: "content-section"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "agenda-full-list"
+}, [...(d.agenda || [])].sort((a, b) => a.tanggal.localeCompare(b.tanggal)).map(a => {
+  const dt = fmtDateShort(a.tanggal);
+  return /*#__PURE__*/React.createElement("div", {
+    key: a.id,
+    className: "agenda-full-item"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sb-agenda-date",
+    style: { width: "56px", minWidth: "56px" }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "sb-agenda-day"
+  }, dt.day), /*#__PURE__*/React.createElement("span", {
+    className: "sb-agenda-mon"
+  }, dt.mon)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "agenda-full-title"
+  }, a.judul), /*#__PURE__*/React.createElement("div", {
+    className: "agenda-full-desc"
+  }, a.deskripsi)));
+}), (!d.agenda || d.agenda.length === 0) && /*#__PURE__*/React.createElement("p", {
+  className: "empty-note"
+}, "Belum ada agenda.")))), /*#__PURE__*/React.createElement(Sidebar, {
   d: d,
   go: go,
   foto: foto
@@ -2408,9 +2765,8 @@ const KontakPage = ({
     ),
     /*#__PURE__*/React.createElement("div", { style:{marginTop:"20px", padding:"16px", background:"var(--green-pale)", borderRadius:"var(--radius)"} },
       /*#__PURE__*/React.createElement("div", { style:{fontSize:"12px",fontWeight:"700",color:"var(--green)",textTransform:"uppercase",letterSpacing:"0.5px",marginBottom:"8px"} }, "⏰ Jam Operasional"),
-      /*#__PURE__*/React.createElement("p", { style:{fontSize:"13.5px",color:"var(--text-mid)",lineHeight:"1.7"} }, "Senin – Kamis  : 07.00 – 14.00 WIB"),
-      /*#__PURE__*/React.createElement("p", { style:{fontSize:"13.5px",color:"var(--text-mid)",lineHeight:"1.7"} }, "Jumat               : 07.00 – 11.00 WIB"),
-      /*#__PURE__*/React.createElement("p", { style:{fontSize:"13.5px",color:"var(--text-mid)",lineHeight:"1.7"} }, "Sabtu               : 07.00 – 12.00 WIB")
+      /*#__PURE__*/React.createElement("p", { style:{fontSize:"13.5px",color:"var(--text-mid)",lineHeight:"1.7"} }, "Senin : 07.00 – 14.00 WIB"),
+      /*#__PURE__*/React.createElement("p", { style:{fontSize:"13.5px",color:"var(--text-mid)",lineHeight:"1.7"} }, "Jumat : 07.00 – 11.00 WIB")
     )
   ),
   /* Kanan: peta */
@@ -2588,6 +2944,9 @@ const AdminPanel = ({
   }, {
     id: "galeri",
     lbl: "Galeri"
+  }, {
+    id: "unduhan",
+    lbl: "Unduhan"
   }];
   return /*#__PURE__*/React.createElement("div", {
     className: "admin-wrap"
@@ -2839,6 +3198,20 @@ const AdminPanel = ({
       }));
     },
     rows: 3
+  }), /*#__PURE__*/React.createElement(F, {
+    label: "Link (opsional, contoh: YouTube/sumber luar)",
+    val: b.link,
+    onChange: v => {
+      const a = [...d.berita];
+      a[i] = {
+        ...b,
+        link: v
+      };
+      setD(dd => ({
+        ...dd,
+        berita: a
+      }));
+    }
   }))), /*#__PURE__*/React.createElement("button", {
     className: "af-add mt-16",
     onClick: () => setD(dd => ({
@@ -2848,10 +3221,79 @@ const AdminPanel = ({
         judul: "",
         kategori: "Kegiatan",
         isi: "",
+        link: "",
         tanggal: new Date().toISOString().slice(0, 10)
       }]
     }))
-  }, "+ Tambah Berita")), tab === "pengumuman" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h3", {
+  }, "+ Tambah Berita")), tab === "unduhan" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h3", {
+    className: "ah3"
+  }, "Unduhan"), (d.unduhan || []).map((u, i) => /*#__PURE__*/React.createElement("div", {
+    key: u.id,
+    className: "af-card"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "af-card-head"
+  }, /*#__PURE__*/React.createElement("span", null, "Unduhan #", i + 1), /*#__PURE__*/React.createElement("button", {
+    className: "af-del",
+    onClick: () => setD(dd => ({
+      ...dd,
+      unduhan: dd.unduhan.filter((_, j) => j !== i)
+    }))
+  }, "Hapus")), /*#__PURE__*/React.createElement("div", {
+    className: "af-grid"
+  }, /*#__PURE__*/React.createElement(F, {
+    label: "Judul File",
+    val: u.judul,
+    onChange: v => {
+      const a = [...d.unduhan];
+      a[i] = {
+        ...u,
+        judul: v
+      };
+      setD(dd => ({
+        ...dd,
+        unduhan: a
+      }));
+    }
+  }), /*#__PURE__*/React.createElement(F, {
+    label: "Kategori",
+    val: u.kategori,
+    onChange: v => {
+      const a = [...d.unduhan];
+      a[i] = {
+        ...u,
+        kategori: v
+      };
+      setD(dd => ({
+        ...dd,
+        unduhan: a
+      }));
+    }
+  })), /*#__PURE__*/React.createElement(F, {
+    label: "Link File (Google Drive / URL langsung)",
+    val: u.link,
+    onChange: v => {
+      const a = [...d.unduhan];
+      a[i] = {
+        ...u,
+        link: v
+      };
+      setD(dd => ({
+        ...dd,
+        unduhan: a
+      }));
+    }
+  }))), /*#__PURE__*/React.createElement("button", {
+    className: "af-add mt-16",
+    onClick: () => setD(dd => ({
+      ...dd,
+      unduhan: [...(dd.unduhan || []), {
+        id: genId(),
+        judul: "",
+        kategori: "Umum",
+        link: ""
+      }]
+    }))
+  }, "+ Tambah Unduhan")), tab === "pengumuman" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h3", {
     className: "ah3"
   }, "Pengumuman"), d.pengumuman.map((p, i) => /*#__PURE__*/React.createElement("div", {
     key: p.id,
@@ -3299,7 +3741,9 @@ const Footer = ({
   className: "footer-col-title mt-20"
 }, "Jam Operasional"), /*#__PURE__*/React.createElement("p", {
   className: "footer-contact"
-}, "Senin \u2013 Sabtu: 07.00 \u2013 14.00 WIB")), /*#__PURE__*/React.createElement("div", {
+}, "Senin: 07.00 \u2013 14.00 WIB"), /*#__PURE__*/React.createElement("p", {
+  className: "footer-contact"
+}, "Jumat: 07.00 \u2013 11.00 WIB")), /*#__PURE__*/React.createElement("div", {
   className: "footer-map-col"
 }, /*#__PURE__*/React.createElement("div", {
   className: "footer-col-title"
@@ -3336,8 +3780,10 @@ function App() {
       setLoading(false);
     })();
   }, []);
-  const go = id => {
+  const [selBerita, setSelBerita] = useState(null);
+  const go = (id, extra) => {
     setPage(id);
+    if (id === "beritaDetail") setSelBerita(extra);
     window.scrollTo({
       top: 0,
       behavior: "smooth"
@@ -3399,6 +3845,22 @@ function App() {
       foto: foto
     }),
     berita: /*#__PURE__*/React.createElement(BeritaPage, {
+      d: d,
+      go: go,
+      foto: foto
+    }),
+    beritaDetail: /*#__PURE__*/React.createElement(BeritaDetailPage, {
+      d: d,
+      go: go,
+      foto: foto,
+      selBerita: selBerita
+    }),
+    download: /*#__PURE__*/React.createElement(DownloadPage, {
+      d: d,
+      go: go,
+      foto: foto
+    }),
+    agenda: /*#__PURE__*/React.createElement(AgendaPage, {
       d: d,
       go: go,
       foto: foto
