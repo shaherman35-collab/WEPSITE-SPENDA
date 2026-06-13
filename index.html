@@ -46,10 +46,107 @@
   --font-serif:  "Lora", serif;
 }
 
+/* ════════════════ DARK MODE TOKENS ════════════════ */
+[data-theme="dark"]{
+  --white:       #1a1f2e;
+  --bg:          #111520;
+  --bg2:         #1e2335;
+  --text:        #e2e8f0;
+  --text-mid:    #a0aec0;
+  --text-light:  #718096;
+  --border:      #2d3748;
+  --shadow:      0 2px 12px rgba(0,0,0,.4);
+  --shadow-lg:   0 6px 32px rgba(0,0,0,.5);
+  --green-pale:  rgba(26,107,58,.2);
+  --green-pale2: rgba(26,107,58,.3);
+  --gold-pale:   rgba(200,151,42,.15);
+  --navy:        #0a1628;
+}
+[data-theme="dark"] .navbar{background:#1a1f2e;border-bottom-color:var(--green-mid);}
+[data-theme="dark"] .nav-brand-name{color:#e2e8f0;}
+[data-theme="dark"] .content-section{background:#1e2335;}
+[data-theme="dark"] .sb-card{background:#1e2335;}
+[data-theme="dark"] .login-box{background:#1e2335;}
+[data-theme="dark"] .admin-content{background:#1e2335;}
+[data-theme="dark"] .admin-tabs{background:#1e2335;}
+[data-theme="dark"] .save-bar{background:#1e2335;border-top-color:#2d3748;}
+[data-theme="dark"] .af-input{background:#111520;border-color:#2d3748;color:#e2e8f0;}
+[data-theme="dark"] .login-input{background:#111520;border-color:#2d3748;color:#e2e8f0;}
+[data-theme="dark"] .nav-drop{background:#1e2335;border-color:#2d3748;}
+[data-theme="dark"] .nav-mobile{background:#1a1f2e;border-top-color:#2d3748;}
+[data-theme="dark"] .mob-row{border-bottom-color:#2d3748;color:#e2e8f0;}
+[data-theme="dark"] .news-card{border-bottom-color:#2d3748;}
+[data-theme="dark"] .news-card:hover{background:rgba(26,107,58,.15);}
+[data-theme="dark"] .kontak-grid{border-color:#2d3748;}
+[data-theme="dark"] .kontak-row{border-bottom-color:#2d3748;}
+[data-theme="dark"] .sb-agenda-item{border-bottom-color:#2d3748;}
+[data-theme="dark"] .sb-news-item:hover{background:rgba(26,107,58,.15);}
+[data-theme="dark"] .sb-stat-row{border-bottom-color:#2d3748;}
+[data-theme="dark"] .af-card{border-color:#2d3748;}
+[data-theme="dark"] .photo-up{background:#111520;border-color:#2d3748;}
+[data-theme="dark"] .galeri-item{background:#1e2335;}
+[data-theme="dark"] footer{background:#0a1020;}
+
+/* ════════════════ DARK MODE TOGGLE ════════════════ */
+.dm-toggle{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);cursor:pointer;transition:all .3s;border:none;font-size:15px;}
+.dm-toggle:hover{background:var(--green-light);transform:rotate(20deg);}
+
+/* ════════════════ LOADING SCREEN ════════════════ */
+#page-loader{position:fixed;inset:0;background:var(--navy);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;transition:opacity .5s ease;}
+#page-loader.fade-out{opacity:0;pointer-events:none;}
+.loader-logo-wrap{position:relative;}
+.loader-ring{width:80px;height:80px;border-radius:50%;border:3px solid rgba(255,255,255,.1);border-top-color:var(--green-light);animation:spin 1s linear infinite;}
+.loader-inner-ring{position:absolute;inset:8px;border-radius:50%;border:3px solid rgba(255,255,255,.05);border-bottom-color:var(--gold);animation:spin 1.5s linear infinite reverse;}
+.loader-text{color:rgba(255,255,255,.8);font-size:14px;font-weight:600;letter-spacing:2px;text-transform:uppercase;animation:pulse-loader 1.5s ease-in-out infinite;}
+.loader-sub{color:rgba(255,255,255,.4);font-size:11px;letter-spacing:1px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse-loader{0%,100%{opacity:.5}50%{opacity:1}}
+
+/* ════════════════ ANIMATIONS ════════════════ */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInLeft{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fadeInRight{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+
+.anim-fadeinup{animation:fadeInUp .6s ease both;}
+.anim-fadeinleft{animation:fadeInLeft .6s ease both;}
+.anim-fadeinright{animation:fadeInRight .6s ease both;}
+.anim-scalein{animation:scaleIn .5s ease both;}
+.anim-delay-1{animation-delay:.1s;}
+.anim-delay-2{animation-delay:.2s;}
+.anim-delay-3{animation-delay:.3s;}
+.anim-delay-4{animation-delay:.4s;}
+.anim-delay-5{animation-delay:.5s;}
+
+/* Scroll-reveal: elements start hidden, JS adds .revealed */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease;}
+.reveal.revealed{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-28px);transition:opacity .65s ease,transform .65s ease;}
+.reveal-left.revealed{opacity:1;transform:translateX(0);}
+.reveal-scale{opacity:0;transform:scale(.94);transition:opacity .65s ease,transform .65s ease;}
+.reveal-scale.revealed{opacity:1;transform:scale(1);}
+
+/* Card hover lift effect */
+.card-lift{transition:transform .3s ease,box-shadow .3s ease;}
+.card-lift:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(15,34,64,.18);}
+[data-theme="dark"] .card-lift:hover{box-shadow:0 12px 40px rgba(0,0,0,.5);}
+
+/* Button pulse */
+.btn-pulse{animation:btnPulse 2s ease-in-out infinite;}
+@keyframes btnPulse{0%,100%{box-shadow:0 0 0 0 rgba(74,171,109,.4)}50%{box-shadow:0 0 0 8px rgba(74,171,109,0)}}
+
+/* Skeleton loading shimmer */
+.skeleton{background:linear-gradient(90deg,var(--bg2) 25%,var(--border) 50%,var(--bg2) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;}
+
+/* Page transition */
+.page-transition{animation:fadeInUp .45s ease both;}
+
 /* ════════════════ RESET ════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;font-size:15px;}
-body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:1.65;}
+body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:1.65;transition:background .3s,color .3s;}
 a{text-decoration:none;color:inherit;}
 button{font-family:inherit;cursor:pointer;border:none;background:none;}
 img{display:block;max-width:100%;}
@@ -495,6 +592,15 @@ footer{background:var(--navy);color:rgba(255,255,255,.8);}
 </style>
 </head>
 <body>
+<!-- Loading Screen -->
+<div id="page-loader">
+  <div class="loader-logo-wrap">
+    <div class="loader-ring"></div>
+    <div class="loader-inner-ring"></div>
+  </div>
+  <div class="loader-text">SMP Negeri 2 Muara Bungo</div>
+  <div class="loader-sub">Memuat halaman...</div>
+</div>
 <div id="root"></div>
 <script>
 const {
@@ -505,7 +611,7 @@ const {
 
 /* ──── STORAGE ──── */
 const SUPABASE_URL = "https://mqbkvfrryfkxnbfgixyg.supabase.co";
-const SUPABASE_KEY = "sb_publishable_cGeqk31LBbxzrYZjJyEPgg_nwF3I2-M";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1xYmt2ZnJyeWZreG5iZmdpeHlnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEzMTI2OTgsImV4cCI6MjA5Njg4ODY5OH0.Hx8RDPSgX4x_BC8ZeYS7_gAu3tGtVnmAXGA8KOiz9yo";
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // Load main "sekolah" data from Supabase, fallback to localStorage cache
@@ -1565,47 +1671,66 @@ const NAVMENU = [{
 }];
 
 /* ──── TOPBAR ──── */
+/* ──── DARK MODE HOOK ──── */
+const useDarkMode = () => {
+  const [dark, setDark] = React.useState(() => localStorage.getItem("smpn2_theme") === "dark");
+  React.useEffect(() => {
+    document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+    localStorage.setItem("smpn2_theme", dark ? "dark" : "light");
+  }, [dark]);
+  return [dark, setDark];
+};
+
 const TopBar = ({
   d,
   go
-}) => /*#__PURE__*/React.createElement("div", {
-  className: "topbar"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "topbar-inner"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "tb-left"
-}, /*#__PURE__*/React.createElement("span", {
-  className: "tb-item"
-}, /*#__PURE__*/React.createElement(Icon.Phone, null), d.sekolah.telp), /*#__PURE__*/React.createElement("span", {
-  className: "tb-item tb-hide"
-}, /*#__PURE__*/React.createElement(Icon.Mail, null), d.sekolah.email)), /*#__PURE__*/React.createElement("div", {
-  className: "tb-right"
-}, d.sekolah.facebookUrl && /*#__PURE__*/React.createElement("a", {
-  href: d.sekolah.facebookUrl,
-  target: "_blank",
-  className: "tb-social"
-}, /*#__PURE__*/React.createElement(Icon.FB, null)), d.sekolah.instagramUrl && /*#__PURE__*/React.createElement("a", {
-  href: d.sekolah.instagramUrl,
-  target: "_blank",
-  className: "tb-social"
-}, /*#__PURE__*/React.createElement(Icon.IG, null)), d.sekolah.youtubeUrl && /*#__PURE__*/React.createElement("a", {
-  href: d.sekolah.youtubeUrl,
-  target: "_blank",
-  className: "tb-social"
-}, /*#__PURE__*/React.createElement(Icon.YT, null)), /*#__PURE__*/React.createElement("button", {
-  className: "tb-admin-btn",
-  onClick: () => go("admin")
-}, /*#__PURE__*/React.createElement(Icon.Lock, null), "Admin"))), d.sekolah.announcement && /*#__PURE__*/React.createElement("div", {
-  className: "announce-bar"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "announce-inner"
-}, /*#__PURE__*/React.createElement("span", {
-  className: "announce-label"
-}, "\uD83D\uDCE2 Pengumuman:"), /*#__PURE__*/React.createElement("div", {
-  className: "announce-scroll"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "announce-track"
-}, [d.sekolah.announcement, d.sekolah.announcement, d.sekolah.announcement].join("   •   "))))));
+}) => {
+  const [dark, setDark] = useDarkMode();
+  return /*#__PURE__*/React.createElement("div", {
+    className: "topbar"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "topbar-inner"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "tb-left"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "tb-item"
+  }, /*#__PURE__*/React.createElement(Icon.Phone, null), d.sekolah.telp), /*#__PURE__*/React.createElement("span", {
+    className: "tb-item tb-hide"
+  }, /*#__PURE__*/React.createElement(Icon.Mail, null), d.sekolah.email)), /*#__PURE__*/React.createElement("div", {
+    className: "tb-right"
+  }, d.sekolah.facebookUrl && /*#__PURE__*/React.createElement("a", {
+    href: d.sekolah.facebookUrl,
+    target: "_blank",
+    className: "tb-social"
+  }, /*#__PURE__*/React.createElement(Icon.FB, null)), d.sekolah.instagramUrl && /*#__PURE__*/React.createElement("a", {
+    href: d.sekolah.instagramUrl,
+    target: "_blank",
+    className: "tb-social"
+  }, /*#__PURE__*/React.createElement(Icon.IG, null)), d.sekolah.youtubeUrl && /*#__PURE__*/React.createElement("a", {
+    href: d.sekolah.youtubeUrl,
+    target: "_blank",
+    className: "tb-social"
+  }, /*#__PURE__*/React.createElement(Icon.YT, null)),
+  /*#__PURE__*/React.createElement("button", {
+    className: "dm-toggle",
+    title: dark ? "Mode Terang" : "Mode Gelap",
+    onClick: () => setDark(v => !v)
+  }, dark ? "☀️" : "🌙"),
+  /*#__PURE__*/React.createElement("button", {
+    className: "tb-admin-btn",
+    onClick: () => go("admin")
+  }, /*#__PURE__*/React.createElement(Icon.Lock, null), "Admin"))), d.sekolah.announcement && /*#__PURE__*/React.createElement("div", {
+    className: "announce-bar"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "announce-inner"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "announce-label"
+  }, "\uD83D\uDCE2 Pengumuman:"), /*#__PURE__*/React.createElement("div", {
+    className: "announce-scroll"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "announce-track"
+  }, [d.sekolah.announcement, d.sekolah.announcement, d.sekolah.announcement].join("   •   "))))));
+};
 
 /* ──── NAVBAR ──── */
 const Navbar = ({
@@ -3908,25 +4033,74 @@ function App() {
       go: go
     })
   };
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(TopBar, {
-    d: d,
-    go: go
-  }), /*#__PURE__*/React.createElement(Navbar, {
-    d: d,
-    page: page,
-    go: go
-  }), /*#__PURE__*/React.createElement("main", null, pages[page] || pages.beranda), /*#__PURE__*/React.createElement(Footer, {
-    d: d,
-    go: go
-  }), /*#__PURE__*/React.createElement("button", {
-    id: "scroll-top",
-    onClick: () => window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    })
-  }, /*#__PURE__*/React.createElement(Icon.ArrowUp, null)));
+  return /*#__PURE__*/React.createElement("div", null,
+    /*#__PURE__*/React.createElement(TopBar, { d: d, go: go }),
+    /*#__PURE__*/React.createElement(Navbar, { d: d, page: page, go: go }),
+    /*#__PURE__*/React.createElement("main", {className:"page-transition", key:page}, pages[page] || pages.beranda),
+    /*#__PURE__*/React.createElement(Footer, { d: d, go: go }),
+    /*#__PURE__*/React.createElement("button", {
+      id: "scroll-top",
+      onClick: () => window.scrollTo({ top: 0, behavior: "smooth" })
+    }, /*#__PURE__*/React.createElement(Icon.ArrowUp, null))
+  );
 }
 ReactDOM.createRoot(document.getElementById("root")).render(/*#__PURE__*/React.createElement(App, null));
+
+/* ══════════════════════════════════════════
+   LOADING SCREEN — hide after React mounts
+══════════════════════════════════════════ */
+(function initLoader() {
+  // Apply saved theme immediately to avoid flash
+  const saved = localStorage.getItem("smpn2_theme");
+  if (saved === "dark") document.documentElement.setAttribute("data-theme", "dark");
+
+  window.addEventListener("load", () => {
+    const loader = document.getElementById("page-loader");
+    if (!loader) return;
+    setTimeout(() => {
+      loader.classList.add("fade-out");
+      setTimeout(() => loader.remove(), 600);
+    }, 900);
+  });
+})();
+
+/* ══════════════════════════════════════════
+   SCROLL REVEAL — IntersectionObserver
+══════════════════════════════════════════ */
+(function initScrollReveal() {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add("revealed");
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+
+  const observe = () => {
+    document.querySelectorAll(".reveal,.reveal-left,.reveal-scale").forEach(el => {
+      if (!el.classList.contains("revealed")) io.observe(el);
+    });
+  };
+
+  // Run on initial load and watch for React re-renders
+  observe();
+  const mo = new MutationObserver(observe);
+  mo.observe(document.body, { childList: true, subtree: true });
+})();
+
+/* ══════════════════════════════════════════
+   CARD LIFT — add class to cards
+══════════════════════════════════════════ */
+(function addCardLift() {
+  const sel = ".content-section,.sb-card,.news-card,.galeri-item,.af-card";
+  const apply = () => {
+    document.querySelectorAll(sel).forEach(el => el.classList.add("card-lift"));
+  };
+  apply();
+  const mo = new MutationObserver(apply);
+  mo.observe(document.body, { childList: true, subtree: true });
+})();
 
 </script>
 </body>
