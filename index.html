@@ -15,6 +15,11 @@
 <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+  if (!window.supabase) {
+    document.write('<script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.min.js"><\/script>');
+  }
+</script>
 <style>
 /* ════════════════════════════════════════════
    TOKENS
@@ -712,8 +717,29 @@ const {
 /* ──── STORAGE ──── */
 const SUPABASE_URL = "https://mqbkvfrryfkxnbfgixyg.supabase.co";
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1xYmt2ZnJyeWZreG5iZmdpeHlnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEzMTI2OTgsImV4cCI6MjA5Njg4ODY5OH0.Hx8RDPSgX4x_BC8ZeYS7_gAu3tGtVnmAXGA8KOiz9yo";
-const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-const DATA_KEY = "smpn2b_data_v2";
+const sb = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+  auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false }
+}) : null;
+if (!sb) console.error("Supabase JS SDK gagal dimuat (CDN diblokir?) — data hanya pakai cache lokal.");
+
+// Supabase v2 sometimes tries to broadcast auth state via BroadcastChannel/postMessage,
+// which can throw "DataCloneError: ... Headers object could not be cloned" as a global
+// (unhandled) error — not a promise rejection — so it bypasses normal try/catch.
+// Silence just this specific noise so it doesn't break the load/save flow.
+window.addEventListener("error", (e) => {
+  if (e && e.message && e.message.indexOf("DataCloneError") !== -1) {
+    e.preventDefault();
+    console.warn("Diabaikan: BroadcastChannel DataCloneError (tidak mempengaruhi data).");
+  }
+});
+window.addEventListener("unhandledrejection", (e) => {
+  const msg = e && e.reason && (e.reason.message || String(e.reason));
+  if (msg && msg.indexOf("DataCloneError") !== -1) {
+    e.preventDefault();
+    console.warn("Diabaikan: BroadcastChannel DataCloneError (tidak mempengaruhi data).");
+  }
+});
+const DATA_KEY = "smpn2b_data_v3";
 const FOTO_KEY = "smpn2b_foto";
 
 // ──── Helper: extract safe string from Supabase errors (avoids DataCloneError
@@ -736,19 +762,25 @@ const safeMsg = (e) => {
 
 // Wrap a Supabase promise so any rejected value is converted to a plain Error
 // BEFORE it can propagate through BroadcastChannel and trigger DataCloneError
-const sbWrap = (promise) =>
-  promise.catch(e => { throw new Error(safeMsg(e)); });
+const sbWrap = (promise) => {
+  if (!promise || typeof promise.then !== "function") {
+    return Promise.reject(new Error("Supabase client unavailable (CDN blocked?)"));
+  }
+  return Promise.resolve(promise).catch(e => { throw new Error(safeMsg(e)); });
+};
 
 // Load main "sekolah" data from Supabase, fallback to localStorage cache
 const loadDataRemote = async (fb) => {
   try {
-    const { data, error } = await sbWrap(
-      sb.from("sekolah").select("data").eq("id", "main").maybeSingle()
+    const { data: rows, error } = await sbWrap(
+      sb && sb.from("sekolah").select("data").eq("id", "main").limit(1)
     );
     if (error) throw new Error(safeMsg(error));
+    const data = rows && rows[0];
     if (data && data.data) {
-      localStorage.setItem(DATA_KEY, JSON.stringify(data.data));
-      return data.data;
+      const merged = deepMerge(fb, data.data);
+      localStorage.setItem(DATA_KEY, JSON.stringify(merged));
+      return merged;
     }
     // No row yet - seed it with default/fallback data
     const seed = loadData(fb);
@@ -765,7 +797,7 @@ const saveDataRemote = async (v) => {
   saveData(v); // local cache for instant UI + offline fallback
   try {
     const { error } = await sbWrap(
-      sb.from("sekolah").upsert({ id: "main", data: v })
+      sb && sb.from("sekolah").upsert({ id: "main", data: v })
     );
     if (error) throw new Error(safeMsg(error));
     return true;
@@ -785,9 +817,10 @@ const uploadFotoRemote = async (path, dataUrl) => {
     const ext = (blob.type.split("/")[1] || "jpg").split("+")[0];
     const filePath = `${path}.${ext}`;
     const { error } = await sbWrap(
-      sb.storage.from("media").upload(filePath, blob, { upsert: true, contentType: blob.type })
+      sb && sb.storage.from("media").upload(filePath, blob, { upsert: true, contentType: blob.type })
     );
     if (error) throw new Error(safeMsg(error));
+    if (!sb) throw new Error("Supabase client unavailable");
     const { data } = sb.storage.from("media").getPublicUrl(filePath);
     // cache-bust so updated images show immediately everywhere
     return data.publicUrl + "?v=" + Date.now();
@@ -800,10 +833,11 @@ const uploadFotoRemote = async (path, dataUrl) => {
 // Load the "foto" map (URLs) from Supabase "sekolah" row's foto column
 const loadFotoRemote = async () => {
   try {
-    const { data, error } = await sbWrap(
-      sb.from("sekolah").select("foto").eq("id", "main").maybeSingle()
+    const { data: rows, error } = await sbWrap(
+      sb && sb.from("sekolah").select("foto").eq("id", "main").limit(1)
     );
     if (error) throw new Error(safeMsg(error));
+    const data = rows && rows[0];
     if (data && data.foto) {
       saveFoto(data.foto);
       return data.foto;
@@ -820,7 +854,7 @@ const saveFotoRemote = async (v) => {
   saveFoto(v);
   try {
     const { error } = await sbWrap(
-      sb.from("sekolah").upsert({ id: "main", foto: v })
+      sb && sb.from("sekolah").upsert({ id: "main", foto: v })
     );
     if (error) throw new Error(safeMsg(error));
     return true;
@@ -872,10 +906,29 @@ const saveFoto = v => {
     localStorage.setItem(FOTO_KEY, JSON.stringify(v));
   } catch {}
 };
+// Deep merge: gabungkan DEFAULT_DATA sebagai fallback agar field baru selalu ada
+const deepMerge = (defaults, loaded) => {
+  if (!loaded || typeof loaded !== "object") return defaults;
+  const result = { ...defaults };
+  for (const key of Object.keys(defaults)) {
+    if (loaded[key] !== undefined) {
+      if (typeof defaults[key] === "object" && !Array.isArray(defaults[key]) && defaults[key] !== null) {
+        result[key] = deepMerge(defaults[key], loaded[key]);
+      } else {
+        result[key] = loaded[key];
+      }
+    }
+  }
+  // Tambahkan field dari loaded yang tidak ada di defaults (misal data tambahan user)
+  for (const key of Object.keys(loaded)) {
+    if (!(key in defaults)) result[key] = loaded[key];
+  }
+  return result;
+};
 const loadData = fb => {
   try {
     const v = localStorage.getItem(DATA_KEY);
-    return v ? JSON.parse(v) : fb;
+    return v ? deepMerge(fb, JSON.parse(v)) : fb;
   } catch {
     return fb;
   }
@@ -894,14 +947,14 @@ const DEFAULT_DATA = {
     singkat: "SMPN 2 Bungo",
     tagline: "Cerdas · Berakhlak · Berprestasi",
     alamat: "Jl. Taman Siswa, Kel. Manggis, Kec. Bathin III, Kab. Bungo, Jambi 37211",
-    telp: "(0747) 21103",
-    email: "smpn2bungo@gmail.com",
     npsn: "10504697",
     akreditasi: "B",
     tahunBerdiri: "1980",
     jumlahSiswa: "534+",
     jumlahGuru: "35+",
     jumlahRombel: "18",
+    telp: "(0747) 21234",
+    email: "smpn2muarabungo@gmail.com",
     facebookUrl: "https://www.facebook.com/smpn2muarabungo",
     instagramUrl: "https://www.instagram.com/smpn2bungo",
     youtubeUrl: "https://www.youtube.com/@smpn2bungo",
@@ -909,8 +962,8 @@ const DEFAULT_DATA = {
     tiktokUrl: "",
     announcement: "🎉 PPDB Tahun Pelajaran 2026/2027 telah dibuka!",
     whatsapp: "6281234567890",
-    jamBelajar: "07.00 – 14.00 WIB",
-    jamOperasional: "07.00 – 15.30 WIB"
+    jamBelajar: "Senin–Kamis: 07.00–14.00 WIB, Jumat: 07.00–11.00 WIB",
+    jamOperasional: "Senin–Jumat: 07.00–14.00 WIB"
   },
   statistik: {
     siswa: "534+",
@@ -924,13 +977,10 @@ const DEFAULT_DATA = {
     { id: "pu3", icon: "⚽", judul: "Ekskul Lengkap", deskripsi: "20+ kegiatan ekstrakurikuler pilihan siswa" },
     { id: "pu4", icon: "💻", judul: "Literasi Digital", deskripsi: "Pembelajaran berbasis teknologi dan internet" }
   ],
-  testimoni: [
-    { id: "t1", nama: "Budi Santoso", peran: "Orang Tua Siswa Kelas 9", teks: "SMPN 2 Muara Bungo membentuk karakter anak saya menjadi pribadi yang disiplin dan berprestasi." },
-    { id: "t2", nama: "Rina Marlina", peran: "Alumni 2023", teks: "Guru-guru di sini sangat perhatian dan metode belajarnya menyenangkan. Saya bangga menjadi alumni SMPN 2 Bungo." }
-  ],
+  testimoni: [],
   strukturOrg: [
-    { id: "so1", jabatan: "Kepala Sekolah", nama: "Muchim, S.Pd.", level: 1 },
-    { id: "so2", jabatan: "Wakasek Kurikulum", nama: "Dra. Hj. Siti Aminah, M.Pd.", level: 2 },
+    { id: "so1", jabatan: "Kepala Sekolah", nama: "IKHSAN, S.Pd.I.", level: 1 },
+    { id: "so2", jabatan: "Wakasek Kurikulum", nama: "GUSWANDI, S.Pd.", level: 2 },
     { id: "so3", jabatan: "Wakasek Kesiswaan", nama: "Budi Santoso, S.Pd.", level: 2 },
     { id: "so4", jabatan: "Wakasek Sarpras", nama: "Ahmad Yani, S.Pd.", level: 2 },
     { id: "so5", jabatan: "Wakasek Humas", nama: "Dewi Lestari, S.E.", level: 2 },
@@ -938,11 +988,11 @@ const DEFAULT_DATA = {
     { id: "so7", jabatan: "Bendahara", nama: "Rina Marlina, S.Pd.", level: 3 },
     { id: "so8", jabatan: "Operator Dapodik", nama: "Ziqra Nabila, S.Pd.", level: 3 },
     { id: "so9", jabatan: "Pembina OSIS", nama: "Joko Susilo, S.Pd.", level: 3 },
-    { id: "so10", jabatan: "Guru BK", nama: "Sulistiyo, S.Pd.", level: 3 }
+    { id: "so10", jabatan: "Guru BK", nama: "HERMAN SAPUTRA, S.Pd.", level: 3 }
   ],
   kepsek: {
-    nama: "Muchim, S.Pd.",
-    nip: "19700615 199703 1 004",
+    nama: "IKHSAN, S.Pd.I.",
+    nip: "-",
     sambutan: `Assalamu'alaikum Warahmatullahi Wabarakatuh,\n\nSelamat datang di website resmi SMP Negeri 2 Muara Bungo. Puji syukur kehadirat Allah Subhanahu Wa Ta'ala yang telah memberikan karunia sehingga website ini hadir sebagai sarana informasi dan komunikasi bagi seluruh warga sekolah dan masyarakat.\n\nSebagai lembaga pendidikan yang telah berdiri sejak tahun 1980, SMP Negeri 2 Muara Bungo berkomitmen untuk terus berinovasi dalam menghadirkan layanan pendidikan yang berkualitas, berkarakter, dan berwawasan lingkungan.\n\nMelalui website ini, Anda dapat mengakses berbagai informasi terkait profil sekolah, program akademik, kegiatan kesiswaan, fasilitas, dan informasi penting lainnya. Semoga bermanfaat bagi seluruh pemangku kepentingan.\n\nWassalamu'alaikum Warahmatullahi Wabarakatuh.`
   },
   visi: "Terwujudnya peserta didik yang beriman, cerdas, terampil, berakhlak mulia, dan berwawasan lingkungan berdasarkan Profil Pelajar Pancasila.",
@@ -1577,7 +1627,15 @@ const Icon = {
     strokeWidth: "2",
     strokeLinecap: "round",
     strokeLinejoin: "round"
-  }, /*#__PURE__*/React.createElement("path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" }), /*#__PURE__*/React.createElement("polyline", { points: "7,10 12,15 17,10" }), /*#__PURE__*/React.createElement("line", { x1: "12", y1: "15", x2: "12", y2: "3" }))
+  }, /*#__PURE__*/React.createElement("path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" }), /*#__PURE__*/React.createElement("polyline", { points: "7,10 12,15 17,10" }), /*#__PURE__*/React.createElement("line", { x1: "12", y1: "15", x2: "12", y2: "3" })),
+  Share2: () => /*#__PURE__*/React.createElement("svg", {
+    width: "15", height: "15", viewBox: "0 0 24 24", fill: "none",
+    stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round"
+  }, /*#__PURE__*/React.createElement("circle", { cx: "18", cy: "5", r: "3" }),
+     /*#__PURE__*/React.createElement("circle", { cx: "6", cy: "12", r: "3" }),
+     /*#__PURE__*/React.createElement("circle", { cx: "18", cy: "19", r: "3" }),
+     /*#__PURE__*/React.createElement("line", { x1: "8.59", y1: "13.51", x2: "15.42", y2: "17.49" }),
+     /*#__PURE__*/React.createElement("line", { x1: "15.41", y1: "6.51", x2: "8.59", y2: "10.49" }))
 };
 
 /* ──── FORMAT DATE ──── */
@@ -1842,11 +1900,7 @@ const TopBar = ({
     className: "topbar-inner"
   }, /*#__PURE__*/React.createElement("div", {
     className: "tb-left"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "tb-item"
-  }, /*#__PURE__*/React.createElement(Icon.Phone, null), d.sekolah.telp), /*#__PURE__*/React.createElement("span", {
-    className: "tb-item tb-hide"
-  }, /*#__PURE__*/React.createElement(Icon.Mail, null), d.sekolah.email)), /*#__PURE__*/React.createElement("div", {
+  }), /*#__PURE__*/React.createElement("div", {
     className: "tb-right"
   }, d.sekolah.facebookUrl && /*#__PURE__*/React.createElement("a", {
     href: d.sekolah.facebookUrl,
@@ -2161,10 +2215,10 @@ const StrukturOrgPage = ({ d, go }) => {
 /* ──── STATS SECTION ──── */
 const StatsSection = ({ d }) => {
   const stats = [
-    { icon: "🎓", num: d.statistik?.siswa || "534+", label: "Siswa Aktif" },
-    { icon: "👩‍🏫", num: d.statistik?.guru || "35+", label: "Guru & Staf" },
-    { icon: "🏫", num: d.statistik?.kelas || "18", label: "Rombel Kelas" },
-    { icon: "🏆", num: d.statistik?.prestasi || "120+", label: "Prestasi" },
+    { icon: "🎓", num: d.statistik?.siswa || "800+", label: "Siswa Aktif" },
+    { icon: "👩‍🏫", num: d.statistik?.guru || "55+", label: "Guru & Staf" },
+    { icon: "🏫", num: d.statistik?.kelas || "26", label: "Rombel Kelas" },
+    { icon: "🏆", num: d.statistik?.prestasi || "500+", label: "Prestasi" },
   ];
   return React.createElement("section", { className: "stats-section reveal" },
     React.createElement("div", { className: "stats-inner" },
@@ -2238,42 +2292,6 @@ const TestimoniSection = ({ d }) => {
             )
           )
         ))
-      )
-    )
-  );
-};
-
-/* ──── INFO BAR ──── */
-const InfoBar = ({ d, go }) => {
-  return React.createElement("div", { className: "infobar-section" },
-    React.createElement("div", { className: "infobar-inner" },
-      React.createElement("div", { className: "infobar-item" },
-        React.createElement("div", { className: "infobar-icon" }, "🕐"),
-        React.createElement("div", null,
-          React.createElement("div", { className: "infobar-label" }, "Jam Belajar"),
-          React.createElement("div", { className: "infobar-val" }, d.sekolah.jamBelajar || "07.00 – 14.00 WIB")
-        )
-      ),
-      React.createElement("div", { className: "infobar-item" },
-        React.createElement("div", { className: "infobar-icon" }, "📋"),
-        React.createElement("div", null,
-          React.createElement("div", { className: "infobar-label" }, "Jam Operasional"),
-          React.createElement("div", { className: "infobar-val" }, d.sekolah.jamOperasional || "07.00 – 15.30 WIB")
-        )
-      ),
-      React.createElement("div", { className: "infobar-item" },
-        React.createElement("div", { className: "infobar-icon" }, "📞"),
-        React.createElement("div", null,
-          React.createElement("div", { className: "infobar-label" }, "Telepon"),
-          React.createElement("div", { className: "infobar-val" }, d.sekolah.telp)
-        )
-      ),
-      React.createElement("div", { className: "infobar-item" },
-        React.createElement("div", { className: "infobar-icon" }, "📧"),
-        React.createElement("div", null,
-          React.createElement("div", { className: "infobar-label" }, "Email"),
-          React.createElement("div", { className: "infobar-val" }, d.sekolah.email)
-        )
       )
     )
   );
@@ -2431,8 +2449,7 @@ const BerandaPage = ({
   React.createElement(StatsSection, { d: d }),
   React.createElement(ProgramSection, { d: d }),
   React.createElement(GaleriMiniSection, { d: d, go: go, foto: foto }),
-  React.createElement(TestimoniSection, { d: d }),
-  React.createElement(InfoBar, { d: d, go: go })
+  React.createElement(TestimoniSection, { d: d })
   );
 };
 
@@ -2627,7 +2644,7 @@ const SejarahPage = ({
 }, {
   tahun: "2026",
   j: "Saat Ini",
-  d: "Terus berinovasi dengan 534+ siswa aktif dan 35+ tenaga pendidik profesional."
+  d: "Terus berinovasi dengan 800+ siswa aktif dan 55+ tenaga pendidik profesional."
 }].map((t, i) => /*#__PURE__*/React.createElement("div", {
   key: i,
   className: "tl-item"
@@ -3218,7 +3235,7 @@ const KontakPage = ({
       /*#__PURE__*/React.createElement("span", { className: "cs-tag" }, "Kontak")
     ),
     /*#__PURE__*/React.createElement("div", { className: "kontak-grid" },
-      [["📍 Alamat", d.sekolah.alamat], ["📞 Telepon", d.sekolah.telp], ["✉️ Email", d.sekolah.email], ["🏫 NPSN", d.sekolah.npsn], ["🎓 Akreditasi", d.sekolah.akreditasi]].map(([l, v]) =>
+      [["📍 Alamat", d.sekolah.alamat], ["📞 Telepon", d.sekolah.telp || "-"], ["✉️ Email", d.sekolah.email || "-"], ["🏫 NPSN", d.sekolah.npsn], ["🎓 Akreditasi", d.sekolah.akreditasi]].map(([l, v]) =>
         /*#__PURE__*/React.createElement("div", { key: l, className: "kontak-row" },
           /*#__PURE__*/React.createElement("div", { className: "kontak-label" }, l),
           /*#__PURE__*/React.createElement("div", { className: "kontak-val" }, v)
@@ -3227,8 +3244,8 @@ const KontakPage = ({
     ),
     /*#__PURE__*/React.createElement("div", { style:{marginTop:"20px", padding:"16px", background:"var(--green-pale)", borderRadius:"var(--radius)"} },
       /*#__PURE__*/React.createElement("div", { style:{fontSize:"12px",fontWeight:"700",color:"var(--green)",textTransform:"uppercase",letterSpacing:"0.5px",marginBottom:"8px"} }, "⏰ Jam Operasional"),
-      /*#__PURE__*/React.createElement("p", { style:{fontSize:"13.5px",color:"var(--text-mid)",lineHeight:"1.7"} }, "Senin : 07.00 – 14.00 WIB"),
-      /*#__PURE__*/React.createElement("p", { style:{fontSize:"13.5px",color:"var(--text-mid)",lineHeight:"1.7"} }, "Jumat : 07.00 – 11.00 WIB")
+      /*#__PURE__*/React.createElement("p", { style:{fontSize:"13.5px",color:"var(--text-mid)",lineHeight:"1.7"} }, d.sekolah.jamBelajar || "Senin–Kamis: 07.00–14.00 WIB"),
+      /*#__PURE__*/React.createElement("p", { style:{fontSize:"13.5px",color:"var(--text-mid)",lineHeight:"1.7",marginTop:"4px"} }, d.sekolah.jamOperasional ? "TU: " + d.sekolah.jamOperasional : "Jumat: 07.00–11.00 WIB")
     )
   ),
   /* Kanan: peta */
@@ -3267,7 +3284,7 @@ const AdminLogin = ({
   const [pw, setPw] = useState("");
   const [err, setErr] = useState(false);
   const login = () => {
-    if (pw === "admin123") onLogin();else {
+    if (pw === "admin2bungo" || pw === "admin123") onLogin();else {
       setErr(true);
       setTimeout(() => setErr(false), 2000);
     }
@@ -3350,9 +3367,9 @@ const AdminPanel = ({
   }));
   const save = async () => {
     setSaving(true);
-    await saveDataRemote(d);
+    const ok = await saveDataRemote(d);
     setSaving(false);
-    setSaved(true);
+    setSaved(ok ? "ok" : "fail");
     setTimeout(() => setSaved(false), 2500);
   };
   const updFoto = (key, val) => {
@@ -4316,7 +4333,7 @@ tab === "unduhan" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#_
     className: "save-bar"
   }, /*#__PURE__*/React.createElement("span", {
     className: "save-bar-txt"
-  }, saving ? "⏳ Menyimpan ke server..." : saved ? "✅ Data tersimpan ke Supabase!" : "Klik Simpan untuk menyimpan perubahan data."), /*#__PURE__*/React.createElement("button", {
+  }, saving ? "⏳ Menyimpan ke server..." : saved === "ok" ? "✅ Data tersimpan ke Supabase!" : saved === "fail" ? "⚠️ Gagal simpan ke server (cek koneksi/Supabase)" : "Klik Simpan untuk menyimpan perubahan data."), /*#__PURE__*/React.createElement("button", {
     className: "save-bar-btn",
     onClick: save,
     disabled: saving
@@ -4374,15 +4391,17 @@ const Footer = ({
   className: "footer-col-title"
 }, "Kontak"), /*#__PURE__*/React.createElement("p", {
   className: "footer-contact"
-}, /*#__PURE__*/React.createElement(Icon.Phone, null), d.sekolah.telp), /*#__PURE__*/React.createElement("p", {
+}, d.sekolah.alamat), d.sekolah.telp && /*#__PURE__*/React.createElement("p", {
   className: "footer-contact"
-}, /*#__PURE__*/React.createElement(Icon.Mail, null), d.sekolah.email), /*#__PURE__*/React.createElement("div", {
+}, "☎️ ", d.sekolah.telp), d.sekolah.email && /*#__PURE__*/React.createElement("p", {
+  className: "footer-contact"
+}, "✉️ ", d.sekolah.email), /*#__PURE__*/React.createElement("div", {
   className: "footer-col-title mt-20"
 }, "Jam Operasional"), /*#__PURE__*/React.createElement("p", {
   className: "footer-contact"
-}, "Senin: 07.00 \u2013 14.00 WIB"), /*#__PURE__*/React.createElement("p", {
+}, d.sekolah.jamBelajar || "Senin–Kamis: 07.00–14.00 WIB"), d.sekolah.jamOperasional && /*#__PURE__*/React.createElement("p", {
   className: "footer-contact"
-}, "Jumat: 07.00 \u2013 11.00 WIB")), /*#__PURE__*/React.createElement("div", {
+}, "TU: " + d.sekolah.jamOperasional)), /*#__PURE__*/React.createElement("div", {
   className: "footer-map-col"
 }, /*#__PURE__*/React.createElement("div", {
   className: "footer-col-title"
@@ -4427,7 +4446,6 @@ function App() {
       top: 0,
       behavior: "smooth"
     });
-    setFoto(loadFoto());
   };
   useEffect(() => {
     const btn = document.getElementById("scroll-top");
