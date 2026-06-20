@@ -950,9 +950,9 @@ const DEFAULT_DATA = {
     npsn: "10504697",
     akreditasi: "B",
     tahunBerdiri: "1980",
-    jumlahSiswa: "534+",
-    jumlahGuru: "35+",
-    jumlahRombel: "18",
+    jumlahSiswa: "850+",
+    jumlahGuru: "45+",
+    jumlahRombel: "29",
     telp: "(0747) 21234",
     email: "smpn2muarabungo@gmail.com",
     facebookUrl: "https://www.facebook.com/smpn2muarabungo",
@@ -967,7 +967,7 @@ const DEFAULT_DATA = {
   },
   statistik: {
     siswa: "850+",
-    guru: "45+",
+    guru: "55+",
     kelas: "27",
     prestasi: "500+"
   },
@@ -2217,7 +2217,7 @@ const StatsSection = ({ d }) => {
   const stats = [
     { icon: "🎓", num: d.statistik?.siswa || "800+", label: "Siswa Aktif" },
     { icon: "👩‍🏫", num: d.statistik?.guru || "55+", label: "Guru & Staf" },
-    { icon: "🏫", num: d.statistik?.kelas || "26", label: "Rombel Kelas" },
+    { icon: "🏫", num: d.statistik?.kelas || "27", label: "Rombel Kelas" },
     { icon: "🏆", num: d.statistik?.prestasi || "500+", label: "Prestasi" },
   ];
   return React.createElement("section", { className: "stats-section reveal" },
