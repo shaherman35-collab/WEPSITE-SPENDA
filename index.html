@@ -3576,7 +3576,7 @@ const AdminPanel = ({
     React.createElement(LocalInput, {
       className: "af-input",
       value: d.statistik?.[k] || "",
-      onChange: e => setD(dd => ({ ...dd, statistik: { ...(dd.statistik||{}), [k]: e.target.value } }))
+      onChange: v => setD(dd => ({ ...dd, statistik: { ...(dd.statistik||{}), [k]: v } }))
     })
   )),
 
@@ -3588,7 +3588,7 @@ const AdminPanel = ({
     React.createElement(LocalInput, {
       className: "af-input",
       value: d.sekolah?.[k] || "",
-      onChange: e => setD(dd => ({ ...dd, sekolah: { ...dd.sekolah, [k]: e.target.value } }))
+      onChange: v => setD(dd => ({ ...dd, sekolah: { ...dd.sekolah, [k]: v } }))
     })
   )),
 
@@ -3600,7 +3600,7 @@ const AdminPanel = ({
       React.createElement(LocalInput, {
         className: "af-input", style:{maxWidth:"80px"},
         value: p.icon || "",
-        onChange: e => setD(dd => { const a = [...dd.programUnggulan]; a[i]={...a[i],icon:e.target.value}; return {...dd,programUnggulan:a}; })
+        onChange: v => setD(dd => { const a = [...dd.programUnggulan]; a[i]={...a[i],icon:v}; return {...dd,programUnggulan:a}; })
       })
     ),
     /*#__PURE__*/React.createElement("div", { className: "af-row" },
@@ -3608,7 +3608,7 @@ const AdminPanel = ({
       React.createElement(LocalInput, {
         className: "af-input",
         value: p.judul || "",
-        onChange: e => setD(dd => { const a = [...dd.programUnggulan]; a[i]={...a[i],judul:e.target.value}; return {...dd,programUnggulan:a}; })
+        onChange: v => setD(dd => { const a = [...dd.programUnggulan]; a[i]={...a[i],judul:v}; return {...dd,programUnggulan:a}; })
       })
     ),
     /*#__PURE__*/React.createElement("div", { className: "af-row" },
@@ -3616,7 +3616,7 @@ const AdminPanel = ({
       React.createElement(LocalInput, {
         className: "af-input",
         value: p.deskripsi || "",
-        onChange: e => setD(dd => { const a = [...dd.programUnggulan]; a[i]={...a[i],deskripsi:e.target.value}; return {...dd,programUnggulan:a}; })
+        onChange: v => setD(dd => { const a = [...dd.programUnggulan]; a[i]={...a[i],deskripsi:v}; return {...dd,programUnggulan:a}; })
       })
     ),
     /*#__PURE__*/React.createElement("button", {
@@ -3637,7 +3637,7 @@ const AdminPanel = ({
       React.createElement(LocalInput, {
         className: "af-input",
         value: t.nama || "",
-        onChange: e => setD(dd => { const a=[...dd.testimoni]; a[i]={...a[i],nama:e.target.value}; return {...dd,testimoni:a}; })
+        onChange: v => setD(dd => { const a=[...dd.testimoni]; a[i]={...a[i],nama:v}; return {...dd,testimoni:a}; })
       })
     ),
     /*#__PURE__*/React.createElement("div", { className: "af-row" },
@@ -3645,7 +3645,7 @@ const AdminPanel = ({
       React.createElement(LocalInput, {
         className: "af-input",
         value: t.peran || "",
-        onChange: e => setD(dd => { const a=[...dd.testimoni]; a[i]={...a[i],peran:e.target.value}; return {...dd,testimoni:a}; })
+        onChange: v => setD(dd => { const a=[...dd.testimoni]; a[i]={...a[i],peran:v}; return {...dd,testimoni:a}; })
       })
     ),
     /*#__PURE__*/React.createElement("div", { className: "af-row" },
@@ -3654,7 +3654,7 @@ const AdminPanel = ({
         className: "af-input",
         rows: 3,
         value: t.teks || "",
-        onChange: e => setD(dd => { const a=[...dd.testimoni]; a[i]={...a[i],teks:e.target.value}; return {...dd,testimoni:a}; })
+        onChange: v => setD(dd => { const a=[...dd.testimoni]; a[i]={...a[i],teks:v}; return {...dd,testimoni:a}; })
       })
     ),
     /*#__PURE__*/React.createElement("button", {
