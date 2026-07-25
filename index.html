@@ -561,6 +561,15 @@ ul{list-style:none;}
 .ppdb-step-no{width:36px;min-width:36px;height:36px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px;}
 .ppdb-step-judul{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px;}
 .ppdb-step-desc{font-size:13px;color:var(--text-mid);}
+
+/* ════════════════ MENU LAYANAN ════════════════ */
+.menu-layanan-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;}
+.menu-layanan-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px 22px;text-align:center;cursor:pointer;transition:transform .18s,box-shadow .18s,border-color .18s;}
+.menu-layanan-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--green-mid);}
+.menu-layanan-icon{width:56px;height:56px;border-radius:50%;background:var(--green-pale);display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 14px;}
+.menu-layanan-judul{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.menu-layanan-desc{font-size:12.5px;color:var(--text-mid);margin-bottom:0;}
+.menu-layanan-empty{font-size:11.5px;color:var(--text-light);margin-top:10px;font-style:italic;}
 .syarat-list{padding-left:0;display:flex;flex-direction:column;gap:10px;}
 .syarat-list li{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:var(--text-mid);padding-left:20px;position:relative;}
 .syarat-list li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:700;}
@@ -1236,6 +1245,11 @@ const DEFAULT_DATA = {
       judul: "Daftar Ulang",
       deskripsi: "Calon siswa yang lolos melakukan daftar ulang."
     }]
+  },
+  menuLayanan: {
+    ujianLink: "",
+    kelulusanLink: "",
+    absensiLink: ""
   }
 };
 
@@ -2353,8 +2367,8 @@ const BerandaPage = ({
     onClick: () => go("profil")
   }, "Profil Sekolah"), /*#__PURE__*/React.createElement("button", {
     className: "hero-btn-secondary",
-    onClick: () => go("ppdb")
-  }, "PPDB 2026/2027")))), /*#__PURE__*/React.createElement(Marquee, {
+    onClick: () => go("menuLayanan")
+  }, "Menu")))), /*#__PURE__*/React.createElement(Marquee, {
     d: d
   }), /*#__PURE__*/React.createElement(NewsSlider, {
     d: d,
@@ -3176,6 +3190,69 @@ const PpdbPage = ({
   foto: foto
 })));
 
+/* ──── MENU LAYANAN PAGE ──── */
+const MenuLayananPage = ({
+  d,
+  go,
+  foto
+}) => {
+  const items = [{
+    key: "ujianLink",
+    icon: "📝",
+    judul: "Ujian Sekolah",
+    desc: "Portal untuk mengakses ujian sekolah secara online."
+  }, {
+    key: "kelulusanLink",
+    icon: "🎓",
+    judul: "Portal Kelulusan",
+    desc: "Cek informasi dan pengumuman kelulusan siswa."
+  }, {
+    key: "absensiLink",
+    icon: "📷",
+    judul: "Absensi Siswa (QR Code)",
+    desc: "Portal absensi siswa menggunakan pemindaian QR Code."
+  }];
+  const bukaLink = (link) => {
+    if (link) {
+      window.open(link, "_blank", "noopener,noreferrer");
+    } else {
+      alert("Link belum diatur oleh admin. Silakan hubungi admin sekolah.");
+    }
+  };
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(PageHdr, {
+    title: "Menu",
+    sub: "Akses cepat ke layanan sekolah",
+    foto: foto.hero
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "content-wrap"
+  }, /*#__PURE__*/React.createElement("main", {
+    className: "main-col"
+  }, /*#__PURE__*/React.createElement("section", {
+    className: "content-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "menu-layanan-grid"
+  }, items.map(it => {
+    const link = d.menuLayanan && d.menuLayanan[it.key];
+    return /*#__PURE__*/React.createElement("div", {
+      key: it.key,
+      className: "menu-layanan-card",
+      onClick: () => bukaLink(link)
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "menu-layanan-icon"
+    }, it.icon), /*#__PURE__*/React.createElement("div", {
+      className: "menu-layanan-judul"
+    }, it.judul), /*#__PURE__*/React.createElement("p", {
+      className: "menu-layanan-desc"
+    }, it.desc), !link && /*#__PURE__*/React.createElement("div", {
+      className: "menu-layanan-empty"
+    }, "Link belum diatur"));
+  })))), /*#__PURE__*/React.createElement(Sidebar, {
+    d: d,
+    go: go,
+    foto: foto
+  })));
+};
+
 /* ──── GALERI PAGE ──── */
 const GaleriPage = ({
   d,
@@ -3450,6 +3527,9 @@ const AdminPanel = ({
   }, {
     id: "ppdb",
     lbl: "PPDB"
+  }, {
+    id: "menuLayanan",
+    lbl: "🔗 Menu"
   }, {
     id: "galeri",
     lbl: "Galeri"
@@ -4279,7 +4359,31 @@ tab === "unduhan" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#_
     onClick: () => upd("ppdb", {
       syarat: [...d.ppdb.syarat, ""]
     })
-  }, "+ Tambah Syarat")), tab === "galeri" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h3", {
+  }, "+ Tambah Syarat")), tab === "menuLayanan" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h3", {
+    className: "ah3"
+  }, "Menu Layanan"), /*#__PURE__*/React.createElement("p", {
+    className: "admin-hint"
+  }, "Atur link tujuan untuk setiap kartu menu di halaman \u201cMenu\u201d. Saat kartu diklik, pengunjung akan langsung diarahkan ke link ini di tab baru."), /*#__PURE__*/React.createElement("div", {
+    className: "af-grid"
+  }, /*#__PURE__*/React.createElement(F, {
+    label: "Link Ujian Sekolah",
+    val: d.menuLayanan.ujianLink,
+    onChange: v => upd("menuLayanan", {
+      ujianLink: v
+    })
+  }), /*#__PURE__*/React.createElement(F, {
+    label: "Link Portal Kelulusan",
+    val: d.menuLayanan.kelulusanLink,
+    onChange: v => upd("menuLayanan", {
+      kelulusanLink: v
+    })
+  }), /*#__PURE__*/React.createElement(F, {
+    label: "Link Absensi Siswa (QR Code)",
+    val: d.menuLayanan.absensiLink,
+    onChange: v => upd("menuLayanan", {
+      absensiLink: v
+    })
+  }))), tab === "galeri" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h3", {
     className: "ah3"
   }, "Galeri"), d.galeri.map((g, i) => /*#__PURE__*/React.createElement("div", {
     key: g.id,
@@ -4532,6 +4636,11 @@ function App() {
       foto: foto
     }),
     ppdb: /*#__PURE__*/React.createElement(PpdbPage, {
+      d: d,
+      go: go,
+      foto: foto
+    }),
+    menuLayanan: /*#__PURE__*/React.createElement(MenuLayananPage, {
       d: d,
       go: go,
       foto: foto
